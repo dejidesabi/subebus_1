@@ -62,19 +62,19 @@
 <script type="text/javascript" src="js/controllers/headerController.js"></script>
 <script type="text/javascript" src="js/controllers/perfil.js"></script>
 <script type="text/javascript" src="js/controllers/DHLController.js"></script>
-
+<script type="text/javascript" src="js/controllers/guiaController.js"></script>
 <script type="text/javascript" src="js/controllers/usuarioController.js"></script>
 <script type="text/javascript" src="js/controllers/notificacionesController.js"></script>
 <script type="text/javascript" src="js/controllers/sucursalController.js"></script>
-
+<script type="text/javascript" src="js/controllers/paqueteriaController.js"></script>
 <script type="text/javascript" src="js/controllers/ControllerWelcome.js"></script>
 
- <!-- <script>
-	 if (location.protocol != 'https:')
+<!-- <script>
+	if (location.protocol != 'https:')
 	{
  	 location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
- 	} 
-	</script>  -->
+ 	}
+	</script> -->
 
 </head>
 
@@ -123,11 +123,22 @@
 <!--           </ul> -->
 <!--         </li> -->
         
-  
+    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Guias" ng-if="UserData.perfil!='Cajero'">
+          <a class="nav-link" href="#/guia">
+            <i class="fa fa-fw fa-list-alt fa-2x"></i>
+            <span class="nav-link-text">Guias</span>
+          </a>
+        </li>
+     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Ventas">
+          <a class="nav-link" href="#/Ventas">
+            <i class="fa fa-fw fa-shopping-cart fa-2x"></i>
+            <span class="nav-link-text">Ventas</span>
+          </a>
+        </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components" ng-if="UserData.perfil!='Cajero'">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" data-target="#collapseAlta">
             <i class="fa fa-fw fa-database fa-2x"></i>
-            <span class="nav-link-text">Administracion</span>
+            <span class="nav-link-text">Alta</span>
           </a>
           <ul class="sidenav-second-level collapse" id="collapseAlta">
 <!--           <li> -->

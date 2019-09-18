@@ -3,10 +3,10 @@ package com.tikal.util;
 import org.springframework.stereotype.Component;
 
 import com.googlecode.objectify.ObjectifyService;
-import com.tikal.mensajeria.modelo.login.Perfil;
-import com.tikal.mensajeria.modelo.login.SessionEntity;
-import com.tikal.mensajeria.modelo.login.Sucursal;
-import com.tikal.mensajeria.modelo.login.Usuario;
+import com.tikal.subebus.modelo.login.Perfil;
+import com.tikal.subebus.modelo.login.SessionEntity;
+import com.tikal.subebus.modelo.login.Sucursal;
+import com.tikal.subebus.modelo.login.Usuario;
 
 
 

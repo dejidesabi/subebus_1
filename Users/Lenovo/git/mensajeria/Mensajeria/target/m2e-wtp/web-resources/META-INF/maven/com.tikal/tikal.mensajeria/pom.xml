@@ -8,7 +8,7 @@
 	<version>0.1.0-SNAPSHOT</version>
 
 	<groupId>com.tikal</groupId>
-	<artifactId>tikal.mensajeria</artifactId>
+	<artifactId>tikal.subebus</artifactId>
 
 	<properties>
 		<appengine.maven.plugin.version>1.3.1</appengine.maven.plugin.version>
