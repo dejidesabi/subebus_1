@@ -67,12 +67,18 @@ public class LoteController {
 			Lote l = (Lote) JsonConvertidor.fromJson(json, Lote.class);
 			Calendar cal=Calendar.getInstance(TimeZone.getTimeZone("America/Mexico_City"));
 			loteDao.guardar(l);
-			for (int i=1; i==l.getCantidad(); i++){
+			for (int i=1; i<=l.getCantidad(); i++){
 				Membresia m = new Membresia();
 				m.setDuracion(l.getDuracion());
 				m.setEstatus("INACTIVO");
 				m.setIdLote(l.getId());
+				Contador c = new Contador();
+				m.setId(c.getFolio());
+				c.incremeta();
+				contadorDao.guardar(c);
+				System.out.println("serial:"+c.getFolio());
 				memDao.crear(m);
+				System.out.println("num mem:"+i);
 			}
 			System.out.println("se crearon "+l.getCantidad()+" membresias...");
 //		}else{
