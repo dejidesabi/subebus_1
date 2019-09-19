@@ -8,45 +8,24 @@ import com.googlecode.objectify.annotation.Index;
 public class Serial {
 
 	@Id
-	private String id;
+	private Long id;
 	
-	@Index
-	private String rfc;
-	
-	@Index 
-	private String serie;
-	
-	private long folio;
+	private int folio;
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public String getRfc() {
-		return rfc;
-	}
-
-	public void setRfc(String rfc) {
-		this.rfc = rfc;
-	}
-
-	public String getSerie() {
-		return serie;
-	}
-
-	public void setSerie(String serie) {
-		this.serie = serie;
-	}
 
 	public long getFolio() {
 		return folio;
 	}
 
-	public void setFolio(long folio) {
+	public void setFolio(int folio) {
 		this.folio = folio;
 	}
 	

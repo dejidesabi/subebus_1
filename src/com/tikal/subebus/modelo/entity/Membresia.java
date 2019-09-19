@@ -10,7 +10,7 @@ import com.googlecode.objectify.annotation.Index;
 
 public class Membresia {
 
-		@Id long id;
+		@Id Long id;
 		@Index String duracion;
 		private Date fechaActivacion;
 		private Date fechaCaducidad;
@@ -18,10 +18,10 @@ public class Membresia {
 		private String qr;
 		@Index Long idLote;
 		
-		public long getId() {
+		public Long getId() {
 			return id;
 		}
-		public void setId(long id) {
+		public void setId(Long id) {
 			this.id = id;
 		}
 		public String getDuracion() {

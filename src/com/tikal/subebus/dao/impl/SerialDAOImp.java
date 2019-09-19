@@ -12,19 +12,11 @@ public class SerialDAOImp implements SerialDAO{
 
 	@Override
 	public void guardar(Serial s) {
-		s.setId(s.getRfc()+s.getSerie());
+		//s.setId(s.);
 		ofy().save().entity(s).now();
 	}
 
-	@Override
-	public Serial consultar(String rfc, String serie) {
-		return ofy().load().type(Serial.class).id(rfc+serie).now();
-	}
 
-	@Override
-	public List<Serial> consultar(String rfc) {
-		return ofy().load().type(Serial.class).filter("rfc",rfc).list();
-	}
 
 	@Override
 	public void eliminar(String id) {

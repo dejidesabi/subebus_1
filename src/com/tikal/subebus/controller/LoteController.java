@@ -20,10 +20,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.tikal.subebus.dao.LoteDao;
 import com.tikal.subebus.dao.MembresiaDao;
 import com.tikal.subebus.dao.PerfilDAO;
+import com.tikal.subebus.dao.SerialDAO;
 import com.tikal.subebus.dao.SessionDao;
 import com.tikal.subebus.dao.UsuarioDao;
 import com.tikal.subebus.modelo.entity.Lote;
 import com.tikal.subebus.modelo.entity.Membresia;
+import com.tikal.subebus.modelo.entity.Serial;
 import com.tikal.subebus.modelo.login.Sucursal;
 import com.tikal.subebus.util.JsonConvertidor;
 import com.tikal.util.AsignadorDeCharset;
@@ -51,6 +53,9 @@ public class LoteController {
 	 
 	 @Autowired
 	 MembresiaDao memDao;
+	 
+	 @Autowired
+	 SerialDAO serialDao;
 	 
 	 
 	 @RequestMapping(value = {"/add" }, method = RequestMethod.POST, produces = "application/json", consumes = "application/json")
@@ -81,11 +86,25 @@ public class LoteController {
 			l.setDuracion("mensual");
 			l.setIdSucursal(Long.parseLong("6333186975989760"));
 			l.setTipo("Electrónico");
-			l.setCantidad(10);
+			l.setCantidad(3);
 			
 			loteDao.guardar(l);
 			Calendar cal=Calendar.getInstance(TimeZone.getTimeZone("America/Mexico_City"));
-			
+			System.out.println("cantidad memb:"+l.getCantidad());
+			for (int i=1; i<=l.getCantidad(); i++){
+				Membresia m = new Membresia();
+				m.setDuracion(l.getDuracion());
+				m.setEstatus("INACTIVO");
+				m.setIdLote(l.getId());
+			//	Serial s = new Serial();
+			//	m.setId(Long.valueOf(s.getFolio()));
+			//	s.incrementa();
+			////	serialDao.guardar(s);
+			//	System.out.println("serial:"+s.getFolio());
+				memDao.crear(m);
+				System.out.println("num mem:"+i);
+			}
+			System.out.println("se crearon "+l.getCantidad()+" membresias...");
 //		}else{
 //			rs.sendError(403);
 //		}
@@ -104,6 +123,17 @@ public class LoteController {
 
 		}
 	 
+	 
+	 @RequestMapping(value = { "/crearFolios" }, method = RequestMethod.GET, produces = "application/json")
+		public void folios(HttpServletResponse response, HttpServletRequest request) throws IOException {
+			AsignadorDeCharset.asignar(request, response);
+			Serial s= new Serial();
+			s.setFolio(1);
+			serialDao.guardar(s);
+			response.getWriter().println("folios creados...");
+
+		}
+
 	 
 }
 
