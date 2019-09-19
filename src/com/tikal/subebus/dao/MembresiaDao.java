@@ -16,5 +16,11 @@ public interface MembresiaDao {
 	
 	public List<Membresia> consultarTodos();
 	
+	public int pags();
+	
+	public List<Membresia> findAllPage(int page);
+	
+	
+	
 
 }

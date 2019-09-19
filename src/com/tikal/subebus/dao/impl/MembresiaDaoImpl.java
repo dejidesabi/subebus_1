@@ -43,7 +43,17 @@ public class MembresiaDaoImpl implements MembresiaDao {
 
 	@Override
 	public List<Membresia> consultarTodos() {
-		return ofy().load().type(Membresia.class).list();
+		return ofy().load().type(Membresia.class).order("- fechaCaducidad").list();
+	}
+
+	@Override
+	public int pags() {
+		return ((ofy().load().type(Membresia.class).count()-1)/15)+1;
+	}
+
+	@Override
+	public List<Membresia> findAllPage(int page) {
+		return ofy().load().type(Membresia.class).order("- fechaCaducidad").offset((page-1)*15).limit(10).list();
 	}
 
 }

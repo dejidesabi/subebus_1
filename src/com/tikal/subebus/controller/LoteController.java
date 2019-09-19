@@ -13,16 +13,19 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.tikal.subebus.dao.ContadorDao;
 import com.tikal.subebus.dao.LoteDao;
 import com.tikal.subebus.dao.MembresiaDao;
 import com.tikal.subebus.dao.PerfilDAO;
 import com.tikal.subebus.dao.SerialDAO;
 import com.tikal.subebus.dao.SessionDao;
 import com.tikal.subebus.dao.UsuarioDao;
+import com.tikal.subebus.modelo.entity.Contador;
 import com.tikal.subebus.modelo.entity.Lote;
 import com.tikal.subebus.modelo.entity.Membresia;
 import com.tikal.subebus.modelo.entity.Serial;
@@ -55,7 +58,7 @@ public class LoteController {
 	 MembresiaDao memDao;
 	 
 	 @Autowired
-	 SerialDAO serialDao;
+	 ContadorDao contadorDao;
 	 
 	 
 	 @RequestMapping(value = {"/add" }, method = RequestMethod.POST, produces = "application/json", consumes = "application/json")
@@ -96,11 +99,11 @@ public class LoteController {
 				m.setDuracion(l.getDuracion());
 				m.setEstatus("INACTIVO");
 				m.setIdLote(l.getId());
-			//	Serial s = new Serial();
-			//	m.setId(Long.valueOf(s.getFolio()));
-			//	s.incrementa();
-			////	serialDao.guardar(s);
-			//	System.out.println("serial:"+s.getFolio());
+				Contador c = new Contador();
+				m.setId(c.getFolio());
+				c.incremeta();
+				contadorDao.guardar(c);
+				System.out.println("serial:"+c.getFolio());
 				memDao.crear(m);
 				System.out.println("num mem:"+i);
 			}
@@ -127,13 +130,27 @@ public class LoteController {
 	 @RequestMapping(value = { "/crearFolios" }, method = RequestMethod.GET, produces = "application/json")
 		public void folios(HttpServletResponse response, HttpServletRequest request) throws IOException {
 			AsignadorDeCharset.asignar(request, response);
-			Serial s= new Serial();
-			s.setFolio(1);
-			serialDao.guardar(s);
+			Contador c= new Contador();
+			c.setFolio(Long.valueOf("1"));
+			contadorDao.guardar(c);
 			response.getWriter().println("folios creados...");
 
 		}
-
+	 @RequestMapping(value = "/numPaginas", method = RequestMethod.GET)
+		public void numpags(HttpServletRequest req, HttpServletResponse res) throws IOException {
+			int paginas =loteDao.pags();
+			res.getWriter().print(paginas);
+		}
+	  
+	  @RequestMapping(value = { "/findAllP/{page}" }, method = RequestMethod.GET, produces = "application/json")
+		public void findAllByPage(HttpServletResponse response, HttpServletRequest request, @PathVariable int page) throws IOException {
+			AsignadorDeCharset.asignar(request, response);
+			List<Lote> lista = loteDao.findAllPage(page);
+			if (lista == null) {
+				lista = new ArrayList<Lote>();
+			}
+			response.getWriter().println(JsonConvertidor.toJson(lista));
+		}
 	 
 }
 

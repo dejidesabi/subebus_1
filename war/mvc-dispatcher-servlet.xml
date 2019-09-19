@@ -24,6 +24,7 @@
 
 	<bean class="com.tikal.subebus.dao.impl.LoteDaoImpl" />
 	<bean class="com.tikal.subebus.dao.impl.MembresiaDaoImpl" />
+	<bean class="com.tikal.subebus.dao.impl.ContadorDaoImpl" />
 	
 </beans>
     

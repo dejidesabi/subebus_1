@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -73,4 +74,19 @@ public class MembresiaController {
 
 		}
 	 
+	 @RequestMapping(value = "/numPaginas", method = RequestMethod.GET)
+		public void numpags(HttpServletRequest req, HttpServletResponse res) throws IOException {
+			int paginas = memDao.pags();
+			res.getWriter().print(paginas);
+		}
+	  
+	  @RequestMapping(value = { "/findAllP/{page}" }, method = RequestMethod.GET, produces = "application/json")
+		public void findAllByPage(HttpServletResponse response, HttpServletRequest request, @PathVariable int page) throws IOException {
+			AsignadorDeCharset.asignar(request, response);
+			List<Membresia> lista = memDao.findAllPage(page);
+			if (lista == null) {
+				lista = new ArrayList<Membresia>();
+			}
+			response.getWriter().println(JsonConvertidor.toJson(lista));
+		}
 }
