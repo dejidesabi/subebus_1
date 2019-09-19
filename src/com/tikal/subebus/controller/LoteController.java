@@ -127,15 +127,7 @@ public class LoteController {
 		}
 	 
 	 
-	 @RequestMapping(value = { "/crearFolios" }, method = RequestMethod.GET, produces = "application/json")
-		public void folios(HttpServletResponse response, HttpServletRequest request) throws IOException {
-			AsignadorDeCharset.asignar(request, response);
-			Contador c= new Contador();
-			c.setFolio(Long.valueOf("1"));
-			contadorDao.guardar(c);
-			response.getWriter().println("folios creados...");
-
-		}
+	
 	 @RequestMapping(value = "/numPaginas", method = RequestMethod.GET)
 		public void numpags(HttpServletRequest req, HttpServletResponse res) throws IOException {
 			int paginas =loteDao.pags();
