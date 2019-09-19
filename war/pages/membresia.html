@@ -1,0 +1,48 @@
+<!--  LISTA DE LOTES -->
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title"> Lista Membresia</h4>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead class=" text-primary">
+                      <th>
+                        Estatus
+                      </th>
+                      <th>
+                        Duracion
+                      </th>
+                      <th>
+                        Fecha de Activacion
+                      </th>
+                      <th>
+                        Fecha Caducidad
+                      </th>
+                      <th>
+                        Lote
+                      </th>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="d in membresiaData">
+                        <td>
+                          {{d.estatus}}
+                        </td>
+                        <td>
+                          {{d.duracion}}
+                        </td>
+                        <td>
+                          {{d.fechaActivacion | date}}
+                        </td>
+                   		<td>
+                   		  {{d.fechaCaducidad | date}}
+                   		</td>
+                   		<td>
+                   		  {{d.idLote}}
+                   		</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
