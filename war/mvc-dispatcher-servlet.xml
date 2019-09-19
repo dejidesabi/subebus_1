@@ -11,130 +11,19 @@
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
- 	<context:component-scan base-package="com.tikal.subebus.controller"/>
-    <context:component-scan base-package="com.tikal.subebus.service.impl"/>
-  <context:component-scan base-package="com.tikal.subebus.prueba"/>
+ 	<context:component-scan base-package="com.tikal.subebus.controller"/>   
      <context:component-scan base-package="com.tikal.subebus.dao"/>   
     <context:component-scan base-package="com.tikal.subebus.dao.impl"/>
-    <context:component-scan base-package="com.tikal.subebusl.util"/>
-    <context:component-scan base-package="com.tikal.cacao.springController.orm"/>
-     <context:component-scan base-package="com.tikal.cacao.dao.sql"/>
-      <context:component-scan base-package="com.tikal.cacao.service"/>
-       <context:component-scan base-package="com.tikal.cacao.dao"/>
-  <context:component-scan base-package="com.tikal.cacao.dao.sqlimpl.FormaDePagoHibernateDAOImpl"/>
-       
-     <context:component-scan
-		base-package="com.tikal.cacao.springController, com.tikal.cacao.sat.calculos,
-  		 com.tikal.cacao.factura, com.tikal.cacao.factura.ws, 
- 		 com.tikal.cacao.service.impl,com.tikal.cacao.service, com.tikal.cacao.dao, com.tikal.cacao.dao.imp" />
-    
-   <!-- Data source Cloud SQL Bean -->
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
-		<!-- Production GoogleDriver -->
- 		 <property name="driverClassName" value="com.mysql.jdbc.GoogleDriver"/>
-		<property name="url" value="jdbc:google:mysql://stdsistema2:us-central1:std2sql/catalogos"/>
-		<property name="username" value="ismael" />
-		<property name="password" value="nMVKLZ7yuj" />   
-		
-		<!-- Development Driver -->
- 		<!--   <property name="driverClassName" value="com.mysql.jdbc.Driver" /> 
-		<property name="url" value="jdbc:mysql://192.168.100.200:3306/catalogos?useSSL=false" />
-		<property name="username" value="admin" />
-		<property name="password" value="123456" />   --> 
-
-		<property name="validationQuery" value="SELECT 1" />
-	</bean>
+    <context:component-scan base-package="com.tikal.subebus.util"/>
+ 
+  
 
 
-	<!-- Hibernate 4 SessionFactory Bean definition -->
-	<bean id="hibernate4AnnotatedSessionFactory"
-		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" />
-		<property name="annotatedClasses">
-			<list>
-				<value>com.tikal.cacao.model.orm.Tipo</value>
-				<value>com.tikal.cacao.model.orm.Division</value>
-				<value>com.tikal.cacao.model.orm.Grupo</value>
-				<value>com.tikal.cacao.model.orm.Clase</value>
-				<value>com.tikal.cacao.model.orm.ProductoOServicio</value>
-
-				<value>com.tikal.cacao.model.orm.UnidadDeMedida</value>
-				<value>com.tikal.cacao.model.orm.UsoDeCFDI</value>
-				<value>com.tikal.cacao.model.orm.RegimenFiscal</value>
-				<value>com.tikal.cacao.model.orm.FormaDePago</value>
-				<value>com.tikal.cacao.model.orm.Impuesto</value>
-
-				<value>com.tikal.cacao.model.orm.Moneda</value>
-				<value>com.tikal.cacao.model.orm.TipoDeComprobante</value>
-			</list>
-		</property>
-		<property name="hibernateProperties">
-			<props>
-				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-				<prop key="hibernate.current_session_context_class">thread</prop>
-				<prop key="hibernate.show_sql">true</prop> <!-- false in production -->
-			</props>
-		</property>
-	</bean>
 	
+	<!-- Beans DAOs GAE storage implementation -->
+
+	<bean class="com.tikal.subebus.dao.impl.LoteDaoImpl" />
+	<bean class="com.tikal.subebus.dao.impl.MembresiaDaoImpl" />
 	
-	<bean id="tipoDAOH" class="com.tikal.cacao.dao.sqlimpl.TipoDAOHibernateImpl">
-		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"  />
-	</bean>
-
-	<bean id="divisionDAOH" class="com.tikal.cacao.dao.sqlimpl.DivisionDAOHibernateImpl">
-		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
-	</bean>
-
-	<bean id="grupoDAOH" class="com.tikal.cacao.dao.sqlimpl.GrupoDAOHibernateImpl">
-		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
-	</bean>
-
-	<bean id="claseDAOH" class="com.tikal.cacao.dao.sqlimpl.ClaseDAOHibernateImpl">
-		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
-	</bean>
-
-	<bean id="productoServicioDAOH"
-		class="com.tikal.cacao.dao.sqlimpl.ProductoOServicioDAOHibernateImpl">
-		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
-	</bean>
-
-	<bean id="unidadDeMedidaDAOH"
-		class="com.tikal.cacao.dao.sqlimpl.UnidadDeMedidaDAOHibernateImpl">
-		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
-	</bean>
-
-	<bean id="usoDeCfdiDAOH" class="com.tikal.cacao.dao.sqlimpl.UsoDeCFDIDAOHibernateImpl">
-		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
-	</bean>
-
-	<bean id="regimenFiscalDAOH"
-		class="com.tikal.cacao.dao.sqlimpl.RegimenFiscalDAOHibernateImpl">
-		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
-	</bean>
-
-	<bean id="formaDePagoDAOH" class="com.tikal.cacao.dao.sqlimpl.FormaDePagoHibernateDAOImpl">
-		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
-	</bean>
-
-	<bean id="tipoDeComprobanteDAOH"
-		class="com.tikal.cacao.dao.sqlimpl.TipoDeComprobanteHibernateDAOImpl">
-		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
-	</bean>
-
-	<bean id="impuestoDAOH" class="com.tikal.cacao.dao.sqlimpl.ImpuestoHibernateDAOImpl">
-		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
-	</bean>
-
-	<bean id="monedaDAOH" class="com.tikal.cacao.dao.sqlimpl.MonedaHibernateDAOImpl">
-		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
-	</bean>
-	
-	
-	<!-- <bean class="com.tikal.cacao.dao.imp.FacturaDAOImpl"></bean> -->
-	<!-- <bean class="com.tikal.cacao.dao.imp.ReporteRenglonDAOImpl" />
-	<bean class="com.tikal.cacao.dao.imp.SerialDAOImp"></bean>-->
-	<bean class="com.tikal.cacao.dao.imp.FacturaVttDAOImpl" /> 
-    <mvc:annotation-driven/>
 </beans>
     

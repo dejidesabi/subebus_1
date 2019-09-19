@@ -62,12 +62,12 @@ public class SucursalController {
 				//	AsignadorDeCharset.asignar(request, response);
 				//	System.out.println(" edgar manda:"+json);
 					Sucursal sucursal = new Sucursal();
-					sucursal.setNombre("prueba");
-					sucursal.setRfc("prueba");
+					sucursal.setNombre("matriz");
+					sucursal.setRfc("AAA010101AAA");
 				//	sucursal.setCurp("prueba11111");
-					sucursal.setDomicilio("pruebapruebapruebaprueba");
+					sucursal.setDomicilio("Leon");
 					sucursal.setTelefono("--------");
-					sucursal.setTitular("prueba prueba");
+					sucursal.setTitular("-------");
 					sucursal.setUbicacion("-------");
 					sucursalDao.save(sucursal);
 //				} else {

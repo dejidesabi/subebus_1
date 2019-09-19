@@ -10,6 +10,7 @@ C:\Users\Lenovo\gitSubebus\Subebus\src\com\tikal\util\Util.java
 C:\Users\Lenovo\gitSubebus\Subebus\src\com\tikal\subebus\dao\ContadorDao.java
 C:\Users\Lenovo\gitSubebus\Subebus\src\com\tikal\subebus\dao\impl\SessionDaoImpl.java
 C:\Users\Lenovo\gitSubebus\Subebus\src\localhost\CancelaCFDIAck.java
+C:\Users\Lenovo\gitSubebus\Subebus\src\com\tikal\subebus\controller\LoteController.java
 C:\Users\Lenovo\gitSubebus\Subebus\src\com\tikal\subebus\util\ReadXls.java
 C:\Users\Lenovo\gitSubebus\Subebus\src\com\tikal\subebus\dao\SerialDAO.java
 C:\Users\Lenovo\gitSubebus\Subebus\src\com\tikal\subebus\util\StartupEntities.java
@@ -19,6 +20,7 @@ C:\Users\Lenovo\gitSubebus\Subebus\src\com\tikal\subebus\dao\impl\PerfilDAOImp.j
 C:\Users\Lenovo\gitSubebus\Subebus\src\com\tikal\subebus\util\NumberToLetterConverter.java
 C:\Users\Lenovo\gitSubebus\Subebus\src\com\tikal\util\StartupEntities.java
 C:\Users\Lenovo\gitSubebus\Subebus\src\localhost\ObtieneCFDI.java
+C:\Users\Lenovo\gitSubebus\Subebus\src\com\tikal\subebus\dao\LoteDao.java
 C:\Users\Lenovo\gitSubebus\Subebus\src\com\tikal\subebus\dao\impl\UsuarioDaoImpl.java
 C:\Users\Lenovo\gitSubebus\Subebus\src\com\tikal\subebus\util\Util.java
 C:\Users\Lenovo\gitSubebus\Subebus\src\localhost\EncodeBase64.java
@@ -40,6 +42,7 @@ C:\Users\Lenovo\gitSubebus\Subebus\src\com\tikal\subebus\modelo\login\Rol.java
 C:\Users\Lenovo\gitSubebus\Subebus\src\localhost\CancelaCFDI.java
 C:\Users\Lenovo\gitSubebus\Subebus\src\com\tikal\subebus\controller\SucursalController.java
 C:\Users\Lenovo\gitSubebus\Subebus\src\com\tikal\subebus\modelo\login\Sucursal.java
+C:\Users\Lenovo\gitSubebus\Subebus\src\com\tikal\subebus\modelo\entity\Lote.java
 C:\Users\Lenovo\gitSubebus\Subebus\src\com\tikal\subebus\prueba\prueba.java
 C:\Users\Lenovo\gitSubebus\Subebus\src\localhost\TimbradoSoap.java
 C:\Users\Lenovo\gitSubebus\Subebus\src\com\tikal\subebus\controller\UsuarioController.java
@@ -50,6 +53,7 @@ C:\Users\Lenovo\gitSubebus\Subebus\src\localhost\AsignaTimbresEmisorResponse.jav
 C:\Users\Lenovo\gitSubebus\Subebus\src\localhost\package-info.java
 C:\Users\Lenovo\gitSubebus\Subebus\src\com\tikal\subebus\controller\SesionController.java
 C:\Users\Lenovo\gitSubebus\Subebus\src\com\tikal\subebus\modelo\login\Perfil.java
+C:\Users\Lenovo\gitSubebus\Subebus\src\com\tikal\subebus\dao\impl\LoteDaoImpl.java
 C:\Users\Lenovo\gitSubebus\Subebus\src\localhost\ObtieneTimbresDisponibles.java
 C:\Users\Lenovo\gitSubebus\Subebus\src\com\tikal\subebus\modelo\login\SessionEntity.java
 C:\Users\Lenovo\gitSubebus\Subebus\src\localhost\TimbraCFDI.java
