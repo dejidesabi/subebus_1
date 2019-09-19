@@ -284,8 +284,8 @@ demo = {
     });
   },
 
-  initGoogleMaps: function() {
-    var myLatlng = new google.maps.LatLng(40.748817, -73.985428);
+  initGoogleMaps: function(lat,long) {
+    var myLatlng = new google.maps.LatLng(lat,long);
     var mapOptions = {
       zoom: 13,
       center: myLatlng,

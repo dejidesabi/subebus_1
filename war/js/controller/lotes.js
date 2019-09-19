@@ -66,6 +66,7 @@ app.controller("loteController",['$scope','$rootScope','$window', '$location', '
 		$scope.addLote = function(lote) {	
 		 loteServices.altaLote(lote).then(function(data) {
 						alert("Lote Agregado");
+						$scope.altaLote = null;
 						 $scope.obtenerLotes();
 					})
 		}

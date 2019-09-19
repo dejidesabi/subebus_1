@@ -148,8 +148,10 @@ app.run(['$rootScope','$http','sessionService','userFactory',function ($rootScop
 	sessionService.isAuthenticated().then(function(data){
 		var us= data;
 		$rootScope.UserData=data;
+	
 		userFactory.setUsuarioFirmado(us);
 		$rootScope.perfilUsuario=userFactory.getUsuarioPerfil();
+		$rootScope.titulo = "Sistema";
 //		$http.get("/notificacion/numAlertas/"+ us.id).then(function(response){
 //			$rootScope.numNotificaciones=response.data;
 //		})

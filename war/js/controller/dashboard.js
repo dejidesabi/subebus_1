@@ -37,6 +37,13 @@ app.controller("dashboardController",['$scope','$rootScope','$window', '$locatio
 	 $scope.idSuc = $cookieStore.get('idSucursal');
 	 $rootScope.Menu = "Principal";
 	 $rootScope.titulo = "Pagina de Inicio";
+	
+	 $(document).ready(function() {
+		 var nombre= "Toluca Centro";
+			 var url = "https://www.google.com/maps/embed/v1/place?key=AIzaSyCrlLXFntBgBODxEDBVV0C6aI59brxVy5A&q="+nombre;
+			 console.log("Url", url)
+			 document.getElementById("mapaMvl").src=url;
+	    });
 	 dashboardService.getSucursal( $scope.idSuc).then(function(data) {
 		$scope.sucursalData=data;
 		$scope.SucursalName=data.nombre;
