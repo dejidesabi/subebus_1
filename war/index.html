@@ -28,7 +28,8 @@
   <script type="text/javascript" src="js/controller/app.js"></script>
   <script type="text/javascript" src="js/controller/dashboard.js"></script>
   <script type="text/javascript" src="js/controller/lotes.js"></script>
-    <script type="text/javascript" src="js/controller/membresia.js"></script>
+  <script type="text/javascript" src="js/controller/membresia.js"></script>
+  <script type="text/javascript" src="js/controller/headerController.js"></script>
   
 <!-- 	Font Awesome -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
@@ -75,7 +76,7 @@
     </div>
     <div class="main-panel" >
       <!-- Navbar -->
-      <nav class="navbar navbar-expand-lg navbar-absolute fixed-top colorFondo">
+      <nav class="navbar navbar-expand-lg navbar-absolute fixed-top colorFondo" ng-controller="headerController">
         <div class="container-fluid">
           <div class="navbar-wrapper">
             <div class="navbar-toggle">
@@ -96,8 +97,9 @@
            
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link btn-magnify" href="#pablo">
-                  <i class="nc-icon nc-layout-11"></i>
+                <a class="nav-link btn-magnify" href="" ng-click="CerrarSesion()">
+          
+                  <i class="fa fa-sign-out-alt fa-2x"></i>
                   <p>
                     <span class="d-lg-none d-md-block">Stats</span>
                   </p>
@@ -158,7 +160,7 @@
   <script src="js/core/bootstrap.min.js"></script>
   <script src="js/plugins/perfect-scrollbar.jquery.min.js"></script>
   <!--  Google Maps Plugin    -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrlLXFntBgBODxEDBVV0C6aI59brxVy5A"></script>
+<!--   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrlLXFntBgBODxEDBVV0C6aI59brxVy5A"></script> -->
   <!-- Chart JS -->
   <script src="js/plugins/chartjs.min.js"></script>
   <!--  Notifications Plugin    -->

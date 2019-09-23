@@ -18,14 +18,14 @@
 			  <div class="input-group-prepend">
 				<span class="input-group-text"><i class="fas fa-user" aria-hidden="true"></i></span>
 			  </div>
-			  <input type="text" class="form-control" placeholder="Usuario" required>
+			  <input type="text" class="form-control" placeholder="Usuario" ng-model="credentials.username" required>
 			</div>   
 			<br>
 			<div class="input-group">
 			  <div class="input-group-prepend">
 				<span class="input-group-text"><i class="fas fa-key" aria-hidden="true"></i></span>
 			  </div>
-			  <input type="password" autocomplete="false" class="form-control" placeholder="Contraseña" required>
+			  <input type="password" autocomplete="false" class="form-control" placeholder="Contraseña" ng-model="credentials.password" required>
 
 			</div>
 			<div class="captcha">

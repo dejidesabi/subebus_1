@@ -78,7 +78,9 @@ app.service('sessionService', [
 //					$http.get("/notificacion/numAlertas/"+ data.id).then(function(response){
 //						$rootScope.numNotificaciones=response.data;
 //					})
-					$location.path("/welcome");
+					$('#mdlLogin').modal('hide');
+					$location.path("/Principal");
+					//$location.reload();
 				
 				} else {
 					$rootScope.authenticated = false;
@@ -126,7 +128,9 @@ app.controller('navigation', [ 'sessionService','$window', '$rootScope', '$scope
 			sessionService.authenticate($scope.credentials, function() {
 				if ($rootScope.authenticated) {
 					$scope.error = false;
-					$location.path("/dashboard");
+					$location.path("/Principal");
+					$('#mdlLogin').modal('dimiss');
+					location.reload();
 				} else {
 					
 					$location.path("/login");
