@@ -98,6 +98,7 @@ app.service('sessionService', [
 		}
 		this.isAuthenticated = function() {
 			var d = $q.defer();
+			$rootScope.titulo = "Sistema";
 			$http.get("currentSession").success(function(data) {
 				$rootScope.UserData=data;
 				$cookieStore.put("usuario", data.usuario);
@@ -119,6 +120,8 @@ app.service('sessionService', [
 app.controller('navigation', [ 'sessionService','$window', '$rootScope', '$scope','$http', '$location','userFactory',
 	function(sessionService, $rootScope, $scope, $http, $location,userFactory) {
 		$scope.credentials = {};
+		$('#mdlLogin').modal('show');
+		
 		$scope.login = function() {
 			sessionService.authenticate($scope.credentials, function() {
 				if ($rootScope.authenticated) {
