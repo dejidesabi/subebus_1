@@ -10,6 +10,8 @@ import com.tikal.subebus.modelo.entity.Contador;
 import com.tikal.subebus.modelo.entity.ContadorServicio;
 import com.tikal.subebus.modelo.entity.Lote;
 import com.tikal.subebus.modelo.entity.Membresia;
+import com.tikal.subebus.modelo.entity.RutaBus;
+import com.tikal.subebus.modelo.entity.RutaMem;
 import com.tikal.subebus.modelo.entity.Serial;
 import com.tikal.subebus.modelo.login.Perfil;
 import com.tikal.subebus.modelo.login.SessionEntity;
@@ -37,6 +39,9 @@ public class StartupEntities implements ServletContextListener {
 			ObjectifyService.register(Lote.class);
 			ObjectifyService.register(Membresia.class);
 			ObjectifyService.register(Serial.class);
+			ObjectifyService.register(RutaBus.class);
+			ObjectifyService.register(RutaMem.class);
+			
 		}
 
 	@Override

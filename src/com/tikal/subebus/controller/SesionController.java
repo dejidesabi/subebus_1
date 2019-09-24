@@ -28,6 +28,7 @@ public class SesionController  {
 	@RequestMapping(value = { "/user" }, method = RequestMethod.GET, produces = "application/json")
 	public void user(HttpServletResponse res, HttpServletRequest req) throws IOException {
 		AsignadorDeCharset.asignar(req, res);
+		System.out.println("Sesssssion:"+req.getHeader("authorization"));
 		String auti = req.getHeader("authorization");
 		auti = auti.substring(5);
 		byte[] dec = Base64Utils.decodeFromString(auti);

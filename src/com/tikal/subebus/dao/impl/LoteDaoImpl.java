@@ -32,4 +32,9 @@ public class LoteDaoImpl implements LoteDao{
 		return ofy().load().type(Lote.class).offset((page-1)*15).limit(10).list();
 	}
 
+	@Override
+	public Lote cargar(Long id) {
+		return ofy().load().type(Lote.class).id(id).now();
+	}
+
 }

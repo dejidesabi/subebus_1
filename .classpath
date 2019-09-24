@@ -30,9 +30,9 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/TikalV2.0/Documents/APP/appengine-api-1.0-sdk-1.9.57.jar"/>
-	<classpathentry kind="lib" path="C:/Users/TikalV2.0/Documents/APP/curvesapi-1.04.jar"/>
-	<classpathentry kind="lib" path="C:/Users/TikalV2.0/Documents/APP/javax.servlet.jsp-api-2.3.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/TikalV2.0/Documents/APP/javax.servlet-api-3.1.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Lenovo/.m2/repository/111/appengine-api-1.0-sdk-1.9.57.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Lenovo/.m2/repository/111/curvesapi-1.04.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Lenovo/.m2/repository/111/javax.servlet.jsp-api-2.3.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Lenovo/.m2/repository/111/javax.servlet-api-3.1.0.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

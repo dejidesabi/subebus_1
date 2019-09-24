@@ -16,5 +16,5 @@ public interface LoteDao {
 	public List<Lote> findAllPage(int page);
 
 	
-	
+	public Lote cargar(Long id);
 }

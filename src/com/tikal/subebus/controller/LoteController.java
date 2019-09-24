@@ -25,6 +25,7 @@ import com.tikal.subebus.dao.PerfilDAO;
 import com.tikal.subebus.dao.SerialDAO;
 import com.tikal.subebus.dao.SessionDao;
 import com.tikal.subebus.dao.UsuarioDao;
+import com.tikal.subebus.formatos.pdf.GeneraMembresias;
 import com.tikal.subebus.modelo.entity.Contador;
 import com.tikal.subebus.modelo.entity.Lote;
 import com.tikal.subebus.modelo.entity.Membresia;
@@ -150,6 +151,31 @@ public class LoteController {
 			response.getWriter().println(JsonConvertidor.toJson(lista));
 		}
 	 
+	  
+	  @RequestMapping(value = { "/print/{idLote}" },  method = RequestMethod.GET, produces = "application/pdf")
+		public void generaVale(HttpServletResponse response, HttpServletRequest request, @PathVariable Long idLote) throws IOException {
+	   
+//	   if(SesionController.verificarPermiso2(request, usuarioDao, perfilDAO, 20, sessionDao,userName)){
+		  AsignadorDeCharset.asignar(request, response);
+		   response.setContentType("Application/Pdf");   
+		   Lote l= loteDao.cargar(idLote);
+		   
+   
+	        //Sucursal s= sucursalDao.consult(usuarioDao.consultarUsuario(userName).getIdSucursal());
+	      //  Sucursal s= sucursalDao.consult(v.getIdSucursal());
+//	        System.out.println("Empiezo a generar pdf..envios.."+objE );
+//	        System.out.println("Empiezo a generar pdf...suc."+s );
+//	        System.out.println("Empiezo a generar pdf...venta."+v );
+	    	GeneraMembresias gm = new GeneraMembresias(l, response.getOutputStream());
+	 
+	    	  response.getOutputStream().flush();
+		        response.getOutputStream().close();
+	    	
+//	   }else{
+//			response.sendError(403);
+//		}
+	}
+
 }
 
 
