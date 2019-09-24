@@ -34,37 +34,23 @@ import java.io.*;
 	//import java.util.List; 
 	
 	public class GeneraMembresias {
-		
+		private Document document;
 		public GeneraMembresias(Lote l, OutputStream ops) throws MalformedURLException, IOException {
 	    	 
 	    	  
 	    	try {
-	    		Rectangle envelope = new Rectangle(500, 500);
-	    	//	Document pdfDoc = new Document(envelope, 230f, 10f, 100f, 0f);
-	    		Document document = new Document(envelope,0,0,0,0);  
+	    		//Rectangle envelope = new Rectangle(500, 500);
+	    	// Document document = new Document(envelope, 230f, 10f, 100f, 0f);
+	    		//Document document = new Document(envelope,10,10,0,0);  
 	    	
+	    	 
+	    	 this.document = new Document();
+	 		this.document.setPageSize(PageSize.LETTER);
+	 		this.document.setMargins(30, 30, 25, 30);
+	    	 
 		        PdfWriter.getInstance(document,ops);
 		        document.open();
 		        String g="";
-//	    		PrintService service = PrintServiceLookup.lookupDefaultPrintService();
-//	    		DocFlavor flavor = DocFlavor.BYTE_ARRAY.AUTOSENSE;
-//	    		DocPrintJob pj = service.createPrintJob(); 
-//	    		
-//	    		
-//	    	    String ss=new String("Aquí lo que vamos a imprimir.");
-//	    	    byte[] bytes;
-//	    	    //Transformamos el texto a bytes que es lo que soporta la impresora
-//	    	    bytes=ss.getBytes();
-//	    	    //Creamos un documento (Como si fuese una hoja de Word para imprimir)
-//	    	    Doc doc=new SimpleDoc(bytes,flavor,null);
-//	    	    //Obligado coger la excepción PrintException
-//	    	    try {
-//		    	    //Mandamos a impremir el documento
-//		    	    pj.print(doc, null);
-//	    	    }
-//	    	    catch (PrintException x) {
-//	    	    	System.out.println("Error al imprimir: "+x.getMessage());
-//	    	    }
 	    	    
 	    	    Font f0 = new Font();
 	      	  //  f1.setStyle(1);
@@ -92,13 +78,19 @@ import java.io.*;
 	        	  //  f1.setStyle(1);
 	        	    f4.setSize(6);
 	        	    f4.setColor(BaseColor.BLACK);
-	        	    
-	            PdfPTable table = new PdfPTable(6);   
+	        	   
+	        	    document.add(new Paragraph("\n"));
+		            document.add(new Paragraph("\n"));
+	            
+	        	  
 	            
 	            
 	         
-	      
-	        for (int i=0; i<=l.getCantidad(); i++ ){
+	      System.out.println("cant:"+l.getCantidad());
+	     for (int i=0; i<l.getCantidad(); i++ ){
+	      //  	 System.out.println("i:"+i);
+	    	 
+	    	  PdfPTable table = new PdfPTable(6);   
 	        	   Image imagen = Image.getInstance("img/subebus.png");
 		            imagen.scaleAbsolute(150, 70);
 		           
@@ -111,40 +103,25 @@ import java.io.*;
 		           // c1.setBorder(Rectangle.NO_BORDER);
 		            table.addCell(c1);
 	        	
-	            Paragraph p8 = new Paragraph("Membresia:",f1);
+	            Paragraph p8 = new Paragraph("Membresia "+l.getDuracion(),f1);
 	            PdfPCell c8 = new PdfPCell(p8);
 	            c8.setHorizontalAlignment(Element.ALIGN_CENTER);
-	            c8.setColspan(2);
+	            c8.setColspan(6);
 	            //c8.setBorder(Rectangle.NO_BORDER);
 	            table.addCell(c8);	
 	           // table.addCell(c6);
 	            
-	           
-	            Paragraph px = new Paragraph(l.getDuracion(),f1);
-	            PdfPCell cx = new PdfPCell(px);
-	            cx.setHorizontalAlignment(Element.ALIGN_CENTER);
-	            cx.setColspan(4);
-	           // cx.setBorder(Rec tangle.NO_BORDER);
-	           // cx.setBorder(Rectangle.NO_BORDER);
-	            table.addCell(cx);
-	            
-	          Paragraph x = new Paragraph(" ",f0);
-	          PdfPCell x1 = new PdfPCell(x);
-	          x1.setHorizontalAlignment(Element.ALIGN_LEFT);
-	          x1.setColspan(6);x1.setRowspan(1);
-	          x1.setBorder(Rectangle.NO_BORDER);
-	          table.addCell(x1);
-	            
-	           
-//	    // segunda parte... tabla 2
+	          
 	//
 	            document.add(table);
 	           // document.add(new Paragraph("\n"));
 	            //document.add(new Paragraph("\n"));
 	            
 	       
-	                  
-	     }   
+	            document.add(new Paragraph("\n"));
+	            document.add(new Paragraph("\n"));
+	            //document.add(new Paragraph("otra mem"));       
+	    }   
 	                 
 	                
 	 
