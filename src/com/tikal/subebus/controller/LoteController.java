@@ -159,14 +159,14 @@ public class LoteController {
 		  AsignadorDeCharset.asignar(request, response);
 		   response.setContentType("Application/Pdf");   
 		   Lote l= loteDao.cargar(idLote);
-		   
+		   List<Membresia> mems= memDao.byLote(idLote);
    
 	        //Sucursal s= sucursalDao.consult(usuarioDao.consultarUsuario(userName).getIdSucursal());
 	      //  Sucursal s= sucursalDao.consult(v.getIdSucursal());
 //	        System.out.println("Empiezo a generar pdf..envios.."+objE );
 //	        System.out.println("Empiezo a generar pdf...suc."+s );
 //	        System.out.println("Empiezo a generar pdf...venta."+v );
-	    	GeneraMembresias gm = new GeneraMembresias(l, response.getOutputStream());
+	    	GeneraMembresias gm = new GeneraMembresias(l, mems, response.getOutputStream());
 	 
 	    	  response.getOutputStream().flush();
 		        response.getOutputStream().close();

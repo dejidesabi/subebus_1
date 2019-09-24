@@ -20,7 +20,6 @@ public interface MembresiaDao {
 	
 	public List<Membresia> findAllPage(int page);
 	
-	
-	
+	public List<Membresia> byLote(Long idLote);
 
 }

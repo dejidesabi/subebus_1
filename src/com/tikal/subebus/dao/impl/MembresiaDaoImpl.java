@@ -56,4 +56,9 @@ public class MembresiaDaoImpl implements MembresiaDao {
 		return ofy().load().type(Membresia.class).order("- fechaCaducidad").offset((page-1)*15).limit(10).list();
 	}
 
+	@Override
+	public List<Membresia> byLote(Long idLote) {
+		return ofy().load().type(Membresia.class).filter("idLote", idLote).list();
+	}
+
 }

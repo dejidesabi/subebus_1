@@ -16,6 +16,7 @@ package com.tikal.subebus.formatos.pdf;
 	import com.itextpdf.text.pdf.PdfPTable;
 	import com.itextpdf.text.pdf.PdfWriter;
 import com.tikal.subebus.modelo.entity.Lote;
+import com.tikal.subebus.modelo.entity.Membresia;
 
 import java.io.*;
 	import java.net.MalformedURLException;
@@ -35,7 +36,7 @@ import java.io.*;
 	
 	public class GeneraMembresias {
 		private Document document;
-		public GeneraMembresias(Lote l, OutputStream ops) throws MalformedURLException, IOException {
+		public GeneraMembresias(Lote l, List<Membresia> mems, OutputStream ops) throws MalformedURLException, IOException {
 	    	 
 	    	  
 	    	try {
@@ -87,7 +88,8 @@ import java.io.*;
 	            
 	         
 	      System.out.println("cant:"+l.getCantidad());
-	     for (int i=0; i<l.getCantidad(); i++ ){
+	      
+	     for (Membresia m: mems){
 	      //  	 System.out.println("i:"+i);
 	    	 
 	    	  PdfPTable table = new PdfPTable(6);   
@@ -103,7 +105,7 @@ import java.io.*;
 		           // c1.setBorder(Rectangle.NO_BORDER);
 		            table.addCell(c1);
 	        	
-	            Paragraph p8 = new Paragraph("Membresia "+l.getDuracion(),f1);
+	            Paragraph p8 = new Paragraph("Membresia "+m.getDuracion()+"     folio:"+m.getId(),f1);
 	            PdfPCell c8 = new PdfPCell(p8);
 	            c8.setHorizontalAlignment(Element.ALIGN_CENTER);
 	            c8.setColspan(6);
