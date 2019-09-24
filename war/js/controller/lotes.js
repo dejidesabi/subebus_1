@@ -39,7 +39,7 @@ app.service("loteServices",['$http', '$q','$window', function($http, $q,$window)
 	
 }]);
 
-app.controller("loteController",['$scope','$rootScope','$window', '$location', '$cookieStore','loteServices','sessionService',function($scope,$rootScope, $window, $location, $cookieStore, loteServices,sessionService){
+app.controller("loteController",['$scope','$rootScope','$window', '$location', '$cookieStore','loteServices','sessionService','printService',function($scope,$rootScope, $window, $location, $cookieStore, loteServices,sessionService,printService){
 	//sessionService.isAuthenticated();
 	 $scope.idSuc = $cookieStore.get('idSucursal');
 	 $rootScope.titulo = "Pagina de Lotes";
@@ -70,5 +70,12 @@ app.controller("loteController",['$scope','$rootScope','$window', '$location', '
 						 $scope.obtenerLotes();
 					})
 		}
+	$scope.imprimirFisico = function(id){
+		window.open('lote/print/'+id, '_blank');
+		//window.location.href='lote/print/'+id;
+//		printService.printLote().then(function(data){
+//			
+//		})
+	}	
 } ]);	
 

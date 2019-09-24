@@ -67,6 +67,9 @@
                       <th>
                         Sucursal
                       </th>
+                      <th>
+                        Acciones
+                      </th>
                     </thead>
                     <tbody>
                       <tr ng-repeat="l in listLote">
@@ -81,6 +84,11 @@
                         </td>
                    		<td>
                    		  {{l.idSucursal}}
+                   		</td>
+                   		<td >
+                   		  <button class="btn btn-danger" title="Imprimir" ng-show="l.tipo == 'Fisico'" ng-click="imprimirFisico(l.id)">
+							<i class="fas fa-print"></i>
+						</button>
                    		</td>
                       </tr>
                     </tbody>

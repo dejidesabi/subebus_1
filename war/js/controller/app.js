@@ -27,11 +27,9 @@ app.config([ '$routeProvider','$httpProvider', function($routeProvider,$httpProv
 		templateUrl : "pages/membresia.html",
 		controller : "membresiaController"
 	});
-//	$routeProvider.otherwise({
-//		redirectTo : '/NoFound',
-//		templateUrl : "pages/noPage.html",
-//		controller : "OTsListController"
-//	});
+		$routeProvider.otherwise({
+		redirectTo : '/Principal'
+	});
 }]);
 
 app.factory("userFactory", function(){
@@ -100,7 +98,7 @@ app.service('sessionService', [
 		}
 		this.isAuthenticated = function() {
 			var d = $q.defer();
-			$rootScope.titulo = "Sistema";
+			$rootScope.titulo = "Sistema Auth";
 			$http.get("currentSession").success(function(data) {
 				$rootScope.UserData=data;
 				$cookieStore.put("usuario", data.usuario);
@@ -158,7 +156,7 @@ app.run(['$rootScope','$http','sessionService','userFactory',function ($rootScop
 	
 		userFactory.setUsuarioFirmado(us);
 		$rootScope.perfilUsuario=userFactory.getUsuarioPerfil();
-		$rootScope.titulo = "Sistema";
+		$rootScope.titulo = "Sistema Run";
 //		$http.get("/notificacion/numAlertas/"+ us.id).then(function(response){
 //			$rootScope.numNotificaciones=response.data;
 //		})
