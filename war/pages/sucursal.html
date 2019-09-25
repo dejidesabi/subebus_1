@@ -1,0 +1,60 @@
+ <div class="col-lg-12" align="center">
+ 
+<!--  ALTA DE LOTES -->
+            <div class="card card-stats">
+              <div class="card-body ">
+                <div class="row">
+                   
+                    <div class="col-md-12 px-1">
+                      <div class="form-group">
+                        <label>Nombre</label>
+					<input type="text" ng-model="altaSucursal.nombre" class="form-control" placeholder="Ingrese Nombre de la Sucursal">
+                      </div>
+                    </div>
+                    
+                   
+                  </div>
+              </div>
+              <div class="card-footer " align="right">
+                <hr>
+                <div class="">
+                  <button class="btn" ng-click="addSucursal(altaSucursal)"><i class="fa fa-save"></i> Guardar</button>
+                </div>
+              </div>
+            </div>
+<!--             LISTA RUTA -->
+
+<div class="card">
+              <div class="card-header">
+                <h4 class="card-title"> Lista Sucursal</h4>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead class=" text-primary">
+                      <th>
+                        Sucursal
+                      </th>
+                    
+                      <th>
+                        Acciones
+                      </th>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="l in listSucursal">
+                        <td>
+                          {{l.nombre}}
+                        </td>
+                        
+                   		<td >
+                   		  <button class="btn btn-danger" title="Imprimir" ng-show="l.tipo == 'Fisico'" ng-click="imprimirFisico(l.id)">
+							<i class="fas fa-print"></i>
+						</button>
+                   		</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            </div>

@@ -7,90 +7,100 @@
                    
                     <div class="col-md-2 px-1">
                       <div class="form-group">
-                        <label>Duracion</label>
-                        <select ng-model="altaLote.duracion" class="form-control">
-						<option>Semanal</option>
-						<option>Mensual</option>
+                        <label>Ruta</label>
+                        <select ng-model="altaRuta.ruta" class="form-control">
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
 					</select>
                       </div>
                     </div>
                     <div class="col-md-2 pl-1">
                       <div class="form-group">
                         <label for="exampleInputEmail1">Tipo</label>
-                        <select ng-model="altaLote.tipo" class="form-control">
-						<option>Electronico</option>
-						<option>Fisico</option>
+                        <select ng-model="altaRuta.bus" class="form-control">
+						<option>BUS101</option>
+						<option>BUS102</option>
+						<option>BUS103</option>
+						<option>BUS103</option>
+						<option>BUS104</option>
+					</select>
+                      </div>
+                    </div>
+                       <div class="col-md-2 pl-1">
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">CHOFER</label>
+                        <select ng-model="altaRuta.chofer" class="form-control">
+						<option>JUAN</option>
+						<option>PEDRO</option>
+						<option>PABLO</option>
+						<option>KEVIN</option>
+						<option>MANUEL</option>
 					</select>
                       </div>
                     </div>
                     <div class="col-md-8 pl-1">
                       <div class="form-group">
                         <label for="exampleInputEmail1">Sucursal</label>
-                        <select ng-model="altaLote.idSucursal" class="form-control">
+                        <select ng-model="altaRuta.idSucursal" class="form-control">
 						<option ng-repeat="x in sucursalData" value="{{x.id}}" required>{{x.nombre}}</option>
 					</select>
                       </div>
                     </div>
-                    <div class="col-md-4 pl-1">
-                      <div class="form-group">
-                        <label for="exampleInputEmail1">Cantidad</label>
-                        <input ng-model="altaLote.cantidad" type="number" class="form-control" placeholder="0">
-                      </div>
-                    </div>
+                   
                   </div>
               </div>
               <div class="card-footer " align="right">
                 <hr>
                 <div class="">
-                  <button class="btn" ng-click="addLote(altaLote)"><i class="fa fa-save"></i> Guardar</button>
+                  <button class="btn" ng-click="addRuta(altaRuta)"><i class="fa fa-save"></i> Guardar</button>
                 </div>
               </div>
             </div>
-            <!--  LISTA DE LOTES -->
-            <div class="card">
+<!--             LISTA RUTA -->
+
+<div class="card">
               <div class="card-header">
-                <h4 class="card-title"> Lista Lote</h4>
+                <h4 class="card-title"> Lista Ruta</h4>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
                   <table class="table">
                     <thead class=" text-primary">
                       <th>
-                        Tipo
-                      </th>
-                      <th>
-                        Cantidad
-                      </th>
-                      <th>
-                        Duracion
-                      </th>
-                      <th>
                         Sucursal
+                      </th>
+                      <th>
+                        Autobus
+                      </th>
+                      <th>
+                        Chofer
+                      </th>
+                      <th>
+                        Ruta
                       </th>
                       <th>
                         Acciones
                       </th>
                     </thead>
                     <tbody>
-                      <tr ng-repeat="l in listLote">
+                      <tr ng-repeat="l in listRuta">
                         <td>
-                          {{l.tipo}}
+                          {{l.idSucursal}}
                         </td>
                         <td>
-                          {{l.cantidad}}
+                          {{l.bus}}
                         </td>
                         <td>
-                          {{l.duracion}}
+                          {{l.chofer}}
                         </td>
                    		<td>
-                   		  {{l.idSucursal}}
+                   		  {{l.ruta}}
                    		</td>
                    		<td >
-                   		  <button class="btn btn-primary" title="Imprimir" ng-show="l.tipo == 'Fisico'" ng-click="imprimirFisico(l.id)">
+                   		  <button class="btn btn-danger" title="Imprimir" ng-show="l.tipo == 'Fisico'" ng-click="imprimirFisico(l.id)">
 							<i class="fas fa-print"></i>
-						</button>
-						<button class="btn btn-danger" title="Imprimir"  ng-click="eliminarLote(l.id)">
-							<i class="fas fa-trash-alt"></i>
 						</button>
                    		</td>
                       </tr>
@@ -99,4 +109,4 @@
                 </div>
               </div>
             </div>
-          </div>
+            </div>

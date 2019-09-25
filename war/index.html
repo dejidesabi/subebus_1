@@ -30,6 +30,8 @@
   <script type="text/javascript" src="js/controller/membresia.js"></script>
   <script type="text/javascript" src="js/controller/headerController.js"></script>
   <script type="text/javascript" src="js/controller/printController.js"></script>
+  <script type="text/javascript" src="js/controller/rutaController.js"></script>
+  <script type="text/javascript" src="js/controller/sucursalController.js"></script>
   
 <!-- 	Font Awesome -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
@@ -70,7 +72,18 @@
               <p>Membresia</p>
             </a>
           </li>
-          
+          <li ng-class="{'active' : Menu=='Ruta'}">
+            <a href="#/Ruta">
+              <i class="fas fa-bus-alt"></i>
+              <p>Rutas</p>
+            </a>
+          </li>
+           <li ng-class="{'active' : Menu=='Sucursal'}">
+            <a href="#/Sucursal">
+              <i class="fas fa-store-alt"></i>
+              <p>Sucursal</p>
+            </a>
+          </li>
         </ul>
       </div>
     </div>

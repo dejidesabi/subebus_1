@@ -27,6 +27,14 @@ app.config([ '$routeProvider','$httpProvider', function($routeProvider,$httpProv
 		templateUrl : "pages/membresia.html",
 		controller : "membresiaController"
 	});
+	$routeProvider.when('/Ruta', {
+		templateUrl : "pages/ruta.html",
+		controller : "rutaController"
+	});
+	$routeProvider.when('/Sucursal', {
+		templateUrl : "pages/sucursal.html",
+		controller : "sucursalController"
+	});
 		$routeProvider.otherwise({
 		redirectTo : '/Principal'
 	});

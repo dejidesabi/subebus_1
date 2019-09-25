@@ -27,6 +27,14 @@ app.service("loteServices",['$http', '$q','$window', function($http, $q,$window)
 			});
 		return d.promise;
 	}
+	this.delLote = function(id) {
+		var d = $q.defer();
+		$http.get("lote/delete/"+id).then(
+			function(response) {
+				d.resolve(response.data);
+			});
+		return d.promise;
+	}
 	this.getLotes = function(id) {
 		var d = $q.defer();
 		$http.get("lote/findAll").then(
@@ -77,5 +85,14 @@ app.controller("loteController",['$scope','$rootScope','$window', '$location', '
 //			
 //		})
 	}	
+	$scope.eliminarLote = function(id){
+		var r = confirm("Desea Eliminar el Lote?");
+		if(r){
+		loteServices.delLote(id).then(function(data) {
+			alert("Lote Eliminado");
+			 $scope.obtenerLotes();
+		})
+		}
+	}
 } ]);	
 
