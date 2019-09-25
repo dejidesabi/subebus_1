@@ -65,13 +65,15 @@ public class LoteController {
 	 @RequestMapping(value = {"/add" }, method = RequestMethod.POST, produces = "application/json", consumes = "application/json")
 	 public void add(HttpServletRequest re, HttpServletResponse rs, @RequestBody String json) throws IOException, SQLException {
 		//if(Util.verificarPermiso(re, usuariodao, perfildao, 2)){
+		 System.out.println("json yisus"+json);
 			Lote l = (Lote) JsonConvertidor.fromJson(json, Lote.class);
 			Calendar cal=Calendar.getInstance(TimeZone.getTimeZone("America/Mexico_City"));
 			loteDao.guardar(l);
 			for (int i=1; i<=l.getCantidad(); i++){
 				Membresia m = new Membresia();
 				m.setDuracion(l.getDuracion());
-				m.setEstatus("INACTIVO");
+				m.setTipo(l.getTipo());
+				m.setEstatus("INACTIVA");
 				m.setIdLote(l.getId());
 				Contador c = new Contador();
 				m.setId(c.getFolio());
@@ -104,7 +106,7 @@ public class LoteController {
 			for (int i=1; i<=l.getCantidad(); i++){
 				Membresia m = new Membresia();
 				m.setDuracion(l.getDuracion());
-				m.setEstatus("INACTIVO");
+				m.setEstatus("INACTIVA");
 				m.setIdLote(l.getId());
 				Contador c = new Contador();
 				m.setId(c.getFolio());
@@ -131,7 +133,7 @@ public class LoteController {
 			}
 			response.getWriter().println(JsonConvertidor.toJson(lista));
 
-		}
+		} 
 	 
 	 
 	
@@ -153,7 +155,7 @@ public class LoteController {
 	 
 	  
 	  @RequestMapping(value = { "/print/{idLote}" },  method = RequestMethod.GET, produces = "application/pdf")
-		public void generaVale(HttpServletResponse response, HttpServletRequest request, @PathVariable Long idLote) throws IOException {
+		public void pdf(HttpServletResponse response, HttpServletRequest request, @PathVariable Long idLote) throws IOException {
 	   
 //	   if(SesionController.verificarPermiso2(request, usuarioDao, perfilDAO, 20, sessionDao,userName)){
 		  AsignadorDeCharset.asignar(request, response);
@@ -175,7 +177,29 @@ public class LoteController {
 //			response.sendError(403);
 //		}
 	}
-
+	  
+	  @RequestMapping(value = { "/delete/{idLote}" },  method = RequestMethod.GET, produces = "application/json")
+		public void delete(HttpServletResponse response, HttpServletRequest request, @PathVariable Long idLote) throws IOException {
+	   
+//	   if(SesionController.verificarPermiso2(request, usuarioDao, perfilDAO, 20, sessionDao,userName)){
+		  AsignadorDeCharset.asignar(request, response);
+		   
+		   Lote l= loteDao.cargar(idLote);
+		   List<Membresia> mems= memDao.byLoteA(idLote);
+		   if (mems.size()>0){
+			   System.out.println("El lote ya tiene membresias activas, no se puede eliminar...");
+		   }else{
+			   loteDao.eliminar(l);
+		   		List<Membresia> memI= memDao.byLoteI(idLote);
+		   		System.out.println("mems inactivas"+memI);
+		   	   for (Membresia m: memI){
+		   		   memDao.eliminar(m);
+		   	   }
+		   	   System.out.println("Lote y membresias  eliminados...");
+		   	   response.getWriter().println("lote eliminado");
+	  		}
+		    
+	  }
 }
 
 

@@ -21,5 +21,9 @@ public interface MembresiaDao {
 	public List<Membresia> findAllPage(int page);
 	
 	public List<Membresia> byLote(Long idLote);
+	public List<Membresia> byLoteA(Long idLote);
+	public List<Membresia> byLoteI(Long idLote);
+	
+	public List<Membresia> byDT(String duracion, String tipo);
 
 }

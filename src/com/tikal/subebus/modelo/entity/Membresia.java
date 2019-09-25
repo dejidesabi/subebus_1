@@ -12,6 +12,7 @@ public class Membresia {
 
 		@Id Long id;
 		@Index String duracion;
+		@Index String tipo;
 		private Date fechaActivacion;
 		private Date fechaCaducidad;
 		@Index String estatus;
@@ -59,6 +60,12 @@ public class Membresia {
 		}
 		public void setIdLote(Long idLote) {
 			this.idLote = idLote;
+		}
+		public String getTipo() {
+			return tipo;
+		}
+		public void setTipo(String tipo) {
+			this.tipo = tipo;
 		}
 		
 		

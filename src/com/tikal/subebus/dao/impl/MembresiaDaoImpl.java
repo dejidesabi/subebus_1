@@ -37,13 +37,14 @@ public class MembresiaDaoImpl implements MembresiaDao {
 
 	@Override
 	public void eliminar(Membresia m) {
-		m.setEstatus("INACTIVO");
-		actualizar(m);
+		//m.setEstatus("INACTIVA");
+		//actualizar(m);
+		ofy().delete().entity(m).now();
 	}
 
 	@Override
 	public List<Membresia> consultarTodos() {
-		return ofy().load().type(Membresia.class).order("- fechaCaducidad").list();
+		return ofy().load().type(Membresia.class).list();
 	}
 
 	@Override
@@ -59,6 +60,21 @@ public class MembresiaDaoImpl implements MembresiaDao {
 	@Override
 	public List<Membresia> byLote(Long idLote) {
 		return ofy().load().type(Membresia.class).filter("idLote", idLote).list();
+	}
+
+	@Override
+	public List<Membresia> byDT(String duracion, String tipo) {
+		return ofy().load().type(Membresia.class).filter("duracion", duracion).filter("tipo", tipo).filter("estatus", "ACTIVO").list();
+	}
+
+	@Override
+	public List<Membresia> byLoteA(Long idLote) {
+		return ofy().load().type(Membresia.class).filter("idLote", idLote).filter("estatus","ACTIVA").list();
+	}
+
+	@Override
+	public List<Membresia> byLoteI(Long idLote) {
+		return ofy().load().type(Membresia.class).filter("idLote", idLote).filter("estatus","INACTIVA").list();
 	}
 
 }

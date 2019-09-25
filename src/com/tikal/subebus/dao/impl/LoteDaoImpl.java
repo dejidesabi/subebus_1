@@ -37,4 +37,10 @@ public class LoteDaoImpl implements LoteDao{
 		return ofy().load().type(Lote.class).id(id).now();
 	}
 
+	@Override
+	public void eliminar(Lote l) {
+		ofy().delete().entity(l).now();
+		
+	}
+
 }

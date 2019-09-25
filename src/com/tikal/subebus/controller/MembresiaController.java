@@ -89,4 +89,11 @@ public class MembresiaController {
 			}
 			response.getWriter().println(JsonConvertidor.toJson(lista));
 		}
+	  
+	  @RequestMapping(value = "/byDT/{duracion}/{tipo}", method = RequestMethod.GET)
+		public void bydp(HttpServletRequest req, HttpServletResponse res, @PathVariable String duracion, @PathVariable String tipo) throws IOException {
+		  List<Membresia> lista = memDao.byDT(duracion, tipo);
+			res.getWriter().println(JsonConvertidor.toJson(lista));
+		}
+	  
 }

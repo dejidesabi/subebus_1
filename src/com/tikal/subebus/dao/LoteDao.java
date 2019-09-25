@@ -14,7 +14,8 @@ public interface LoteDao {
 	public int pags();
 	
 	public List<Lote> findAllPage(int page);
-
 	
 	public Lote cargar(Long id);
+	
+	public void eliminar(Lote l);
 }
