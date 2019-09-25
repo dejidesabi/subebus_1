@@ -86,10 +86,10 @@ app.controller("loteController",['$scope','$rootScope','$window', '$location', '
 //		})
 	}	
 	$scope.eliminarLote = function(id){
-		var r = confirm("Desea Eliminar el Lote?");
+		var r = confirm("Desea Eliminar el Lote?\nAl realizar esta accion se eliminara la membresia");
 		if(r){
 		loteServices.delLote(id).then(function(data) {
-			alert("Lote Eliminado");
+			alert(data);
 			 $scope.obtenerLotes();
 		})
 		}
