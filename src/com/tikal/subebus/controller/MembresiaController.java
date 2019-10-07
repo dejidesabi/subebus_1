@@ -27,7 +27,7 @@ import com.tikal.subebus.modelo.entity.Lote;
 import com.tikal.subebus.modelo.entity.Membresia;
 import com.tikal.subebus.modelo.login.Sucursal;
 import com.tikal.subebus.util.JsonConvertidor;
-import com.tikal.util.AsignadorDeCharset;
+import com.tikal.subebus.util.AsignadorDeCharset;
 
 @Controller
 @RequestMapping (value= {"/membresia"})

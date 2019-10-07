@@ -32,7 +32,8 @@ import com.tikal.subebus.modelo.entity.Membresia;
 import com.tikal.subebus.modelo.entity.Serial;
 import com.tikal.subebus.modelo.login.Sucursal;
 import com.tikal.subebus.util.JsonConvertidor;
-import com.tikal.util.AsignadorDeCharset;
+import com.tikal.subebus.util.Util;
+import com.tikal.subebus.util.AsignadorDeCharset;
 
 @Controller
 @RequestMapping(value = { "/lote"})
@@ -80,6 +81,14 @@ public class LoteController {
 				c.incremeta();
 				contadorDao.guardar(c);
 				System.out.println("serial:"+c.getFolio());
+				String cad= "folio:"+m.getId()+"lote:"+m.getIdLote()+"duracion:"+m.getDuracion()+"estatus:"+m.getEstatus()+"tipo:"+m.getTipo();
+				System.out.println("cadena:"+cad);
+				cad= Util.encripta(cad);
+				System.out.println("cadena:"+cad);
+				m.setQr(cad);
+				byte[] Qr=Util.generate(cad);
+				m.setCodigoQR(Qr);
+				System.out.println("cadena:"+cad);
 				memDao.crear(m);
 				System.out.println("num mem:"+i);
 			}
@@ -188,6 +197,7 @@ public class LoteController {
 		   List<Membresia> mems= memDao.byLoteA(idLote);
 		   if (mems.size()>0){
 			   System.out.println("El lote ya tiene membresias activas, no se puede eliminar...");
+			   response.getWriter().println("El lote ya tiene membresias activas, no se puede eliminar...");
 		   }else{
 			   loteDao.eliminar(l);
 		   		List<Membresia> memI= memDao.byLoteI(idLote);

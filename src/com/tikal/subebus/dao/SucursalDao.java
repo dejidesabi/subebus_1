@@ -14,7 +14,7 @@ public interface SucursalDao {
 	
 	public Sucursal consult(Long id);
 	
-	//public static AeronaveEntity consult(String numeroSerie);
+	public String byId(Long id);
 	
     
 	public List<Sucursal> findAll();

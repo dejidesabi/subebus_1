@@ -25,7 +25,7 @@ import com.tikal.subebus.modelo.entity.Lote;
 import com.tikal.subebus.modelo.entity.RutaBus;
 import com.tikal.subebus.modelo.entity.RutaMem;
 import com.tikal.subebus.util.JsonConvertidor;
-import com.tikal.util.AsignadorDeCharset;
+import com.tikal.subebus.util.AsignadorDeCharset;
 
 @Controller
 @RequestMapping(value={"/rutaQr"})

@@ -18,8 +18,8 @@ import com.tikal.subebus.dao.PerfilDAO;
 import com.tikal.subebus.dao.SessionDao;
 import com.tikal.subebus.dao.UsuarioDao;
 import com.tikal.subebus.modelo.login.Perfil;
-import com.tikal.util.AsignadorDeCharset;
-import com.tikal.util.JsonConvertidor;
+import com.tikal.subebus.util.AsignadorDeCharset;
+import com.tikal.subebus.util.JsonConvertidor;
 
 
 

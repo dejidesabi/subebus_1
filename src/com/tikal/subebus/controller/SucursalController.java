@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,8 +22,8 @@ import com.tikal.subebus.dao.SucursalDao;
 import com.tikal.subebus.dao.UsuarioDao;
 import com.tikal.subebus.modelo.login.Perfil;
 import com.tikal.subebus.modelo.login.Sucursal;
-import com.tikal.util.AsignadorDeCharset;
-import com.tikal.util.JsonConvertidor;
+import com.tikal.subebus.util.AsignadorDeCharset;
+import com.tikal.subebus.util.JsonConvertidor;
 
 @Controller
 @RequestMapping("/sucursal")
@@ -119,4 +120,14 @@ public class SucursalController {
 					response.getWriter().println(JsonConvertidor.toJson(lista));
 
 				}
+			 
+			 @RequestMapping(value = { "/getById/{idsucursal}" }, method = RequestMethod.GET, produces = "application/json")
+				public void findAllSuc(HttpServletResponse response, HttpServletRequest request, @PathVariable Long idSucursal) throws IOException {
+					AsignadorDeCharset.asignar(request, response);
+					String suc = sucursalDao.byId(idSucursal);
+					response.getWriter().println(JsonConvertidor.toJson(suc));
+
+				}
+			 
+			 
 }

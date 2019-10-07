@@ -58,6 +58,13 @@ public class SucursalDaoImpl implements SucursalDao {
 		}
 
 
+		@Override
+		public String byId(Long id) {
+			 		Sucursal s=  ofy().load().type(Sucursal.class).id(id).now();
+			  return s.getNombre();
+		}
+
+
 		
 
 

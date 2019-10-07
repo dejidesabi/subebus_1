@@ -2,7 +2,8 @@ package com.tikal.subebus.formatos.pdf;
 
 
 	import com.itextpdf.text.BaseColor;
-	import com.itextpdf.text.Document;
+import com.itextpdf.text.Chunk;
+import com.itextpdf.text.Document;
 	import com.itextpdf.text.DocumentException;
 	import com.itextpdf.text.Element;
 	import com.itextpdf.text.Font;
@@ -12,15 +13,18 @@ package com.tikal.subebus.formatos.pdf;
 	//import com.itextpdf.text.PageSize;
 	import com.itextpdf.text.Paragraph;
 	import com.itextpdf.text.Rectangle;
-	import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.BarcodeQRCode;
+import com.itextpdf.text.pdf.PdfPCell;
 	import com.itextpdf.text.pdf.PdfPTable;
 	import com.itextpdf.text.pdf.PdfWriter;
 import com.tikal.subebus.modelo.entity.Lote;
 import com.tikal.subebus.modelo.entity.Membresia;
+import com.tikal.subebus.util.Util;
 
 import java.io.*;
 	import java.net.MalformedURLException;
-	import java.text.SimpleDateFormat;
+import java.net.URL;
+import java.text.SimpleDateFormat;
 	import java.util.List;
 
 	import javax.print.Doc;
@@ -92,7 +96,48 @@ import java.io.*;
 	     for (Membresia m: mems){
 	      //  	 System.out.println("i:"+i);
 	    	 
-	    	  PdfPTable table = new PdfPTable(6);   
+	    	  PdfPTable table = new PdfPTable(6);
+	    
+	    	//  document.add(new Paragraph("\n")); 
+//	    	  Paragraph pe = new Paragraph("\n",f1);
+//	    	  PdfPCell ce = new PdfPCell(pe);
+//	          //  pe.setHorizontalAlignment(Element.ALIGN_CENTER);
+//	            ce.setColspan(3);
+//	            ce.setRowspan(1);
+//	            //c8.setBorder(Rectangle.NO_BORDER);
+//	            table.addCell(ce);	
+	    	  
+	    		Image imgQRCode=null;
+		        //	try{
+		        	URL url=new URL(new String(Util.generate(new String(m.getCodogoQR()))));
+		        	System.out.println("ruta:"+url);
+						imgQRCode = Image.getInstance(new URL(new String(Util.generate(new String(m.getCodogoQR())))));
+				//	}catch(IOException e){
+				//		BarcodeQRCode barcodeQRCode = new BarcodeQRCode(new String(m.getCodogoQR()), 3000, 3000, null);
+				//		imgQRCode= barcodeQRCode.getImage();
+				//	}
+						
+		      //  	imgQRCode.scalePercent(150f);
+		        	imgQRCode.scaleAbsolute(100, 100);
+		        //	imgQRCode.setAbsolutePosition(0f, 100f);
+		        //	Chunk chunkQRCode = null;
+		        	
+		        	PdfPCell celdaQRCode = new PdfPCell(imgQRCode);
+		    		
+		    	//	chunkQRCode = new Chunk(imgQRCode, 7.0F, -75F);
+		        	
+		        
+		    		celdaQRCode.setHorizontalAlignment(Element.ALIGN_CENTER);
+		    		//celdaQRCode.
+		    		celdaQRCode.setVerticalAlignment(100);
+		    		celdaQRCode.setColspan(3);
+		    		celdaQRCode.setRowspan(5);
+		            table.addCell(celdaQRCode);
+	    	  
+	    	  
+	    	  
+	    	  
+	    	  
 	        	   Image imagen = Image.getInstance("img/subebus.png");
 		            imagen.scaleAbsolute(150, 70);
 		           
@@ -100,27 +145,29 @@ import java.io.*;
 		            PdfPCell c1 = new PdfPCell(imagen);
 		            c1.setHorizontalAlignment(Element.ALIGN_CENTER);
 		            c1.setVerticalAlignment(Element.ALIGN_CENTER);
-		            c1.setColspan(6);
-		            c1.setRowspan(5);
+		            c1.setColspan(3);
+		            c1.setRowspan(2);
 		           // c1.setBorder(Rectangle.NO_BORDER);
 		            table.addCell(c1);
 	        	
 	            Paragraph p8 = new Paragraph("Membresia "+m.getDuracion()+"     folio:"+m.getId(),f1);
 	            PdfPCell c8 = new PdfPCell(p8);
 	            c8.setHorizontalAlignment(Element.ALIGN_CENTER);
-	            c8.setColspan(6);
+	            c8.setColspan(3);
+	            c8.setRowspan(2);
 	            //c8.setBorder(Rectangle.NO_BORDER);
 	            table.addCell(c8);	
 	           // table.addCell(c6);
 	            
-	          
+	            
+	       
 	//
 	            document.add(table);
 	           // document.add(new Paragraph("\n"));
 	            //document.add(new Paragraph("\n"));
 	            
 	       
-	            document.add(new Paragraph("\n"));
+	            document.add(new Paragraph("\n")); 
 	            document.add(new Paragraph("\n"));
 	            //document.add(new Paragraph("otra mem"));       
 	    }   
