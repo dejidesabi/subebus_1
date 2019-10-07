@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="app" lang="es-mx">
+<html ng-app="app" lang="es-mx" ng-cloak>
 
 <head>
   <meta charset="utf-8" />
@@ -12,6 +12,7 @@
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--angular-->
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script> -->
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-cookies.js"></script>
   <!--     Fonts and icons     -->
@@ -32,7 +33,12 @@
   <script type="text/javascript" src="js/controller/printController.js"></script>
   <script type="text/javascript" src="js/controller/rutaController.js"></script>
   <script type="text/javascript" src="js/controller/sucursalController.js"></script>
+  <script type="text/javascript" src="js/controller/usuario.js"></script>
   
+<!--   GENERADOR QR -->
+
+ <script type="text/javascript" src="js/jquery-qrcode-0.17.0.js"></script>
+<!--   <script type="text/javascript" src="js/jquery.min.js"></script> -->
 <!-- 	Font Awesome -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
 
@@ -84,8 +90,19 @@
               <p>Sucursal</p>
             </a>
           </li>
+           <li ng-class="{'active' : Menu=='Usuario'}">
+            <a href="#/Usuario">
+              <i class="fas fa-user"></i>
+              <p>Usuario</p>
+            </a>
+          </li>
         </ul>
+          <div class="" style="position:fixed; bottom: 0px;"  ng-controller="headerController">
+      <button class="btn btn-lg"ng-click="CerrarSesion()"><i class="fa fa-sign-out-alt"></i> Cerrar Sesion
+      </button>
       </div>
+      </div>
+    
     </div>
     <div class="main-panel" >
       <!-- Navbar -->
@@ -114,12 +131,12 @@
           
                   <i class="fa fa-sign-out-alt fa-2x"></i>
                   <p>
-                    <span class="d-lg-none d-md-block">Stats</span>
+                    <span class="d-lg-none d-md-block">Cerrar Sesion</span>
                   </p>
                 </a>
               </li>
               <li class="nav-item btn-rotate dropdown">
-                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onClick="notify('')">
                   <i class="nc-icon nc-bell-55"></i>
                   <p>
                     <span class="d-lg-none d-md-block">Some Actions</span>
@@ -183,7 +200,30 @@
   <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
     <script src="demo/demo.js"></script>
  
-  
+  <script type="text/javascript">
+  function notify(msg){
+	  
+	  const title = 'Administrador del Sistema';
+	  const options = {
+			  icon: '/img/subebus.png',
+			  sound: 'audio/alert.mp3',
+			  timestamp: Date.parse('01 Jan 2000 00:00:00'),
+			  body: 'Tenemos una nueva actulizacion de software, necesitamos que actualices tu navegador eliminando cache'
+	  };
+		if(!("Notification" in window)){
+			
+		}else if(Notification.permission === "granted"){
+			var notificacion = new Notification(title,options);
+		}
+	else if(Notification.permission !== "denied"){
+		Notification.requestPermission(function(){
+			if(Notification.permission ==="granted"){
+				var notificacion = new Notification(title,options);
+			}
+		});
+	}
+  }
+  </script>
 </body>
 
 </html>

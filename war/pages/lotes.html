@@ -34,7 +34,8 @@
                     <div class="col-md-4 pl-1">
                       <div class="form-group">
                         <label for="exampleInputEmail1">Cantidad</label>
-                        <input ng-model="altaLote.cantidad" type="number" class="form-control" placeholder="0">
+                        <input ng-model="altaLote.cantidad" type="number" class="form-control" placeholder="0" min="1" >
+                        <label ng-show="(altaLote.cantidad * 1) > 100"" style="color: red">La cantidad no debe ser superior a 100</label>
                       </div>
                     </div>
                   </div>
@@ -42,7 +43,7 @@
               <div class="card-footer " align="right">
                 <hr>
                 <div class="">
-                  <button class="btn" ng-click="addLote(altaLote)"><i class="fa fa-save"></i> Guardar</button>
+                  <button class="btn" ng-click="addLote(altaLote)" ng-disabled="(altaLote.cantidad * 1) > 100"><i class="fa fa-save"></i> Guardar</button>
                 </div>
               </div>
             </div>

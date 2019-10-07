@@ -35,6 +35,10 @@ app.config([ '$routeProvider','$httpProvider', function($routeProvider,$httpProv
 		templateUrl : "pages/sucursal.html",
 		controller : "sucursalController"
 	});
+	$routeProvider.when('/Usuario', {
+		templateUrl : "pages/usuario.html",
+		controller : "usuarioController"
+	});
 		$routeProvider.otherwise({
 		redirectTo : '/Principal'
 	});
@@ -93,6 +97,7 @@ app.service('sessionService', [
 				}
 			}).error(function(data) {
 				alert("Usuario o Contraseña incorrectos");
+				$scope.credentials.password = ""
 				$location.path("/login");
 			});
 		}

@@ -1,0 +1,131 @@
+ <div class="col-lg-12" align="center">
+ <button class="btn" ng-click="formhide=false" ng-show="formhide"><i class="fa fa-user-plus"></i> Registrar Usuario</button>
+ <button class="btn" ng-click="formhide=true" ng-show="!formhide"><i class="fa fa-user-slash"></i> Cancelar Registro</button>
+<!--  ALTA DE Usuario -->
+            <div class="card card-stats" ng-show="!formhide">
+              <div class="card-body ">
+                <div class="row">
+                   
+                    <div class="col-md-2 px-1">
+                      <div class="form-group">
+                        <label>Nombre de Usuario</label>
+                         <input 
+                          ng-model="altaUsuario.usuario" 
+                         type="text" 
+                         class="form-control" 
+                         placeholder="Ingrese su usuario" 
+                         required 
+                         autocomplete="new_user" 
+                         name="use">
+                      </div>
+                    </div>
+                    <div class="col-md-2 pl-1">
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Contrase&ntilde;a</label>
+                         <input 
+                         ng-model="altaUsuario.password" 
+                         type="password" 
+                         class="form-control" 
+                         placeholder="Ingrese Contrase&ntilde;a" 
+                         autocomplete="new-password" 
+                         name="pass"
+                         required
+                         >
+                      </div>
+                    </div>
+                    <div class="col-md-2 pl-1">
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Repita Contrase&ntilde;a</label>
+						 <input ng-model="confirmPsw"   ng-enable="altaUsuario.password" ng-change="validPassword()"
+						 type="password" class="form-control" 
+						 placeholder="Repita Contrase&ntilde;a" 
+						 autocomplete="new-password" 
+						 name="validPsw"
+						 required>
+					
+                      </div>
+                    </div>
+                    <div class="col-md-4 pl-1">
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Correo</label>
+                        <input ng-model="altaUsuario.email" 
+                        type="email" 
+                        class="form-control" 
+                        autocomplete="new_mail" 
+                        name="email"
+                        placeholder="mail@mail.com"
+                        required>
+                      </div>
+                    </div>
+                     <div class="col-md-4 pl-1">
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Sucursal</label>
+                        <select ng-model="altaUsuario.idSucursal" class="form-control">
+						<option ng-repeat="x in sucursalData" value="{{x.id}}" required>{{x.nombre}}</option>
+					</select>
+                      </div>
+                    </div>
+                    <div class="col-md-4 pl-1">
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Perfil</label>
+                        <select ng-model="altaUsuario.perfil" class="form-control">
+						<option ng-repeat="x in perfilData" ng-if="x.tipo!='SuperAdministrador'" required>{{x.tipo}}</option>
+					</select>
+                      </div>
+                    </div>
+                  </div>
+                  <div name="Mostrar Error" ng-show="boxError">
+                 <code>{{msgError | uppercase}}</code>
+                  </div>
+              </div>
+              <div class="card-footer " align="right">
+                <hr>
+                
+                <div class="">
+                 <button class="btn" ng-click="formhide=true"><i class="fa fa-window-close"></i> Cancelar</button>
+                  <button class="btn btn-success" ng-click="addUsuario(altaUsuario)"><i class="fa fa-save"></i> Guardar</button>
+                </div>
+              </div>
+            </div>
+            <!--  LISTA DE LOTES -->
+            <div class="card" ng-show="formhide">
+              <div class="card-header">
+                <h4 class="card-title"> Lista de Usuarios</h4>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead class=" text-primary">
+                      <th>
+                        Usuario
+                      </th>
+                      <th>
+                        Perfil
+                      </th>
+                      <th>
+                        Acciones
+                      </th>
+                      
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="l in listUser" ng-if="l.usuario != 'root'">
+                        <td>
+                          {{l.usuario}}
+                        </td>
+                        <td>
+                          {{l.perfil}}
+                        </td>
+                      
+                   		<td >
+                   		
+<!-- 						<button class="btn btn-danger" title="Eliminar"  ng-click=""> -->
+<!-- 							<i class="fas fa-trash-alt"></i> -->
+<!-- 						</button> -->
+                   		</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>

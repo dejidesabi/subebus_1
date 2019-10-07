@@ -43,12 +43,25 @@ app.controller("dashboardController",['$scope','$rootScope','$window', '$locatio
 			 var url = "https://www.google.com/maps/embed/v1/place?key=AIzaSyCrlLXFntBgBODxEDBVV0C6aI59brxVy5A&q="+nombre;
 			 console.log("Url", url)
 			 document.getElementById("mapaMvl").src=url;
+			 
+//			 $scope.generarQR();
 	    });
 	 dashboardService.getSucursal( $scope.idSuc).then(function(data) {
 		$scope.sucursalData=data;
 		$scope.SucursalName=data.nombre;
 	
 		console.log("La Sucursal",$scope.sucursalData);
+	
 	})
+	
+//	$scope.generarQR = function(){
+//		 $('#qrcode').qrcode({
+//			 render: 'image',
+//			 with: 150,
+//			 height: 150,
+//			 color:'#3A3',
+//			 text: 'Hola QR'
+//		 })
+//	 }
 } ]);	
 
