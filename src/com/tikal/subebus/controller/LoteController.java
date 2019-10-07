@@ -81,10 +81,12 @@ public class LoteController {
 				c.incremeta();
 				contadorDao.guardar(c);
 				System.out.println("serial:"+c.getFolio());
-				String cad= "folio:"+m.getId()+"lote:"+m.getIdLote()+"duracion:"+m.getDuracion()+"estatus:"+m.getEstatus()+"tipo:"+m.getTipo();
+				String cad= "folio:"+m.getId()+"lote:"+m.getIdLote()+"duracion:"+m.getDuracion()+"tipo:"+m.getTipo();
 				System.out.println("cadena:"+cad);
 				cad= Util.encripta(cad);
 				System.out.println("cadena:"+cad);
+				cad=cad+"***"+m.getEstatus()+"***";
+				System.out.println("cadena con estatus:"+cad);
 				m.setQr(cad);
 				byte[] Qr=Util.generate(cad);
 				m.setCodigoQR(Qr);

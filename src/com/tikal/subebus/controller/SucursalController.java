@@ -121,8 +121,8 @@ public class SucursalController {
 
 				}
 			 
-			 @RequestMapping(value = { "/getById/{idsucursal}" }, method = RequestMethod.GET, produces = "application/json")
-				public void findAllSuc(HttpServletResponse response, HttpServletRequest request, @PathVariable Long idSucursal) throws IOException {
+			 @RequestMapping(value = { "/getById/{idSucursal}" }, method = RequestMethod.GET, produces = "application/json")
+				public void byid(HttpServletResponse response, HttpServletRequest request, @PathVariable Long idSucursal) throws IOException {
 					AsignadorDeCharset.asignar(request, response);
 					String suc = sucursalDao.byId(idSucursal);
 					response.getWriter().println(JsonConvertidor.toJson(suc));
