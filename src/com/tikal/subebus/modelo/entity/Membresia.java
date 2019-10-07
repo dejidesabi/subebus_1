@@ -16,7 +16,7 @@ public class Membresia {
 		private Date fechaActivacion;
 		private Date fechaCaducidad;
 		@Index String estatus;
-		private String qr;
+		@Index private String qr;
 		@Index Long idLote;
 		private byte[] codigoQR;
 		

@@ -77,4 +77,15 @@ public class MembresiaDaoImpl implements MembresiaDao {
 		return ofy().load().type(Membresia.class).filter("idLote", idLote).filter("estatus","INACTIVA").list();
 	}
 
+	@Override
+	public Membresia byQr(String qr) {
+		 List<Membresia> l= ofy().load().type(Membresia.class).filter("qr", qr).list();
+		 if (l.size()>0){
+			 return l.get(0);
+		 }else 
+			 return null;
+		 
+		
+	}
+
 }

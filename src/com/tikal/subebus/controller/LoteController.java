@@ -85,10 +85,10 @@ public class LoteController {
 				System.out.println("cadena:"+cad);
 				cad= Util.encripta(cad);
 				System.out.println("cadena:"+cad);
-				cad=cad+"***"+m.getEstatus()+"***";
-				System.out.println("cadena con estatus:"+cad);
+				//cad=cad+"***"+m.getEstatus()+"***";
+				//System.out.println("cadena con estatus:"+cad);
 				m.setQr(cad);
-				byte[] Qr=Util.generate(cad);
+				byte[] Qr=Util.generate(cad); 
 				m.setCodigoQR(Qr);
 				System.out.println("cadena:"+cad);
 				memDao.crear(m);
@@ -109,8 +109,7 @@ public class LoteController {
 			l.setDuracion("mensual");
 			l.setIdSucursal(Long.parseLong("6333186975989760"));
 			l.setTipo("Electrónico");
-			l.setCantidad(3);
-			
+			l.setCantidad(3);			
 			loteDao.guardar(l);
 			Calendar cal=Calendar.getInstance(TimeZone.getTimeZone("America/Mexico_City"));
 			System.out.println("cantidad memb:"+l.getCantidad());

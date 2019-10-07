@@ -96,4 +96,10 @@ public class MembresiaController {
 			res.getWriter().println(JsonConvertidor.toJson(lista));
 		}
 	  
+	  @RequestMapping(value = "/byQR/{qr}", method = RequestMethod.GET)
+			public void bydp(HttpServletRequest req, HttpServletResponse res, @PathVariable String qr) throws IOException {
+			 Membresia m = memDao.byQr(qr);
+				res.getWriter().println(JsonConvertidor.toJson(m));
+	  }
+	  
 }
