@@ -54,6 +54,8 @@ app.controller("dashboardController",['$scope','$rootScope','$window', '$locatio
 	
 	})
 	
+	
+	
 //	$scope.generarQR = function(){
 //		 $('#qrcode').qrcode({
 //			 render: 'image',

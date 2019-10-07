@@ -28,6 +28,14 @@ app.service("sucursalService",['$http', '$q','$window', function($http, $q,$wind
 			});
 		return d.promise;
 	}
+	this.getNameSucursal = function(id) {
+		var d = $q.defer();
+		$http.get("sucursal/getById/"+id).then(
+			function(response) {
+				d.resolve(response.data);
+			});
+		return d.promise;
+	}
 	
 
 }]);
@@ -53,7 +61,9 @@ app.controller("sucursalController",['$scope','$rootScope','$window', '$location
 	 	}
 	 	$scope.obtenerSucursal();
 		$scope.addSucursal = function(suc) {	
+			$('#mdlLoad').modal('show');
 		 sucursalService.altaSucursal(suc).then(function(data) {
+			 $('#mdlLoad').modal('hide');
 						alert("Sucursal Agregada");
 						$scope.altaSucursal = null;
 						$scope.obtenerSucursal();

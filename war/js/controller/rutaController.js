@@ -60,6 +60,14 @@ app.controller("rutaController",['$scope','$rootScope','$window', '$location', '
 	 	$scope.obtenerRuta = function(){
 	 		 rutaService.getRutas().then(function(data) {
 					$scope.listRuta = data;
+					for(i in $scope.listRuta){
+						for(o in $scope.sucursalData){
+							if($scope.listRuta[i].idSucursal == $scope.sucursalData[o].id ){
+								$scope.listRuta[i].idSucursal = $scope.sucursalData[o].nombre;
+							}
+						}
+						
+					}
 				})
 	 	}
 	 	$scope.obtenerRuta();

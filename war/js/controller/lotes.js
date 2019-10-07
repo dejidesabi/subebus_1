@@ -47,7 +47,7 @@ app.service("loteServices",['$http', '$q','$window', function($http, $q,$window)
 	
 }]);
 
-app.controller("loteController",['$scope','$rootScope','$window', '$location', '$cookieStore','loteServices','sessionService','printService',function($scope,$rootScope, $window, $location, $cookieStore, loteServices,sessionService,printService){
+app.controller("loteController",['$scope','$rootScope','$window', '$location', '$cookieStore','loteServices','sessionService','printService','sucursalService',function($scope,$rootScope, $window, $location, $cookieStore, loteServices,sessionService,printService,sucursalService){
 	//sessionService.isAuthenticated();
 	 $scope.idSuc = $cookieStore.get('idSucursal');
 	 $rootScope.titulo = "Pagina de Lotes";
@@ -57,10 +57,24 @@ app.controller("loteController",['$scope','$rootScope','$window', '$location', '
 		
 		//console.log("La Sucursal",$scope.sucursalData);
 	})
+	$scope.nombreSuc = function(id){
+		 sucursalService.getNameSucursal(id).then(function(data) {
+				return data;
+			})
+	 }
 	$scope.obtenerLotes = function(){
 		 loteServices.getLotes().then(function(data) {
+		
 				$scope.listLote=data;
-				
+				for(i in $scope.listLote){
+					for(o in $scope.sucursalData){
+						if($scope.listLote[i].idSucursal == $scope.sucursalData[o].id ){
+							$scope.listLote[i].idSucursal = $scope.sucursalData[o].nombre;
+						}
+					}
+					
+				}
+								
 			})
 	 }
 	 function showSeconds(){
@@ -72,7 +86,9 @@ app.controller("loteController",['$scope','$rootScope','$window', '$location', '
 	 
 	 $scope.obtenerLotes();
 		$scope.addLote = function(lote) {	
+			$('#mdlLoad').modal('show');
 		 loteServices.altaLote(lote).then(function(data) {
+			 $('#mdlLoad').modal('hide');
 						alert("Lote Agregado");
 						$scope.altaLote = null;
 						 $scope.obtenerLotes();

@@ -75,12 +75,15 @@ if(typeof($scope.altaUsuario.password)!== 'undefined'){
 	 }
 	 $scope.getListUsers();
 		$scope.addUsuario = function(send){
+			
 			if(send.password != $scope.confirmPsw){
 				$scope.boxError = true;
 				$scope.msgError = "Las contraseña debe ser la misma, verifique"
 					return
 			}
+			$('#mdlLoad').modal('show');
 		 usuarioService.addUsuario(send).then(function(data){
+			 $('#mdlLoad').modal('hide');
 			 alert("Se ha registrado\n"+data);
 			 $scope.altaUsuario = null;
 			 $scope.getListUsers();
