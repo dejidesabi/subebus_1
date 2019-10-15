@@ -23,4 +23,16 @@ public class RutaBusDaoImpl implements RutaBusDao {
 		
 	}
 
+	@Override
+	public RutaBus byChofer(String chofer) {
+		// TODO Auto-generated method stub
+		return ofy().load().type(RutaBus.class).filter("chofer",chofer).list().get(0);
+	}
+
+	@Override
+	public List<RutaBus> byTipo(String tipo) {
+		// TODO Auto-generated method stub
+		return ofy().load().type(RutaBus.class).filter("tipo",tipo).list();
+	}
+
 }

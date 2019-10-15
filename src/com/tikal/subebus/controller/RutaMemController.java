@@ -52,7 +52,7 @@ public class RutaMemController {
 		//if(Util.verificarPermiso(re, usuariodao, perfildao, 2)){
 			RutaMem r = (RutaMem) JsonConvertidor.fromJson(json, RutaMem.class);
 			rmDao.guardar(r);
-			System.out.println("se creó la ruta...");
+			System.out.println("se registro un uso de membresia en la ruta designada.....");
 //		}else{
 //			rs.sendError(403);
 //		}

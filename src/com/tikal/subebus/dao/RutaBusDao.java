@@ -11,6 +11,10 @@ public interface RutaBusDao {
 	
 	public void guardar(RutaBus r);
 	
+	public RutaBus byChofer(String chofer);
+	
+	public List<RutaBus> byTipo(String tipo);
+	
 //	public int pags();
 	
 //	public List<Lote> findAllPage(int page);

@@ -12,6 +12,7 @@ public class RutaBus {
 	@Index String bus;
 	@Index String chofer;
 	@Index Long idSucursal;
+	@Index String tipo; //EMPRESARIAL O URBANA
 	public Long getId() {
 		return id;
 	}
@@ -41,6 +42,12 @@ public class RutaBus {
 	}
 	public void setIdSucursal(Long idSucursal) {
 		this.idSucursal = idSucursal;
+	}
+	public String getTipo() {
+		return tipo;
+	}
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 	
 	

@@ -102,4 +102,10 @@ public class MembresiaController {
 				res.getWriter().println(JsonConvertidor.toJson(m));
 	  }
 	  
+	  @RequestMapping(value = "/byLote/{idLote}", method = RequestMethod.GET)
+		public void bylote(HttpServletRequest req, HttpServletResponse res, @PathVariable Long idLote) throws IOException {
+		  List<Membresia> lista = memDao.byLote(idLote);
+			res.getWriter().println(JsonConvertidor.toJson(lista));
+	  }
+	  
 }

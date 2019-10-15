@@ -27,4 +27,5 @@ public interface MembresiaDao {
 	public List<Membresia> byDT(String duracion, String tipo);
 	public Membresia byQr(String qr);
 
+
 }
