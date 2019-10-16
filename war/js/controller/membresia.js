@@ -20,7 +20,7 @@ app.controller("membresiaController",['$scope','$rootScope','$window', '$locatio
 	 membresiaServices.getMembresia().then(function(data) {
 		$scope.membresiaData=data;
 		
-		//console.log("La Sucursal",$scope.sucursalData);
+		console.log("La Sucursal",$scope.sucursalData);
 	})
 	
 } ]);	

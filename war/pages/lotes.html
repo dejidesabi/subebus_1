@@ -87,10 +87,14 @@
                    		  {{l.idSucursal}}
                    		</td>
                    		<td >
-                   		  <button class="btn btn-primary" title="Imprimir" ng-show="l.tipo == 'Fisico'" ng-click="imprimirFisico(l.id)">
+                   		<button class="btn btn-primary" title="Ver" ng-show="l.tipo == 'Fisico'" ng-click="verMembresia(l.id)">
+							<i class="fas fa-eye"></i>
+							</button>
+                   		  <button class="btn btn-success" title="Imprimir" ng-show="l.tipo == 'Fisico'" ng-click="imprimirFisico(l.id)">
 							<i class="fas fa-print"></i>
+							
 						</button>
-						<button class="btn btn-danger" title="Imprimir"  ng-click="eliminarLote(l.id)">
+						<button class="btn btn-danger" title="Elimimnar"  ng-click="eliminarLote(l.id)">
 							<i class="fas fa-trash-alt"></i>
 						</button>
                    		</td>
@@ -100,4 +104,70 @@
                 </div>
               </div>
             </div>
+            <!-- The Modal -->
+<div class="modal" id="mdlShowMembresia">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Membresias</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+       <div class="table-responsive">
+                  <table class="table">
+                    <thead class=" text-primary">
+                      <th>
+                        Estatus
+                      </th>
+                      <th>
+                        Duraci&oacute;
+                      </th>
+                      <th>
+                        Fecha Activacion
+                      </th>
+                      <th>
+                        Fecha Caducidad
+                      </th>
+                      <th>
+                        Acciones
+                      </th>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="l in membresiaData">
+                        <td>
+                          {{l.estatus}}
+                        </td>
+                        <td>
+                          {{l.duracion}}
+                        </td>
+                        <td>
+                          {{l.fechaActivacion}}
+                        </td>
+                   		<td>
+                   		  {{l.fechaCaducidad}}
+                   		</td>
+                   		<td >
+                   		
+						<button class="btn btn-danger" title="Eliminar Membresia"  ng-click="eliminarMembresia(l.id)">
+							<i class="fas fa-trash-alt"></i>
+						</button>
+                   		</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+      </div>
+
+    </div>
+  </div>
+</div>
           </div>

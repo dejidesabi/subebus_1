@@ -43,6 +43,14 @@ app.service("loteServices",['$http', '$q','$window', function($http, $q,$window)
 			});
 		return d.promise;
 	}
+	this.getMembresia = function(id) {
+		var d = $q.defer();
+		$http.get("membresia//byLote/"+id).then(
+			function(response) {
+				d.resolve(response.data);
+			});
+		return d.promise;
+	}
 
 	
 }]);
@@ -109,6 +117,14 @@ app.controller("loteController",['$scope','$rootScope','$window', '$location', '
 			 $scope.obtenerLotes();
 		})
 		}
+	}
+	$scope.verMembresia = function(id){
+		
+		loteServices.getMembresia(id).then(function(data) {
+			$scope.membresiaData = data;
+			$('#mdlShowMembresia').modal('show');
+		})
+		
 	}
 } ]);	
 

@@ -39,6 +39,10 @@ app.config([ '$routeProvider','$httpProvider', function($routeProvider,$httpProv
 		templateUrl : "pages/usuario.html",
 		controller : "usuarioController"
 	});
+	$routeProvider.when('/Venta', {
+		templateUrl : "pages/venta.html",
+		controller : "ventaController"
+	});
 		$routeProvider.otherwise({
 		redirectTo : '/Principal'
 	});
