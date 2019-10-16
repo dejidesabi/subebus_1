@@ -25,6 +25,7 @@ public interface MembresiaDao {
 	public List<Membresia> byLoteI(Long idLote);
 	
 	public List<Membresia> byDT(String duracion, String tipo);
+//	public List<Membresia> byDTA(String duracion, String tipo, String activo);
 	public Membresia byQr(String qr);
 
 

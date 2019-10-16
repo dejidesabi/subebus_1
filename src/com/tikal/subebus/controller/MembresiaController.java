@@ -90,14 +90,20 @@ public class MembresiaController {
 			response.getWriter().println(JsonConvertidor.toJson(lista));
 		}
 	  
-	  @RequestMapping(value = "/byDT/{duracion}/{tipo}", method = RequestMethod.GET)
-		public void bydp(HttpServletRequest req, HttpServletResponse res, @PathVariable String duracion, @PathVariable String tipo) throws IOException {
-		  List<Membresia> lista = memDao.byDT(duracion, tipo);
-			res.getWriter().println(JsonConvertidor.toJson(lista));
+	  @RequestMapping(value = "/byDTi/{duracion}", method = RequestMethod.GET)
+		public void bydp(HttpServletRequest req, HttpServletResponse res, @PathVariable String duracion) throws IOException {
+		
+		  Membresia m = memDao.byDT(duracion, "Electronico").get(0); // no activas solamente (para venta)
+		 // System.out.println("lista:"+lista);
+		  if(m.equals(null)){
+			  res.getWriter().println("no hay membresias disponibles...");
+		  }else{
+			  res.getWriter().println(JsonConvertidor.toJson(m.getId()));
+		  }
 		}
 	  
 	  @RequestMapping(value = "/byQR/{qr}", method = RequestMethod.GET)
-			public void bydp(HttpServletRequest req, HttpServletResponse res, @PathVariable String qr) throws IOException {
+			public void byqr(HttpServletRequest req, HttpServletResponse res, @PathVariable String qr) throws IOException {
 			 Membresia m = memDao.byQr(qr);
 				res.getWriter().println(JsonConvertidor.toJson(m));
 	  }
@@ -107,5 +113,7 @@ public class MembresiaController {
 		  List<Membresia> lista = memDao.byLote(idLote);
 			res.getWriter().println(JsonConvertidor.toJson(lista));
 	  }
+	  
+	  
 	  
 }

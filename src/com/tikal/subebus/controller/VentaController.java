@@ -55,11 +55,13 @@ public class VentaController {
 		//if(Util.verificarPermiso(re, usuariodao, perfildao, 2)){
 			Venta v = (Venta) JsonConvertidor.fromJson(json, Venta.class);
 			Calendar cal=Calendar.getInstance(TimeZone.getTimeZone("America/Mexico_City"));
+			Membresia m= memDao.consultar(v.getIdMembresia());
+			m.setEstatus("ACTIVA");
 		ventaDao.guardar(v);
 //		}else{
 //			rs.sendError(403);
 //		}
-//	 
+	 
 	 }
 	 
 	 

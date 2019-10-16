@@ -13,7 +13,7 @@ public class Venta {
 	@Index String sexo;
 	@Index String telefono;
 	@Index String mail;
-	@Index int idMembresia;
+	@Index Long idMembresia;
 	private double precio;
 	@Index Long idSucursal;
 	@Index String tipo;
@@ -54,10 +54,10 @@ public class Venta {
 	public void setMail(String mail) {
 		this.mail = mail;
 	}
-	public int getIdMembresia() {
+	public Long getIdMembresia() {
 		return idMembresia;
 	}
-	public void setIdMembresia(int idMembresia) {
+	public void setIdMembresia(Long idMembresia) {
 		this.idMembresia = idMembresia;
 	}
 	public double getPrecio() {

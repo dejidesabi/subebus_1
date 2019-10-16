@@ -64,7 +64,7 @@ public class MembresiaDaoImpl implements MembresiaDao {
 
 	@Override
 	public List<Membresia> byDT(String duracion, String tipo) {
-		return ofy().load().type(Membresia.class).filter("duracion", duracion).filter("tipo", tipo).filter("estatus", "ACTIVO").list();
+		return ofy().load().type(Membresia.class).filter("duracion", duracion).filter("tipo", tipo).filter("estatus", "INACTIVA").list();
 	}
 
 	@Override
