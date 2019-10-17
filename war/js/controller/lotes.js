@@ -60,6 +60,7 @@ app.controller("loteController",['$scope','$rootScope','$window', '$location', '
 	 $scope.idSuc = $cookieStore.get('idSucursal');
 	 $rootScope.titulo = "Pagina de Lotes";
 	 $rootScope.Menu = "Lote"
+	
 	 loteServices.getSucursal().then(function(data) {
 		$scope.sucursalData=data;
 		

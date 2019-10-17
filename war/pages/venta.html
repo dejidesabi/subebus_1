@@ -1,20 +1,21 @@
- <div class="col-lg-12" align="center">
+ <div class="col-lg-12">
  
 
        <div class="card card-stats">
               <div class="card-body ">
                 <div class="row">
-                   
-                    <div class="col-md-2 px-1">
+                 <div class="col-lg-10"> 
+                 <div class="row">
+                    <div class="col-md-8 px-1">
                       <div class="form-group">
                         <label>Nombre</label>
-                        <input ng-model="altaVenta.nombre" class="form-control" placeholder="Introduce el Nombre"  >
+                        <input ng-model="altaVenta.nombre" class="form-control"   >
                       </div>
                     </div>
                      <div class="col-md-2 pl-1">
                       <div class="form-group">
                         <label >Edad</label>
-                        <input ng-model="altaVenta.edad" type="number" class="form-control" placeholder="Ingrese Edad" min="1" >
+                        <input ng-model="altaVenta.edad" type="number" class="form-control"  min="1" >
                         
                       </div>
                     </div>
@@ -28,25 +29,55 @@
 					</select>
                       </div>
                     </div>
-                    <div class="col-md-2 pl-1">
+                    <div class="col-md-4 pl-1">
                       <div class="form-group">
                         <label >Telefono</label>
                         <input ng-model="altaVenta.telefono" type="tel" class="form-control">
                       </div>
                     </div>
-                    <div class="col-md-2 pl-1">
+                    <div class="col-md-4 pl-1">
                       <div class="form-group">
                         <label >Correo</label>
                         <input ng-model="altaVenta.mail" type="email" class="form-control">
                       </div>
                     </div>
-                    <div class="col-md-2 pl-1">
+                    <div class="col-md-4 pl-1">
                       <div class="form-group">
                         <label >Precio</label>
                         <input ng-model="altaVenta.precio" type="number" class="form-control" placeholder="0" min="1" >
                         
                       </div>
                     </div>
+                         <div class="col-md-4 pl-1">
+                      <div class="form-group">
+                        <label >Sucursal</label>
+                        <select ng-model="altaVenta.idSucursal" class="form-control">
+                        <option selected="selected" disabled>Seleccione</option>
+						<option>Matriz</option>
+						<option>Terminal 570 Toluca de Lerdo 50245</option>
+					</select>
+                      </div>
+                    </div>
+                          <div class="col-md-4 pl-1">
+                      <div class="form-group">
+                        <label ></label>
+                        <button class="btn" ng-click="getMembresia()"><i class="fa fa-ticket-alt fa-3x"></i></button>
+                      </div>
+                    </div>
+                    </div>
+                    </div>
+                    <div class="col-md-2" >
+                     <div class="row"  style=" border-style: solid; border-color: #EE4957; height: 470px; ">
+                     <div class="col-md-12 pl-1" style="height: 50px; background-color: #EE4957; vertical-align: bottom;">
+         				<label>MEMBRESIA</label>
+         			</div>
+         				 <div class="col-md-12 pl-1" style="">
+         				<div align="center" id="qr" ></div>
+                     	</div>
+                     </div>
+                    
+                    </div> 
+                    
                   </div>
               </div>
               <div class="card-footer " align="right">

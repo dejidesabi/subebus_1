@@ -20,6 +20,7 @@ app.controller("ventaController",['$scope','$rootScope','$window', '$location', 
 	 $scope.altaVenta = null;
 		 
 	 $scope.addVenta = function(data) {	
+		 document.getElementById('qr').innerHTML = create_qrcode("Felipe Sabeee");
 		 console.log(data)
 		 $('#mdlLoad').modal('show');
 		 ventaService.addVenta(data).then(function(data) {
