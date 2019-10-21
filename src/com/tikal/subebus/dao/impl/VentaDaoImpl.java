@@ -2,6 +2,7 @@ package com.tikal.subebus.dao.impl;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -26,9 +27,11 @@ public class VentaDaoImpl implements VentaDao{
 	}
 
 	@Override
-	public List<Venta> bySucursal(String idSucursal) {
+	public List<Venta> bySucursal(Long idSucursal) {
 		 List<Venta> list=ofy().load().type(Venta.class).filter("idSucursal",idSucursal).list();
-		 
+		 if (list == null) {
+				list = new ArrayList<Venta>();
+		 }
 		 return list;
 	}
 

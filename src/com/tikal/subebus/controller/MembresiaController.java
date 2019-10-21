@@ -113,7 +113,7 @@ public class MembresiaController {
 		  List<Membresia> lista = memDao.byLote(idLote);
 			res.getWriter().println(JsonConvertidor.toJson(lista));
 	  }
-	  
+	   
 	  
 	  
 }

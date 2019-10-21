@@ -11,7 +11,7 @@ public interface VentaDao {
 	
 	public void guardar(Venta v);
 	
-	public List<Venta> bySucursal(String idSucursal);
+	public List<Venta> bySucursal(Long idSucursal);
 	
 	public List<Venta> byTipo(String tipo);
 	

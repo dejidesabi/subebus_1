@@ -135,16 +135,7 @@ public class LoteController {
 	 }
 	 
 	 
-	 @RequestMapping(value = { "/findAll" }, method = RequestMethod.GET, produces = "application/json")
-		public void findAllSuc(HttpServletResponse response, HttpServletRequest request) throws IOException {
-			AsignadorDeCharset.asignar(request, response);
-			List<Lote> lista = loteDao.todos();
-			if (lista == null) {
-				lista = new ArrayList<Lote>();
-			}
-			response.getWriter().println(JsonConvertidor.toJson(lista));
-
-		} 
+	 
 	 
 	 
 	

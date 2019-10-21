@@ -86,7 +86,7 @@ public class SucursalController {
 			
 //					if(SesionController.verificarPermiso2(request, usuarioDao, perfilDAO, 45, sessionDao,userName)){
 				AsignadorDeCharset.asignar(request, response);
-				System.out.println(" edgar manda:"+json);
+				System.out.println(" yisus manda:"+json);
 				Sucursal sucursal = (Sucursal) JsonConvertidor.fromJson(json, Sucursal.class);
 				//System.out.println("lista de permisos:"+perfil.getPermisos());
 				sucursalDao.save(sucursal);
