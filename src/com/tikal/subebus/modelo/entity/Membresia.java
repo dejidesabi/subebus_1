@@ -18,6 +18,7 @@ public class Membresia {
 		@Index String estatus;
 		@Index private String qr;
 		@Index Long idLote;
+		@Index Long idSucursal;
 		private byte[] codigoQR;
 		
 		public Long getId() {
@@ -73,6 +74,15 @@ public class Membresia {
 		}
 		public void setCodigoQR(byte[] codigoQR) {
 			this.codigoQR = codigoQR;
+		}
+		public Long getIdSucursal() {
+			return idSucursal;
+		}
+		public void setIdSucursal(Long idSucursal) {
+			this.idSucursal = idSucursal;
+		}
+		public byte[] getCodigoQR() {
+			return codigoQR;
 		}
 		
 		

@@ -75,6 +75,7 @@ public class LoteController {
 				m.setDuracion(l.getDuracion());
 				m.setTipo(l.getTipo());
 				m.setEstatus("INACTIVA");
+				m.setIdSucursal(l.getIdSucursal());
 				m.setIdLote(l.getId());
 				Contador c = new Contador();
 				m.setId(c.getFolio());

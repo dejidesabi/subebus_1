@@ -113,7 +113,7 @@ public class SucursalController {
 			 @RequestMapping(value = { "/findAll" }, method = RequestMethod.GET, produces = "application/json")
 				public void findAllSuc(HttpServletResponse response, HttpServletRequest request) throws IOException {
 					AsignadorDeCharset.asignar(request, response);
-					List<Sucursal> lista = sucursalDao.findAll();
+					List<Sucursal> lista = sucursalDao.findAll();	
 					if (lista == null) {
 						lista = new ArrayList<Sucursal>();
 					}

@@ -246,7 +246,7 @@ public class UsuarioController {
 				//PuestoEntity puesto = new PuestoEntity();
 				
 				Sucursal sucursal = new Sucursal();
-				//sucursal.setId(Long.valueOf("9999"));
+				sucursal.setId(Long.valueOf("9999"));
 				sucursal.setNombre("SIN SUCURSAL");
 				sucursal.setRfc("SIN SUCURSAL");
 				//sucursal.setCurp("MASTER9999");

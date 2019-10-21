@@ -90,15 +90,15 @@ public class MembresiaController {
 			response.getWriter().println(JsonConvertidor.toJson(lista));
 		}
 	  
-	  @RequestMapping(value = "/byDTi/{duracion}", method = RequestMethod.GET)
-		public void bydp(HttpServletRequest req, HttpServletResponse res, @PathVariable String duracion) throws IOException {
+	  @RequestMapping(value = "/byDTS/{duracion}/{idSucursal}", method = RequestMethod.GET)
+		public void bydp(HttpServletRequest req, HttpServletResponse res, @PathVariable String duracion, @PathVariable Long idSucursal) throws IOException {
 		
-		  Membresia m = memDao.byDT(duracion, "Electronico").get(0); // no activas solamente (para venta)
+		  Membresia m = memDao.byDTS(duracion, "Electronico", idSucursal).get(0); // no activas solamente (para venta)
 		 // System.out.println("lista:"+lista);
 		  if(m.equals(null)){
-			  res.getWriter().println("no hay membresias disponibles...");
+			  res.getWriter().println("no hay membresias disponibles para esa sucursal...");
 		  }else{
-			  res.getWriter().println(JsonConvertidor.toJson(m.getId()));
+			  res.getWriter().println(JsonConvertidor.toJson(m));
 		  }
 		}
 	  

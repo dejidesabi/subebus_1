@@ -54,7 +54,15 @@ public class SucursalDaoImpl implements SucursalDao {
 
 	   
 		public List<Sucursal> findAll() {
-			return ofy().load().type(Sucursal.class).list();
+			List<Sucursal> lista= ofy().load().type(Sucursal.class).list();
+			for (Sucursal s:lista){
+				if (s.getId()==9999){
+					lista.remove(s);
+					break;
+				}
+			}
+			return lista;
+			
 		}
 
 
