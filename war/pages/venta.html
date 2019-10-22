@@ -43,8 +43,19 @@
                     </div>
                     <div class="col-md-4 pl-1">
                       <div class="form-group">
+                        <label >Duracion</label>
+                         <select ng-model="altaVenta.duracion" class="form-control" ng-change="costo(altaVenta.duracion)">
+                        <option selected="selected" disabled>Seleccione</option>
+						<option>Semanal</option>
+						<option>Mensual</option>
+					</select>
+                        
+                      </div>
+                    </div>
+                    <div class="col-md-2 pl-1">
+                      <div class="form-group">
                         <label >Precio</label>
-                        <input ng-model="altaVenta.precio" type="number" class="form-control" placeholder="0" min="1" >
+                        <input ng-model="altaVenta.precio" type="number" class="form-control" placeholder="0" min="1" readonly>
                         
                       </div>
                     </div>
@@ -53,29 +64,35 @@
                         <label >Sucursal</label>
                         <select ng-model="altaVenta.idSucursal" class="form-control">
                         <option selected="selected" disabled>Seleccione</option>
-						<option>Matriz</option>
-						<option>Terminal 570 Toluca de Lerdo 50245</option>
+						<option ng-repeat="i in listSucursal" ng-value="i.id">{{i.nombre}}</option>
 					</select>
                       </div>
                     </div>
                           <div class="col-md-4 pl-1">
                       <div class="form-group">
                         <label ></label>
-                        <button class="btn" ng-click="getMembresia()"><i class="fa fa-ticket-alt fa-3x"></i></button>
+                        <button class="btn" ng-click="getMembresia(altaVenta.duracion,altaVenta.idSucursal)"><i class="fa fa-ticket-alt fa-3x"></i></button>
                       </div>
                     </div>
                     </div>
                     </div>
                     <div class="col-md-2" >
-                     <div class="row"  style=" border-style: solid; border-color: #EE4957; height: 470px; ">
-                     <div class="col-md-12 pl-1" style="height: 50px; background-color: #EE4957; vertical-align: bottom;">
-         				<label>MEMBRESIA</label>
+                     <div class="row"  style="height: 470px; ">
+                     <div ng-show="isMember" style="border-style: solid; border-color: #EE4957;">
+                     <div  class="col-md-12 pl-1" style="height: 50px; background-color: #EE4957; vertical-align: bottom;">
+         				<h5 style="color: white;" align="center">MEMBRESIA</h5>
          			</div>
          				 <div class="col-md-12 pl-1" style="">
-         				<div align="center" id="qr" ></div>
+         				<div align="center" id="qr" style=""></div>
+                     	</div>
+                     	<div class="col-md-12 pl-1">  
+                     	<p>{{altaVenta.nombre | uppercase}}</p>
+                     	</div>
+                     	<div class="col-md-12 pl-1">  
+                     	<p>DURACION: {{altaVenta.duracion | uppercase}}</p>
                      	</div>
                      </div>
-                    
+                    </div>
                     </div> 
                     
                   </div>
