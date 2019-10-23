@@ -89,6 +89,7 @@ app.service('sessionService', [
 				if (data.usuario) {
 					$rootScope.authenticated = true;
 					$rootScope.variable = true;
+					
 //					$http.get("/notificacion/numAlertas/"+ data.id).then(function(response){
 //						$rootScope.numNotificaciones=response.data;
 //					})
@@ -115,7 +116,6 @@ app.service('sessionService', [
 		}
 		this.isAuthenticated = function() {
 			var d = $q.defer();
-			$rootScope.titulo = "Sistema Auth";
 			$http.get("currentSession").success(function(data) {
 				$rootScope.UserData=data;
 				$cookieStore.put("usuario", data.usuario);

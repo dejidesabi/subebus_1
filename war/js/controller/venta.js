@@ -18,17 +18,31 @@ app.service("ventaService",['$http', '$q','$window', function($http, $q,$window)
 		return d.promise;
 	}
 	
-
+	this.getVentas = function(idUsr) {
+		var d = $q.defer();
+		$http.get("venta/bySucursal/"+idUsr).then(
+			function(response) {
+				d.resolve(response.data);
+			});
+		return d.promise;
+	}
 	
 }]);
 
 app.controller("ventaController",['$scope','$rootScope','$window', '$location', '$cookieStore','ventaService','sessionService',"sucursalService",function($scope,$rootScope, $window, $location, $cookieStore, ventaService,sessionService,sucursalService){
 	//sessionService.isAuthenticated();
-	 $scope.idSuc = $cookieStore.get('idSucursal');
 	 $rootScope.titulo = "Pagina de Venta";
 	 $rootScope.Menu = "Venta";
 	 $scope.isMember = false;
+	 
+	 sessionService.isAuthenticated().then(function(sesion) {
 		 
+		 
+		 ventaService.getVentas(sesion.id).then(function(data) {
+				$scope.ventaList = data;
+			})
+				
+	
 	 $scope.addVenta = function(data) {	
 		 
 		 console.log(data)
@@ -75,9 +89,7 @@ app.controller("ventaController",['$scope','$rootScope','$window', '$location', 
 		
 		}
 	 }
-	 $scope.vender = function(){
-		 
-	 }
-	
+	 
+	 })
 } ]);	
 
