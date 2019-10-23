@@ -18,16 +18,16 @@ public class SucursalDaoImpl implements SucursalDao {
 
 	    
 	    public void delete(Sucursal s) {
-	    	 System.out.println("si esta en daoimpl eliminando"+s);
+	    	
 	        ofy().delete().entity(s).now();
-	        System.out.println("eliminando...");
+	       
 	    }
 
 	
 		public void update(Sucursal s) {
-		   System.out.print("sucursal:"+s.getId());
+		
 		   Sucursal old = this.consult(s.getId());
-		System.out.print("old:"+old);
+	
 			if (old != null) {
 				old.setNombre(s.getNombre());
 				//old.setCurp(s.getCurp());
@@ -46,7 +46,7 @@ public class SucursalDaoImpl implements SucursalDao {
 	    
 	
 		public Sucursal consult(Long id) {
-		   System.out.println("si esta en daoimpl consultando la sucursal.."+id);
+		 
 	      return ofy().load().type(Sucursal.class).id(id).now();
 			
 		}

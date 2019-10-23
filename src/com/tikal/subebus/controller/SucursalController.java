@@ -99,10 +99,9 @@ public class SucursalController {
 			 @RequestMapping(value = { "/find/{id}" }, method = RequestMethod.GET, produces = "application/json")
 				public void findFolio(HttpServletResponse response, HttpServletRequest request,
 						@PathVariable Long id) throws IOException {
-				   System.out.println("xxxxxxxxx");
+			
 					AsignadorDeCharset.asignar(request, response);
-					//DetalleDiscrepanciaVo dd = getDetalleDiscrepancia(id);
-				//	System.out.println("aaaaaaaaaa");
+				
 					System.out.println("sucursal"+id);
 					Sucursal s=sucursalDao.consult(id);
 					

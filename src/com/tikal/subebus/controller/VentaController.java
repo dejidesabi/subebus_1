@@ -78,6 +78,31 @@ public class VentaController {
 	 
 	 } 
 	 
+	 @RequestMapping(value = {"/add_" }, method = RequestMethod.GET, produces = "application/json")
+	 public void add(HttpServletRequest re, HttpServletResponse rs) throws IOException, SQLException {
+		//if(Util.verificarPermiso(re, usuariodao, perfildao, 2)){
+			Venta v = new Venta();
+		//	System.out.println("yisus trae:"+json);
+			Calendar cal=Calendar.getInstance(TimeZone.getTimeZone("America/Mexico_City"));
+			System.out.println("fechaActivacion:"+cal.getTime());
+			Date d= sumarDias(cal.getTime(),7);
+			System.out.println("fechaCaducidad:"+d);
+			//v.setIdSucursal(idSucursal);
+			Membresia m= memDao.consultar(v.getIdMembresia());
+			m.setFechaActivacion(cal.getTime());
+			m.setFechaCaducidad(sumarDias(m.getFechaActivacion(),7));
+			System.out.println("fechaCaducidad:"+m.getFechaCaducidad());
+			m.setEstatus("ACTIVA");
+			memDao.actualizar(m);
+			 ventaDao.guardar(v);
+//		}else{
+//			rs.sendError(403);
+//		}
+	 
+	 } 
+	 
+	 
+	 
 	 @RequestMapping(value = { "/bySucursal/{idSucursal}" }, method = RequestMethod.GET, produces = "application/json")
 		public void findAllSuc(HttpServletResponse response, HttpServletRequest request, @PathVariable Long idSucursal) throws IOException {
 			AsignadorDeCharset.asignar(request, response);
