@@ -49,7 +49,8 @@ app.controller("ventaController",['$scope','$rootScope','$window', '$location', 
 		 $('#mdlLoad').modal('show');
 		 ventaService.addVenta(data).then(function(data) {
 			 $('#mdlLoad').modal('hide');
-			 alert("Se ha agregado la venta")			
+			 alert("Se ha agregado la venta")
+			 location.reload();
 					
 		})
 	
