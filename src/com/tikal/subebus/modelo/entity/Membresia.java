@@ -14,7 +14,7 @@ public class Membresia {
 		@Index String duracion;
 		@Index String tipo;
 		private Date fechaActivacion;
-		private Date fechaCaducidad;
+		@Index private Date fechaCaducidad;
 		@Index String estatus;
 		@Index private String qr;
 		@Index Long idLote;

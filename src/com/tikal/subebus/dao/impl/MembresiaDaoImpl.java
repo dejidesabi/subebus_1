@@ -64,7 +64,7 @@ public class MembresiaDaoImpl implements MembresiaDao {
 
 	@Override
 	public List<Membresia> byDTS(String duracion, String tipo, Long idSucursal) {
-		return ofy().load().type(Membresia.class).filter("duracion", duracion).filter("tipo", tipo).filter("estatus", "INACTIVA").filter("idSucursal", idSucursal).order("id").list();
+		return ofy().load().type(Membresia.class).filter("duracion", duracion).filter("tipo", tipo).filter("estatus", "INACTIVA").filter("idSucursal", idSucursal).list();
 	}
 
 	@Override
@@ -88,6 +88,8 @@ public class MembresiaDaoImpl implements MembresiaDao {
 		
 	}
 
+	
+	
 	
 
 }

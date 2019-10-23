@@ -42,4 +42,14 @@
     <servlet-name>_ah_sessioncleanup</servlet-name>
     <url-pattern>/_ah/sessioncleanup</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>checkCaducidad</display-name>
+    <servlet-name>checkCaducidad</servlet-name>
+    <servlet-class>com.tikal.subebus.backProcess.checkCaducidad</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>checkCaducidad</servlet-name>
+    <url-pattern>/checkCaducidad</url-pattern>
+  </servlet-mapping>
 </web-app>

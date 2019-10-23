@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
 
@@ -59,15 +60,23 @@ public class VentaController {
 	 public void add(HttpServletRequest re, HttpServletResponse rs, @RequestBody String json) throws IOException, SQLException {
 		//if(Util.verificarPermiso(re, usuariodao, perfildao, 2)){
 			Venta v = (Venta) JsonConvertidor.fromJson(json, Venta.class);
+			System.out.println("yisus trae:"+json);
 			Calendar cal=Calendar.getInstance(TimeZone.getTimeZone("America/Mexico_City"));
+			System.out.println("fechaActivacion:"+cal.getTime());
+			Date d= sumarDias(cal.getTime(),7);
+			System.out.println("fechaCaducidad:"+d);
 			Membresia m= memDao.consultar(v.getIdMembresia());
+			m.setFechaActivacion(cal.getTime());
+			m.setFechaCaducidad(sumarDias(m.getFechaActivacion(),7));
+			System.out.println("fechaCaducidad:"+m.getFechaCaducidad());
 			m.setEstatus("ACTIVA");
-		ventaDao.guardar(v);
+			memDao.actualizar(m);
+			 ventaDao.guardar(v);
 //		}else{
 //			rs.sendError(403);
 //		}
 	 
-	 }
+	 } 
 	 
 	 @RequestMapping(value = { "/bySucursal/{idSucursal}" }, method = RequestMethod.GET, produces = "application/json")
 		public void findAllSuc(HttpServletResponse response, HttpServletRequest request, @PathVariable Long idSucursal) throws IOException {
@@ -83,5 +92,13 @@ public class VentaController {
 
 		} 
 	 
-	 
+	 public Date sumarDias(Date fecha, int dias){
+		 	 	
+		       Calendar calendar = Calendar.getInstance();		 	
+		       calendar.setTime(fecha); // Configuramos la fecha que se recibe		 	
+		       calendar.add(Calendar.DAY_OF_YEAR, dias);  // numero de días a añadir, o restar en caso de días<0		 	
+		       return calendar.getTime(); // Devuelve el objeto Date con los nuevos días añadidos
+		  
+		 	
+		  }
 }
