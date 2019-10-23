@@ -54,7 +54,7 @@ public class checkCaducidadServlet extends HttpServlet {
 				memDao.actualizar(m);
 			}
 		}
-		
+		System.out.println("Servlettttttttt");
 		response.getWriter().print("OK");
 	}
 
