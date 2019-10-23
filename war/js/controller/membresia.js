@@ -19,9 +19,13 @@ app.controller("membresiaController",['$scope','$rootScope','$window', '$locatio
 	 $rootScope.Menu = "Membresia"
 	 membresiaServices.getMembresia().then(function(data) {
 		$scope.membresiaData=data;
-		
+		console.log("el id ", data[i].id)
 		console.log("La Sucursal",$scope.sucursalData);
 	})
+	$scope.getId = function(ind){
+		 alert("Seleccion " + $scope.membresiaData[ind].duracion);
+		 $scope.membresiaData[ind].duracion = "Anual";
+	 }
 	
 } ]);	
 

@@ -25,7 +25,7 @@
                     </thead>
                     <tbody>
                       <tr ng-repeat="d in membresiaData">
-                        <td>
+                        <td ng-click= "getId($index)">
                           {{d.estatus}}
                         </td>
                         <td>

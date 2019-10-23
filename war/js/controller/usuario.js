@@ -36,7 +36,24 @@ app.service("usuarioService",['$http', '$q','$window', function($http, $q,$windo
 			});
 		return d.promise;
 	}
+	
 
+	this.updateUser = function(p) {
+		var d = $q.defer();
+		$http.post("usuario/update/"+p.usuario,p).then(
+			function(response) {
+				d.resolve(response.data);
+			});
+		return d.promise;
+	}
+	this.delUser = function(id,usr) {
+		var d = $q.defer();
+		$http.post("usuario/delete/"+id+"/"+usr).then(
+			function(response) {
+				d.resolve(response.data);
+			});
+		return d.promise;
+	}
 	
 }]);
 
@@ -83,14 +100,34 @@ if(typeof($scope.altaUsuario.password)!== 'undefined'){
 			}
 			$('#mdlLoad').modal('show');
 		 usuarioService.addUsuario(send).then(function(data){
-			 $('#mdlLoad').modal('hide');
+			 
 			 alert("Se ha registrado\n"+data);
-			 $scope.altaUsuario = null;
-			 $scope.getListUsers();
+			 location.reload();
 		 })
 		 
 	 }
-	
+	$scope.actualiza = function(user){
+		r = confirm("Se actualizara "+ user.usuario)
+		if (!r)
+			return;
+		 usuarioService.updateUser(user).then(function(data){
+			 alert("Se actualizo "+user.usuario);
+			 location.reload();
+		 })
+	}
+	$scope.eliminar = function(user){
+		r = confirm("Se Eliminara "+ user.usuario)
+		if (!r)
+			return;
+		 usuarioService.delUser(user.id,user.usuario).then(function(data){
+			 alert("Se Elimino "+user.usuario);
+			 location.reload();
+		 })
+	}
+	$scope.newPsw=function(user){
+		
+		$("#modalnewPsw").modal();
+	}
 //	$scope.generarQR = function(){
 //		 $('#qrcode').qrcode({
 //			 render: 'image',

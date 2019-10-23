@@ -35,9 +35,9 @@ app.service("loteServices",['$http', '$q','$window', function($http, $q,$window)
 			});
 		return d.promise;
 	}
-	this.getLotes = function(id) {
+	this.getLotes = function(p) {
 		var d = $q.defer();
-		$http.get("lote/findAll").then(
+		$http.get("lote/findAllP/"+p).then(
 			function(response) {
 				d.resolve(response.data);
 			});
@@ -72,7 +72,7 @@ app.controller("loteController",['$scope','$rootScope','$window', '$location', '
 			})
 	 }
 	$scope.obtenerLotes = function(){
-		 loteServices.getLotes().then(function(data) {
+		 loteServices.getLotes(1).then(function(data) {
 		
 				$scope.listLote=data;
 				for(i in $scope.listLote){

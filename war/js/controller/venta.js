@@ -17,6 +17,7 @@ app.service("ventaService",['$http', '$q','$window', function($http, $q,$window)
 			});
 		return d.promise;
 	}
+	
 
 	
 }]);
@@ -53,9 +54,15 @@ app.controller("ventaController",['$scope','$rootScope','$window', '$location', 
 		 $scope.isMember = true;
 		 ventaService.getVM(duracion,sucursal).then(function(data) {
 				$scope.newMem = data;
+				document.getElementById('qr').innerHTML = create_qrcode(data.qr);
+				$scope.altaVenta.idMembresia = data.id;
 				console.log("Membresia ",data);
 			})
-		 document.getElementById('qr').innerHTML = create_qrcode("3Dca4fd67852d33c6191ff9dfe53d06da238b48f10");
+		 
+	 }
+	 $scope.cancelOp = function(){
+		 $scope.altaVenta.idMembresia = null;
+		 $scope.isMember = false;
 	 }
 	 $scope.costo = function (tipo){
 		 switch (tipo) {
@@ -67,6 +74,9 @@ app.controller("ventaController",['$scope','$rootScope','$window', '$location', 
 			break;
 		
 		}
+	 }
+	 $scope.vender = function(){
+		 
 	 }
 	
 } ]);	

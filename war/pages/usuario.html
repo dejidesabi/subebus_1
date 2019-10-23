@@ -94,38 +94,73 @@
               </div>
               <div class="card-body">
                 <div class="table-responsive">
-                  <table class="table">
-                    <thead class=" text-primary">
-                      <th>
-                        Usuario
-                      </th>
-                      <th>
-                        Perfil
-                      </th>
-                      <th>
-                        Acciones
-                      </th>
-                      
-                    </thead>
-                    <tbody>
-                      <tr ng-repeat="l in listUser" ng-if="l.usuario != 'root'">
-                        <td>
-                          {{l.usuario}}
-                        </td>
-                        <td>
-                          {{l.perfil}}
-                        </td>
-                      
-                   		<td >
-                   		
-<!-- 						<button class="btn btn-danger" title="Eliminar"  ng-click=""> -->
-<!-- 							<i class="fas fa-trash-alt"></i> -->
-<!-- 						</button> -->
-                   		</td>
-                      </tr>
-                    </tbody>
-                  </table>
+                  <table class="table table-bordered table-striped">
+						<thead>
+							<tr>
+								<th>Usuario</th>
+								<th>Perfil</th>
+								<th>Sucursal</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="usuario in listUser" ng-if="usuario.usuario!='root'">
+								<td>{{usuario.usuario}}</td>
+								<td><select ng-model="usuario.perfil">
+										<option ng-repeat="p in perfilData" ng-if="p.tipo!='SuperAdministrador'" ng-value="{{p.id}}">{{p.tipo}}</option>
+									</select></td>
+									
+								<td>{{usuario.idSucursal}}
+							
+										
+									</td>
+									
+								<td><button type="button" class="btn btn-success"
+										ng-click="actualiza(usuario)">Actualizar</button>
+										<button type="button" class="btn btn-danger"
+										ng-click="eliminar(usuario)">Eliminar</button>
+										<!-- <button type="button" class="btn btn-link" ng-click="newPsw(usuario)">Cambiar Contraseña</button> -->
+										</td>
+										
+							</tr>
+						</tbody>
+					</table>
                 </div>
               </div>
             </div>
           </div>
+          <!-- 	MODAL NUEVA CONTRASEÑA -->
+	   <div class="modal fade" id="modalnewPsw" role="dialog" >
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          
+          <h4 class="modal-title">Asignar Nueva Contraseña</h4>
+        </div>
+        <div class="modal-body">
+        
+        Contrase&ntilde;a: <input type="password"
+						class="form-control" name="pass" id="pass"
+						title="La contrase&ntilde;a debe contener al menos 8 caracteres, incluidos MAYUSCULAS / minusculas y almenos un numero"
+						ng-model="user.password"
+						ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*)[A-Za-z\d]{8,}$/"
+						required ng-change="validatePass()">
+										
+					<br>Confirmar Contrase&ntilde;a: <input type="password"
+						class="form-control" name="passconfirm" id="passconfirm"
+						ng-model="user.passconfirm"
+						ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*)[A-Za-z\d]{8,}$/"
+						required ng-change="validatePass()">
+        <br><label ng-show="!form.pass.$valid">Debe contener 8 car&aacute;cteres, m&iacute;nimo, una may&uacute;scula, una min&uacute;scula y un n&uacute;mero.</label>
+        </div>
+         <div align="center">
+          <div class="w-50 p-3" >
+          <a class="btn btn-primary btn-block" style="color:white;" ng-click="actualizarpsw(user.password)" ng-disabled="!IsMatchP" >Actualizar</a>
+          </div>
+          </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal" >Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- 	FIN DE MODAL NUEVA CONTRASEÑA -->
