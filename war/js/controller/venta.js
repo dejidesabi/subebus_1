@@ -20,7 +20,7 @@ app.service("ventaService",['$http', '$q','$window', function($http, $q,$window)
 	
 	this.getVentas = function(idUsr) {
 		var d = $q.defer();
-		$http.get("venta/bySucursal/",idUsr).then(
+		$http.post("venta/bySucursal/",idUsr).then(
 			function(response) {
 				d.resolve(response.data);
 			});
