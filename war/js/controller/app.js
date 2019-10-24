@@ -102,7 +102,7 @@ app.service('sessionService', [
 				}
 			}).error(function(data) {
 				alert("Usuario o Contraseña incorrectos");
-				$scope.credentials.password = ""
+//				$scope.credentials.password = ""
 				$location.path("/login");
 			});
 		}
