@@ -27,11 +27,19 @@ public class UsuarioDaoImpl implements UsuarioDao{
 
 	}
 
-	@Override
-	public Usuario consult(String id) {
-		return ofy().load().type(Usuario.class).id(id).now();
-	}
+//	@Override
+//	public Usuario consult(String id) {
+//		return ofy().load().type(Usuario.class).id(id).now();
+//	}
 
+	@Override
+	public Usuario consult(Long idUsuario) {
+		System.out.println("lista de usuarios con ese idusuario:"+idUsuario);
+		return ofy().load().type(Usuario.class).id(idUsuario).now();
+		
+		
+	}
+	
 	@Override
 	public void delete(Usuario usuario) {
 		ofy().delete().entity(usuario);
@@ -78,13 +86,7 @@ public class UsuarioDaoImpl implements UsuarioDao{
 		
 	}
 	
-	@Override
-	public Usuario consult(Long idUsuario) {
-		System.out.println("lista de usuarios con ese username:"+idUsuario);
-		return ofy().load().type(Usuario.class).id(idUsuario).now();
-		
-		
-	}
+	
 
 	@Override
 	public List<Usuario> consultarUsuarios() {
@@ -138,6 +140,12 @@ public class UsuarioDaoImpl implements UsuarioDao{
 			return lista.get(0);
 		}
 		return usuario;	
+	}
+
+	@Override
+	public Usuario byId(Long id) {
+		System.out.println("llkdfj idusuario:"+id);
+		return ofy().load().type(Usuario.class).id(id).now();
 	}
 
 }

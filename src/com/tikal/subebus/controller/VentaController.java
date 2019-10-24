@@ -28,6 +28,7 @@ import com.tikal.subebus.dao.VentaDao;
 import com.tikal.subebus.modelo.entity.Lote;
 import com.tikal.subebus.modelo.entity.Membresia;
 import com.tikal.subebus.modelo.entity.Venta;
+import com.tikal.subebus.modelo.login.Usuario;
 import com.tikal.subebus.util.AsignadorDeCharset;
 import com.tikal.subebus.util.JsonConvertidor;
 
@@ -60,10 +61,12 @@ public class VentaController {
 	 public void add(HttpServletRequest re, HttpServletResponse rs, @RequestBody String json) throws IOException, SQLException {
 		//if(Util.verificarPermiso(re, usuariodao, perfildao, 2)){
 			Venta v = (Venta) JsonConvertidor.fromJson(json, Venta.class);
+			
 			System.out.println("yisus trae:"+json);
+			v.setTipo("Electronico");
 			Calendar cal=Calendar.getInstance(TimeZone.getTimeZone("America/Mexico_City"));
 			System.out.println("fechaActivacion:"+cal.getTime());
-			Date d= sumarDias(cal.getTime(),7);
+			Date d= sumarDias(cal.getTime(),1);
 			System.out.println("fechaCaducidad:"+d);
 			Membresia m= memDao.consultar(v.getIdMembresia());
 			m.setFechaActivacion(cal.getTime());
@@ -77,40 +80,22 @@ public class VentaController {
 //		}
 	 
 	 } 
-	 
-	 @RequestMapping(value = {"/add_" }, method = RequestMethod.GET, produces = "application/json")
-	 public void add(HttpServletRequest re, HttpServletResponse rs) throws IOException, SQLException {
-		//if(Util.verificarPermiso(re, usuariodao, perfildao, 2)){
-			Venta v = new Venta();
-		//	System.out.println("yisus trae:"+json);
-			Calendar cal=Calendar.getInstance(TimeZone.getTimeZone("America/Mexico_City"));
-			System.out.println("fechaActivacion:"+cal.getTime());
-			Date d= sumarDias(cal.getTime(),7);
-			System.out.println("fechaCaducidad:"+d);
-			//v.setIdSucursal(idSucursal);
-			Membresia m= memDao.consultar(v.getIdMembresia());
-			m.setFechaActivacion(cal.getTime());
-			m.setFechaCaducidad(sumarDias(m.getFechaActivacion(),7));
-			System.out.println("fechaCaducidad:"+m.getFechaCaducidad());
-			m.setEstatus("ACTIVA");
-			memDao.actualizar(m);
-			 ventaDao.guardar(v);
-//		}else{
-//			rs.sendError(403);
-//		}
-	 
-	 } 
+	  
 	 
 	 
-	 
-	 @RequestMapping(value = { "/bySucursal/{idSucursal}" }, method = RequestMethod.GET, produces = "application/json")
-		public void findAllSuc(HttpServletResponse response, HttpServletRequest request, @PathVariable Long idSucursal) throws IOException {
+	 @RequestMapping(value = { "/bySucursal" }, method = RequestMethod.POST,consumes = "application/json", produces = "application/json")
+		public void bysuc(HttpServletResponse response, HttpServletRequest request, @RequestBody String json) throws IOException {
 			AsignadorDeCharset.asignar(request, response);
+			Usuario u = (Usuario) JsonConvertidor.fromJson(json, Usuario.class);
+			System.out.println("usuariooo:"+u);
+		//	Usuario u = usuarioDao.byId(idUsuario);
+		//	Usuario u = usuarioDao.consult(idUsuario);
+			System.out.println("suc usuario:"+u.getIdSucursal());
 			List<Venta> lista= new ArrayList<Venta>();
-			if(idSucursal==9999){
+			if(u.getIdSucursal()==9999){
 				lista = ventaDao.todas();
 			}else{
-				lista = ventaDao.bySucursal(idSucursal);
+				lista = ventaDao.bySucursal(u.getIdSucursal());
 			}
 			
 			response.getWriter().println(JsonConvertidor.toJson(lista));

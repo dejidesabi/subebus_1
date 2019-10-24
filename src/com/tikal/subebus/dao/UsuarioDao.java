@@ -10,7 +10,7 @@ public interface UsuarioDao {
 		
 		public void update(Usuario usuario);
 		
-		public Usuario consult(String id);
+		//public Usuario consult(String id);
 		
 		public void delete(Usuario usuario);	
 		
@@ -23,5 +23,6 @@ public interface UsuarioDao {
 		public boolean eliminarUsuario(Usuario usuario);
 		public boolean actualizarUsuarios(String nombrePerfilviejo, String nombrePerfilNuevo);
 		public Usuario consultarPorEmail(String email);
+		public Usuario byId(Long id);
 
 }
