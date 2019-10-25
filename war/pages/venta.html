@@ -114,7 +114,7 @@
 								    TIPO
 								  </div>
 								  <div class="card-body">
-								  <p>Tipo: {{newMem.tipo | uppercase}}</p>
+								  <p>{{newMem.tipo | uppercase}}</p>
 								  </div>
 							</div>  
                      	
@@ -177,7 +177,7 @@
                           {{l.mail}}
                         </td>
                    		<td>
-                   		  {{l.precio}}
+                   		  {{l.precio | currency}}
                    		</td>
                    		<!-- <td >
                    		<button class="btn btn-primary" title="Ver" ng-show="l.tipo == 'Fisico'" ng-click="verMembresia(l.id)">
