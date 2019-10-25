@@ -34,6 +34,7 @@ app.controller("ventaController",['$scope','$rootScope','$window', '$location', 
 	 $rootScope.titulo = "Pagina de Venta";
 	 $rootScope.Menu = "Venta";
 	 $scope.isMember = false;
+	 $scope._control = false;
 	 
 	 sessionService.isAuthenticated().then(function(sesion) {
 		 
@@ -90,6 +91,19 @@ app.controller("ventaController",['$scope','$rootScope','$window', '$location', 
 		
 		}
 	 }
+	 
+	 $scope.nuevaVenta = function(ctl){
+		 $scope._control = ctl;
+		 if(ctl){
+			 $scope.altaVenta = null;
+			 $scope.isMember = false;
+			 $scope.newMem = null;
+		 }
+		 
+	 }
+	 
+	 
+	 //Fin
 	 
 	 })
 } ]);	
