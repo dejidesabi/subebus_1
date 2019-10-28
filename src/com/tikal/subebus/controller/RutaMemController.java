@@ -47,7 +47,7 @@ public class RutaMemController {
 	
 	
 	
-	 @RequestMapping(value = {"/add" }, method = RequestMethod.POST, produces = "application/json", consumes = "application/json")
+	 @RequestMapping(value = {"/add" }, method = RequestMethod.POST, consumes = "application/json",produces = "application/json")
 	 public void add(HttpServletRequest re, HttpServletResponse rs, @RequestBody String json) throws IOException, SQLException {
 		//if(Util.verificarPermiso(re, usuariodao, perfildao, 2)){
 			RutaMem r = (RutaMem) JsonConvertidor.fromJson(json, RutaMem.class);
@@ -61,6 +61,17 @@ public class RutaMemController {
 	 
 	 
 	 @RequestMapping(value = { "/findAll" }, method = RequestMethod.GET, produces = "application/json")
+		public void findAll(HttpServletResponse response, HttpServletRequest request) throws IOException {
+			AsignadorDeCharset.asignar(request, response);
+			List<RutaMem> lista = rmDao.todos();
+			if (lista == null) {
+				lista = new ArrayList<RutaMem>();
+			}
+			response.getWriter().println(JsonConvertidor.toJson(lista));
+
+		}
+	
+	 @RequestMapping(value = { "/findAllS" }, method = RequestMethod.POST, consumes = "application/json",produces = "application/json")
 		public void findAllSuc(HttpServletResponse response, HttpServletRequest request) throws IOException {
 			AsignadorDeCharset.asignar(request, response);
 			List<RutaMem> lista = rmDao.todos();
@@ -90,4 +101,5 @@ public class RutaMemController {
 		}
 	 
 
+	  
 }

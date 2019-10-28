@@ -21,10 +21,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.tikal.subebus.dao.LoteDao;
 import com.tikal.subebus.dao.MembresiaDao;
 import com.tikal.subebus.dao.PerfilDAO;
+import com.tikal.subebus.dao.RutaMemDao;
 import com.tikal.subebus.dao.SessionDao;
 import com.tikal.subebus.dao.UsuarioDao;
 import com.tikal.subebus.modelo.entity.Lote;
 import com.tikal.subebus.modelo.entity.Membresia;
+import com.tikal.subebus.modelo.entity.RutaMem;
 import com.tikal.subebus.modelo.login.Sucursal;
 import com.tikal.subebus.util.JsonConvertidor;
 import com.tikal.subebus.util.AsignadorDeCharset;
@@ -38,6 +40,9 @@ public class MembresiaController {
 	 
 	 @Autowired
 	 MembresiaDao memDao;
+	 
+	 @Autowired
+	 RutaMemDao rmDao;
 		
 	 @Qualifier("usuarioDao")
 	 UsuarioDao usuarioDao;
@@ -102,10 +107,19 @@ public class MembresiaController {
 		  }
 		}
 	  
-	  @RequestMapping(value = "/byQR/{qr}", method = RequestMethod.GET)
-			public void byqr(HttpServletRequest req, HttpServletResponse res, @PathVariable String qr) throws IOException {
+	  @RequestMapping(value = "/byQR/{qr}/{idRutaBus}", method = RequestMethod.GET)
+			public void byqr(HttpServletRequest req, HttpServletResponse res, @PathVariable String qr, @PathVariable Long idRutaBus) throws IOException {
 			 Membresia m = memDao.byQr(qr);
-				res.getWriter().println(JsonConvertidor.toJson(m));
+			 if(m.getEstatus().equals("ACTIVA")){
+				 crearRutaMem(m,idRutaBus);
+				
+			 }else{
+				 System.out.println("Membresia INACTIVA...");
+			 }
+			 
+			 
+			 
+				res.getWriter().println(JsonConvertidor.toJson(m.getEstatus()));
 	  }
 	  
 	  @RequestMapping(value = "/byLote/{idLote}", method = RequestMethod.GET)
@@ -115,5 +129,17 @@ public class MembresiaController {
 	  }
 	   
 	  
+	  public void crearRutaMem(Membresia m , Long idRutaBus){
+		  
+	
+		  RutaMem rm= new RutaMem();
+		  rm.setIdRutaBus(idRutaBus);
+//		  rm.setFecha(fecha);
+//		  rm.setNombre(nombre);
+//		 
+//		  rm.setSucursal(sucursal);
+//		  rm.setVenta(venta);
+//		  rm.s
+	  }		
 	  
 }

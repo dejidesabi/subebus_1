@@ -8,17 +8,18 @@ import com.googlecode.objectify.annotation.Index;
 
 @Entity
 public class RutaMem {
-	@Id Long id;
-	@Index Long idRutaBus;
+	//@Id Long id;
+	@Id Long idRutaBus;  //mismo id de ruta
 	@Index Long venta;
 	private String nombre;
 	private Date fecha;
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
+	@Index private Long sucursal;
+//	public Long getId() {
+//		return id;
+//	}
+//	public void setId(Long id) {
+//		this.id = id;
+//	}
 	public Long getIdRutaBus() {
 		return idRutaBus;
 	}
@@ -33,7 +34,7 @@ public class RutaMem {
 	}
 	public String getNombre() {
 		return nombre;
-	}
+	} 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
@@ -42,6 +43,12 @@ public class RutaMem {
 	}
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
+	}
+	public Long getSucursal() {
+		return sucursal;
+	}
+	public void setSucursal(Long sucursal) {
+		this.sucursal = sucursal;
 	}
 	
 	

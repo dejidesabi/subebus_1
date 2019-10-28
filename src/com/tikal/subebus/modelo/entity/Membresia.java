@@ -19,6 +19,7 @@ public class Membresia {
 		@Index private String qr;
 		@Index Long idLote;
 		@Index Long idSucursal;
+		@Index Long idVenta;
 		private byte[] codigoQR;
 		
 		public Long getId() {
@@ -83,6 +84,12 @@ public class Membresia {
 		}
 		public byte[] getCodigoQR() {
 			return codigoQR;
+		}
+		public Long getIdVenta() {
+			return idVenta;
+		}
+		public void setIdVenta(Long idVenta) {
+			this.idVenta = idVenta;
 		}
 		
 		
