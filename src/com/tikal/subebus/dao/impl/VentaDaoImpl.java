@@ -52,4 +52,10 @@ public class VentaDaoImpl implements VentaDao{
 		return ofy().load().type(Venta.class).offset((page-1)*15).limit(10).list();
 	}
 
+	@Override
+	public Venta cargar(Long idVenta) {
+		// TODO Auto-generated method stub
+		return ofy().load().type(Venta.class).id(idVenta).now();
+	}
+
 }

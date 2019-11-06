@@ -94,7 +94,7 @@ public class MembresiaController {
 			}
 			response.getWriter().println(JsonConvertidor.toJson(lista));
 		}
-	  
+	  ////asigna membresias x duracion y sucursal
 	  @RequestMapping(value = "/byDTS/{duracion}/{idSucursal}", method = RequestMethod.GET)
 		public void bydp(HttpServletRequest req, HttpServletResponse res, @PathVariable String duracion, @PathVariable Long idSucursal) throws IOException {
 		
@@ -106,6 +106,19 @@ public class MembresiaController {
 			  res.getWriter().println(JsonConvertidor.toJson(m));
 		  }
 		}
+	  
+	  @RequestMapping(value = "/asignar/{duracion}/{tipo}/{idSucursal}", method = RequestMethod.GET)
+			public void bydp(HttpServletRequest req, HttpServletResponse res, @PathVariable String duracion, @PathVariable String tipo, @PathVariable Long idSucursal) throws IOException {
+			
+			  Membresia m = memDao.byDTS(duracion,tipo, idSucursal).get(0); // no activas solamente (para venta)
+			 // System.out.println("lista:"+lista);
+			  if(m.equals(null)){
+				  res.getWriter().println("no hay membresias "+tipo+" disponibles para esa sucursal...");
+			  }else{
+				  res.getWriter().println(JsonConvertidor.toJson(m));
+			  }
+			}
+	  
 	  
 	  @RequestMapping(value = "/byQR/{qr}/{idRutaBus}", method = RequestMethod.GET)
 			public void byqr(HttpServletRequest req, HttpServletResponse res, @PathVariable String qr, @PathVariable Long idRutaBus) throws IOException {

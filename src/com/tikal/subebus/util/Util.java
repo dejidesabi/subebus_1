@@ -10,6 +10,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.security.MessageDigest;
 import java.security.SecureRandom;
+import java.util.Calendar;
+import java.util.Date;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Writer;
@@ -122,4 +124,22 @@ public class Util {
 	        return imagen;        
 	    }    
 	
+	 
+	 public Date sumarDias(Date fecha, String duracion){
+		 int dias=0;
+		 switch(duracion){
+		 	case "Conveniente": dias=1;
+			    break;
+		 	case "Semanal":dias=7;
+		 		break;
+		 	case "Mensual":dias=30;
+		 		break;
+			 
+		 }
+		 
+		 Calendar calendar = Calendar.getInstance();		 	
+		 calendar.setTime(fecha); // Configuramos la fecha que se recibe		 	
+		 calendar.add(Calendar.DAY_OF_YEAR, dias);  // numero de días a añadir, o restar en caso de días<0		 	
+		 return calendar.getTime(); // Devuelve el objeto Date con los nuevos días añadidos
+	}
 }

@@ -9,6 +9,8 @@ public interface VentaDao {
 	
 	public List<Venta> todas();
 	
+	public Venta cargar(Long idVenta);
+	
 	public void guardar(Venta v);
 	
 	public List<Venta> bySucursal(Long idSucursal);
