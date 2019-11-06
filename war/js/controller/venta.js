@@ -9,9 +9,10 @@ app.service("ventaService",['$http', '$q','$window', function($http, $q,$window)
 		return d.promise;
 	}
 	
-	this.getVM = function(direccion,idSuc) {
+	this.getVM = function(direccion,tipo,idSuc) {
 		var d = $q.defer();
-		$http.get("membresia/byDTS/"+direccion+"/"+idSuc).then(
+		//$http.get("membresia/byDTS/"+direccion+"/"+idSuc).then(
+		$http.get("membresia/asignar/"+direccion+"/"+tipo+"/"+idSuc).then(
 			function(response) {
 				d.resolve(response.data);
 			});
@@ -66,9 +67,9 @@ app.controller("ventaController",['$scope','$rootScope','$window', '$location', 
 		 
  	}
 	 $scope.obtenerSucursal();
-	 $scope.getMembresia = function(duracion,sucursal){
+	 $scope.getMembresia = function(duracion,tipo,sucursal){
 		 $scope.isMember = true;
-		 ventaService.getVM(duracion,sucursal).then(function(data) {
+		 ventaService.getVM(duracion,tipo,sucursal).then(function(data) {
 				$scope.newMem = data;
 				document.getElementById('qr').innerHTML = create_qrcode(data.qr);
 				$scope.altaVenta.idMembresia = data.id;
@@ -88,8 +89,13 @@ app.controller("ventaController",['$scope','$rootScope','$window', '$location', 
 		case "Mensual":
 			$scope.altaVenta.precio = 300;
 			break;
+		case "Conveniente":
+			$scope.altaVenta.precio = 20;
+			$scope.altaVenta.tipo = "Fisico";
+			break;
 		
 		}
+		 
 	 }
 	 
 	 $scope.nuevaVenta = function(ctl){
