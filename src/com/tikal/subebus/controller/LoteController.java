@@ -18,7 +18,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.tikal.subebus.dao.ContadorDao;
+
+import com.tikal.subebus.dao.FolioDao;
 import com.tikal.subebus.dao.LoteDao;
 import com.tikal.subebus.dao.MembresiaDao;
 import com.tikal.subebus.dao.PerfilDAO;
@@ -26,7 +27,8 @@ import com.tikal.subebus.dao.SerialDAO;
 import com.tikal.subebus.dao.SessionDao;
 import com.tikal.subebus.dao.UsuarioDao;
 import com.tikal.subebus.formatos.pdf.GeneraMembresias;
-import com.tikal.subebus.modelo.entity.Contador;
+
+import com.tikal.subebus.modelo.entity.Folio;
 import com.tikal.subebus.modelo.entity.Lote;
 import com.tikal.subebus.modelo.entity.Membresia;
 import com.tikal.subebus.modelo.entity.Serial;
@@ -60,7 +62,7 @@ public class LoteController {
 	 MembresiaDao memDao;
 	 
 	 @Autowired
-	 ContadorDao contadorDao;
+	 FolioDao folioDao;
 	 
 	 
 	 @RequestMapping(value = {"/add" }, method = RequestMethod.POST, produces = "application/json", consumes = "application/json")
@@ -74,14 +76,18 @@ public class LoteController {
 				Membresia m = new Membresia();
 				m.setDuracion(l.getDuracion());
 				m.setTipo(l.getTipo());
-				m.setEstatus("INACTIVA");
+//				if (l.getTipo().equals("Cortesia Escolar")  || l.getTipo().equals("Cortesia 3a Edad") ||l.getTipo().equals("Cortesia Grupo Mexia") ){
+//					m.setEstatus("ACTIVA");
+//				}else{
+					m.setEstatus("INACTIVA");
+				//}
+							
 				m.setIdSucursal(l.getIdSucursal());
 				m.setIdLote(l.getId());
-				Contador c = new Contador();
-				m.setId(c.getFolio());
-				c.incremeta();
-				contadorDao.guardar(c);
-				System.out.println("serial:"+c.getFolio());
+				m.setId(Long.valueOf(folioDao.getFolio()));
+				folioDao.incFolio();
+			//	contadorDao.guardar(c);
+				
 				String cad= "folio:"+m.getId()+"lote:"+m.getIdLote()+"duracion:"+m.getDuracion()+"tipo:"+m.getTipo();
 				System.out.println("cadena:"+cad);
 				cad= Util.encripta(cad);
@@ -100,11 +106,23 @@ public class LoteController {
 //			rs.sendError(403);
 //		}
 //	 
-	 }
+	 } 
 	 
+	 
+	  @RequestMapping(value = { "/folios" },  method = RequestMethod.GET, produces = "application/json")
+			public void folios(HttpServletResponse response, HttpServletRequest request) throws IOException {
+		  AsignadorDeCharset.asignar(request, response);
+		  folioDao.crear();
+			response.getWriter().println(JsonConvertidor.toJson("folios inicializados..."));
+						
+		
+			  
+	  }
+
 	 
 	 @RequestMapping(value = {"/add_" }, method = RequestMethod.GET, produces = "application/json")
 	 public void add_(HttpServletRequest re, HttpServletResponse rs) throws IOException, SQLException {
+		 AsignadorDeCharset.asignar(re, rs);
 		//if(Util.verificarPermiso(re, usuariodao, perfildao, 2)){
 			Lote l =new Lote();
 			l.setDuracion("mensual");
@@ -119,10 +137,10 @@ public class LoteController {
 				m.setDuracion(l.getDuracion());
 				m.setEstatus("INACTIVA");
 				m.setIdLote(l.getId());
-				Contador c = new Contador();
-				m.setId(c.getFolio());
-				c.incremeta();
-				contadorDao.guardar(c);
+				Folio c = new Folio();
+				//m.setId(c.getFolio());
+				//c.incremeta();
+				//contadorDao.guardar(c);
 				System.out.println("serial:"+c.getFolio());
 				memDao.crear(m);
 				System.out.println("num mem:"+i);
@@ -141,6 +159,7 @@ public class LoteController {
 	
 	 @RequestMapping(value = "/numPaginas", method = RequestMethod.GET)
 		public void numpags(HttpServletRequest req, HttpServletResponse res) throws IOException {
+		 AsignadorDeCharset.asignar(req, res);
 			int paginas =loteDao.pags();
 			res.getWriter().print(paginas);
 		}

@@ -20,6 +20,8 @@ public interface VentaDao {
 	public int pags();
 	
 	public List<Venta> findAllPage(int page);
+	
+	public Venta byMembresia(Long idMembresia);
 
 
 }

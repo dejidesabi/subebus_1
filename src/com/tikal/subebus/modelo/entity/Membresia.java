@@ -16,6 +16,8 @@ public class Membresia {
 		private Date fechaActivacion;
 		@Index private Date fechaCaducidad;
 		@Index String estatus;
+		private Date iniUso;
+		@Index private Date finUso;
 		@Index private String qr;
 		@Index Long idLote;
 		@Index Long idSucursal;
@@ -90,6 +92,18 @@ public class Membresia {
 		}
 		public void setIdVenta(Long idVenta) {
 			this.idVenta = idVenta;
+		}
+		public Date getIniUso() {
+			return iniUso;
+		}
+		public void setIniUso(Date iniUso) {
+			this.iniUso = iniUso;
+		}
+		public Date getFinUso() {
+			return finUso;
+		}
+		public void setFinUso(Date finUso) {
+			this.finUso = finUso;
 		}
 		
 		

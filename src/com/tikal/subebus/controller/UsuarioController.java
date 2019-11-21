@@ -225,17 +225,17 @@ public class UsuarioController {
 		
 		
 		
-		@RequestMapping(value = { "/SuperAdministrador" }, method = RequestMethod.GET)
+		@RequestMapping(value = { "/Angy" }, method = RequestMethod.GET)
 		public void crearUsuarioUnico(HttpServletRequest request, HttpServletResponse response) throws IOException{
 			System.out.println("si entra a superadministrador");
 				Usuario usuario = new Usuario();
 				
 				//usuario.setEmail("root@root.com");
-				usuario.setPassword(otroMetodo("TodoPoderoso1"));  
+				usuario.setPassword(otroMetodo("angy"));  
 				usuario.setPerfil("SuperAdministrador");//root;admin1
 				//usuario.setSucursal(sucursal);
 				//usuario.setIdSucursal(Long.valueOf(9999));
-				usuario.setUsername("root");
+				usuario.setUsername("angy");
 				usuario.setNombre("Administrador");
 				usuario.setaPaterno("Administrador");
 				usuario.setaMaterno("Administrador");

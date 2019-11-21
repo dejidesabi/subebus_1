@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.tikal.subebus.dao.ContadorDao;
+
 import com.tikal.subebus.dao.LoteDao;
 import com.tikal.subebus.dao.MembresiaDao;
 import com.tikal.subebus.dao.PerfilDAO;

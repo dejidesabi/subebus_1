@@ -58,4 +58,13 @@ public class VentaDaoImpl implements VentaDao{
 		return ofy().load().type(Venta.class).id(idVenta).now();
 	}
 
+	@Override
+	public Venta byMembresia(Long idMembresia) {
+		List<Venta> list=ofy().load().type(Venta.class).filter("idMembresia",idMembresia).list();
+		 if (list == null) {
+				return null;
+		 }
+		 return list.get(0);
+	}
+
 }

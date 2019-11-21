@@ -10,6 +10,8 @@ public interface RutaBusDao {
 	public List<RutaBus> todos();
 	
 	public void guardar(RutaBus r);
+
+	public RutaBus cargar(Long idRutaBus);
 	
 	public RutaBus byChofer(String chofer);
 	

@@ -35,4 +35,10 @@ public class RutaBusDaoImpl implements RutaBusDao {
 		return ofy().load().type(RutaBus.class).filter("tipo",tipo).list();
 	}
 
+	@Override
+	public RutaBus cargar(Long idRutaBus) {
+		// TODO Auto-generated method stub
+		return ofy().load().type(RutaBus.class).id(idRutaBus).now();
+	}
+
 }

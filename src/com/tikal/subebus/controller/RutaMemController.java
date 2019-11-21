@@ -8,6 +8,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -24,11 +25,12 @@ import com.tikal.subebus.dao.UsuarioDao;
 import com.tikal.subebus.modelo.entity.Lote;
 import com.tikal.subebus.modelo.entity.RutaBus;
 import com.tikal.subebus.modelo.entity.RutaMem;
+import com.tikal.subebus.reportes.ReporteRutaMem;
 import com.tikal.subebus.util.JsonConvertidor;
 import com.tikal.subebus.util.AsignadorDeCharset;
 
 @Controller
-@RequestMapping(value={"/rutaQr"})
+@RequestMapping(value={"/rutaMem"})
 public class RutaMemController {
 	
 	@Qualifier("usuarioDao")
@@ -100,6 +102,22 @@ public class RutaMemController {
 			response.getWriter().println(JsonConvertidor.toJson(lista));
 		}
 	 
-
+		@RequestMapping(value = { "/xlsRM/{idSucursal}" }, method = RequestMethod.GET, produces = "application/vnd.ms-excel")
+		public void xlsRM(HttpServletRequest re, HttpServletResponse rs, @PathVariable Long idSucursal) throws IOException{
+			AsignadorDeCharset.asignar(re, rs);
+						
+		//	if(Util.verificarPermiso(re, usuariodao, perfildao, 2,5,6)){
+			List<RutaMem> rms= rmDao.bySuc(idSucursal);
+			System.out.println("lista de rms:"+rms);
+			//int hojas=lumiDao.hojasRep();
+			//for (int i=1; i<=hojas; i++){
+				ReporteRutaMem reporte= new ReporteRutaMem();
+				HSSFWorkbook rep=reporte.getReporte(rms);
+				rep.write(rs.getOutputStream());
+				rs.getOutputStream().flush();
+				rs.getOutputStream().close();
+			//}
+		}
+		
 	  
 }

@@ -6,8 +6,8 @@ import javax.servlet.ServletContextListener;
 import org.springframework.stereotype.Component;
 
 import com.googlecode.objectify.ObjectifyService;
-import com.tikal.subebus.modelo.entity.Contador;
-import com.tikal.subebus.modelo.entity.ContadorServicio;
+
+import com.tikal.subebus.modelo.entity.Folio;
 import com.tikal.subebus.modelo.entity.Lote;
 import com.tikal.subebus.modelo.entity.Membresia;
 import com.tikal.subebus.modelo.entity.RutaBus;
@@ -35,8 +35,7 @@ public class StartupEntities implements ServletContextListener {
 			ObjectifyService.register(SessionEntity.class);
 			ObjectifyService.register(Sucursal.class);
 			ObjectifyService.register(Usuario.class);
-			ObjectifyService.register(Contador.class);
-			ObjectifyService.register(ContadorServicio.class);
+			ObjectifyService.register(Folio.class);
 			ObjectifyService.register(Lote.class);
 			ObjectifyService.register(Membresia.class);
 			ObjectifyService.register(Serial.class);

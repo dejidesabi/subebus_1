@@ -47,11 +47,27 @@ public class checkCaducidadServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		Calendar cal=Calendar.getInstance(TimeZone.getTimeZone("America/Mexico_City"));
+		cal.add(Calendar.HOUR_OF_DAY, -6);
+		System.out.println("hora:"+cal);
 		List<Membresia> lista= memDao.consultarTodos();
 		for(Membresia m:lista){
-			if (cal.getTime().after(m.getFechaCaducidad())){
-				m.setEstatus("INACTIVA");
-				memDao.actualizar(m);
+			System.out.println("hora membresia:"+m.getFechaCaducidad());
+			if (m.getFechaCaducidad()!=null){
+				if (cal.getTime().after(m.getFechaCaducidad())){
+					System.out.println("entra a desactivar");
+					m.setEstatus("INACTIVA");
+					memDao.actualizar(m);
+				}
+			}
+			if (m.getIniUso()!=null && m.getFinUso()!=null){
+				if (cal.getTime().after(m.getFinUso())){
+					System.out.println("entra a desactivar");
+					m.setEstatus("ACTIVA");
+					m.setIniUso(null);
+					m.setFinUso(null);
+					memDao.actualizar(m);
+				}
+				
 			}
 		}
 		System.out.println("Servlettttttttt");
