@@ -1,17 +1,42 @@
 <div class="col-lg-12">
 	<div class="card">
+	<h5 class="card-header">
+    Reporte de Rutas
+  </h5>
+  <div class="card-body">
+  
 		<div class="row">
+		<div class="col-lg-1"></div>
 			<div class="col-lg-2">
+			<br>
 				<a class="btn btn-info" data-toggle="tooltip" title="Imprimir Reporte Ruta"
 					href="rutaMem/xlsRM/{{idSucursal}}" download="Reporte Rutas {{ CurrentDate | date:'dd-MM-yyyy'}}.xls"><i class="fas fa-file-excel"></i>Reporte Rutas</a>
 
 			</div>
-			<div class="col-lg-1"></div>
+			<br>
+		</div>
+		
+		</div>
+
+	</div>
+	<br>
+	
+	<div class="card">
+	<h5 class="card-header">
+    Reporte de Ventas
+  </h5>
+  <div class="card-body">
+		<div class="row">
+		<div class="col-lg-1"></div>
 			<div class="col-lg-2">
+			<br>
 				<a class="btn btn-info" data-toggle="tooltip" title="Imprimir Reporte Ventas"
 					href="venta/xlsVentas/{{idSucursal}}" download="Reporte Ventas {{ CurrentDate | date:'dd-MM-yyyy'}}.xls"><i class="fas fa-file-excel"></i>Reporte Ventas</a>
 
 			</div>
+			<br>
+		</div>
+		
 		</div>
 
 	</div>
