@@ -36,6 +36,7 @@ app.controller("reporteController",['$scope','$rootScope','$window', '$location'
 	 $rootScope.Menu = "Reporte";
 	  
 	 sessionService.isAuthenticated().then(function(sesion) {
+		 $scope.CurrentDate = new Date()
 		 $scope.idSucursal = sesion.idSucursal;
 		  console.log(sesion)
 	 
