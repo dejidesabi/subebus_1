@@ -85,11 +85,14 @@ public class VentaController {
 			if(v.getTipo().equals("Conveniente")){
 				v.setTipo("Conveniente");
 			}
+			
 			Membresia m= memDao.consultar(v.getIdMembresia());
+			
 			m.setFechaActivacion(cal.getTime());
 			m.setFechaCaducidad(sumarDias(m.getFechaActivacion(),m.getDuracion()));
 			System.out.println("fechaCaducidad:"+m.getFechaCaducidad());
 			m.setEstatus("ACTIVA");
+			v.setDuracion(m.getDuracion());
 			ventaDao.guardar(v);
 			 m.setIdVenta(v.getId());
 			 memDao.actualizar(m);
@@ -101,7 +104,7 @@ public class VentaController {
 	  
 	 
 	 @RequestMapping(value = {"/renovar/{folio}" }, method = RequestMethod.POST, produces = "application/json", consumes = "application/json")
-	 public void add(HttpServletRequest re, HttpServletResponse rs, @RequestBody Long folio) throws IOException, SQLException {
+	 public void renovar(HttpServletRequest re, HttpServletResponse rs, @RequestBody Long folio) throws IOException, SQLException {
 		//if(Util.verificarPermiso(re, usuariodao, perfildao, 2)){
 			Venta v = ventaDao.byMembresia(folio);
 //			System.out.println("yisus trae:"+json);
@@ -172,11 +175,18 @@ public class VentaController {
 
 	  
 	  @RequestMapping(value = { "/xlsVentas/{idSucursal}" }, method = RequestMethod.GET, produces = "application/vnd.ms-excel")
-		public void xlsRM(HttpServletRequest re, HttpServletResponse rs, @PathVariable Long idSucursal) throws IOException{
+		public void xlsVentas(HttpServletRequest re, HttpServletResponse rs, @PathVariable Long idSucursal) throws IOException{
 			AsignadorDeCharset.asignar(re, rs);
 						
 		//	if(Util.verificarPermiso(re, usuariodao, perfildao, 2,5,6)){
-			List<Venta> ventas= ventaDao.bySucursal(idSucursal);
+			List<Venta> ventas= new ArrayList<Venta>();
+			if (idSucursal==9999){
+				 ventas= ventaDao.todas();
+			}else{
+				 ventas= ventaDao.bySucursal(idSucursal);
+			}
+			
+		//	List<Venta> ventas= ventaDao.bySucursal(idSucursal);
 			System.out.println("lista de rms:"+ventas);
 			//int hojas=lumiDao.hojasRep();
 			//for (int i=1; i<=hojas; i++){
@@ -200,7 +210,7 @@ public class VentaController {
 			if (m.getFechaCaducidad()!=null){
 				if (cal.getTime().after(m.getFechaCaducidad())){
 					System.out.println("entra a desactivar");
-					m.setEstatus("INACTIVA");
+					m.setEstatus("CADUCADA");
 					memDao.actualizar(m);
 				}
 			}
@@ -211,7 +221,7 @@ public class VentaController {
 					System.out.println("entra a cambiar estatus de uso");
 					if (cal.getTime().after(m.getFechaCaducidad())){
 						m.setEstatus("ACTIVA");}
-					else m.setEstatus("INACTIVA");
+					else m.setEstatus("CADUCADA");
 					m.setIniUso(null);
 					m.setFinUso(null);
 					memDao.actualizar(m);

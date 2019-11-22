@@ -36,8 +36,8 @@ import com.tikal.subebus.modelo.entity.RutaMem;
 
 			
 			System.out.println("listaaaaa:"+rms);
-			String[] headers = new String[] { "Ruta", "Chofer","Membresia","Nombre del Cliente", "Fecha de Uso"};
-			Integer[] wd =                   {256*20,   256*20 , 256*12, 256*30, 256*25};   
+			String[] headers = new String[] { "Ruta", "Chofer","Membresia","Duración","Nombre del Cliente", "Fecha de Uso"};
+			Integer[] wd =                   {256*20,   256*20 , 256*12,     256*20, 256*30, 256*25};   
 			CellStyle headerStyle = workbook.createCellStyle();
 			Font font = workbook.createFont();
 			font.setBoldweight(Font.BOLDWEIGHT_BOLD);
@@ -50,7 +50,7 @@ import com.tikal.subebus.modelo.entity.RutaMem;
 			// headerStyle.setAlignment();
 
 	        HSSFRow headerRow = sheet.createRow(0);
-	        for (int i = 0; i <5; ++i) {
+	        for (int i = 0; i <6; ++i) {
 	            String header = headers[i];
 	            HSSFCell cell = headerRow.createCell(i);
 	            cell.setCellStyle(headerStyle);

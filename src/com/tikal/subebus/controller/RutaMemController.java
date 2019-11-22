@@ -107,7 +107,13 @@ public class RutaMemController {
 			AsignadorDeCharset.asignar(re, rs);
 						
 		//	if(Util.verificarPermiso(re, usuariodao, perfildao, 2,5,6)){
-			List<RutaMem> rms= rmDao.bySuc(idSucursal);
+			List<RutaMem> rms= new ArrayList<RutaMem>();
+			if (idSucursal==9999){
+				rms= rmDao.todos();
+			}else{
+				rms= rmDao.bySuc(idSucursal);
+			}
+			//List<RutaMem> rms= rmDao.bySuc(idSucursal);
 			System.out.println("lista de rms:"+rms);
 			//int hojas=lumiDao.hojasRep();
 			//for (int i=1; i<=hojas; i++){

@@ -146,7 +146,7 @@ public class MembresiaController {
 	 /////////  checa si esta activa o no la membresia  ANDROID
 	  @RequestMapping(value = "/byQR/{qr}/{idRutaBus}", method = RequestMethod.GET)
 			public void checkqr(HttpServletRequest req, HttpServletResponse res, @PathVariable String qr, @PathVariable Long idRutaBus) throws IOException {
-		  System.out.println();
+		  System.out.println("checarndo al abordar....");
 			 Membresia m = memDao.byQr(qr);
 			 RutaBus rb= rbDao.cargar(idRutaBus);
 			// if(m.getEstatus().equals("ACTIVA") || m.getEstatus().equals("EN USO")){
@@ -188,7 +188,7 @@ public class MembresiaController {
 		  
 		  Calendar cal=Calendar.getInstance(TimeZone.getTimeZone("America/Mexico_City"));
 			cal.add(Calendar.HOUR_OF_DAY, -6);
-			System.out.println("hora:"+cal.getTime());
+			System.out.println(" creando ruta mem ...hora:"+cal.getTime());
 		  
 		Venta v= ventaDao.byMembresia(m.getId());
 		
@@ -198,6 +198,7 @@ public class MembresiaController {
 		  rm.setRuta(rb.getRuta());
 		  rm.setChofer(rb.getChofer());
 		  rm.setMembresia(m.getId());
+		  rm.setDuracion(m.getDuracion());
 		  rm.setFecha(cal.getTime());
 
 //		 

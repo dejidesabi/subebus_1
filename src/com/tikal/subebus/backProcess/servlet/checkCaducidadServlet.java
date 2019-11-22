@@ -55,14 +55,16 @@ public class checkCaducidadServlet extends HttpServlet {
 			if (m.getFechaCaducidad()!=null){
 				if (cal.getTime().after(m.getFechaCaducidad())){
 					System.out.println("entra a desactivar");
-					m.setEstatus("INACTIVA");
+					m.setEstatus("CADUCADA");
 					memDao.actualizar(m);
 				}
 			}
 			if (m.getIniUso()!=null && m.getFinUso()!=null){
 				if (cal.getTime().after(m.getFinUso())){
-					System.out.println("entra a desactivar");
-					m.setEstatus("ACTIVA");
+					System.out.println("entra a cambiar estatus de uso");
+					if (cal.getTime().after(m.getFechaCaducidad())){
+						m.setEstatus("ACTIVA");}
+					else m.setEstatus("CADUCADA");
 					m.setIniUso(null);
 					m.setFinUso(null);
 					memDao.actualizar(m);

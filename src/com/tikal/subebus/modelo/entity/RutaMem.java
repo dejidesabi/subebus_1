@@ -15,6 +15,7 @@ public class RutaMem {
 	private String ruta;
 	private String chofer;
 	@Index Long membresia;
+	private String duracion;
 	private String nombre;
 	private Date fecha;
 	@Index private Long sucursal;
@@ -76,8 +77,16 @@ public class RutaMem {
 	public void setChofer(String chofer) {
 		this.chofer = chofer;
 	}
+	
+	
+	public String getDuracion() {
+		return duracion;
+	}
+	public void setDuracion(String duracion) {
+		this.duracion = duracion;
+	}
 	public void llenarRenglon(HSSFRow r){
-		for(int i=0;i<5;i++){
+		for(int i=0;i<6;i++){
 			r.createCell(i);
 		}
 		
@@ -87,12 +96,12 @@ public class RutaMem {
 //		if(this.isTieneGabinete()){
 			r.getCell(2).setCellValue(this.getMembresia());
 //		}else{
-//			r.getCell(2).setCellValue("no");
+			r.getCell(3).setCellValue(this.getDuracion());
 //		}
 		
 		
-		r.getCell(3).setCellValue(this.getNombre());
-		r.getCell(4).setCellValue(this.getFecha().toGMTString());
+		r.getCell(4).setCellValue(this.getNombre());
+		r.getCell(5).setCellValue(this.getFecha().toGMTString());
 //		r.getCell(5).setCellValue(this.getCircuito());
 //		r.getCell(6).setCellValue(this.getLongitud());
 //		r.getCell(7).setCellValue(this.getLatitud());

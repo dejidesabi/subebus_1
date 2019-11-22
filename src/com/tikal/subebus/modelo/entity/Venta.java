@@ -1,5 +1,7 @@
 package com.tikal.subebus.modelo.entity;
 
+import org.apache.poi.hssf.usermodel.HSSFRow;
+
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
@@ -17,6 +19,7 @@ public class Venta {
 	private double precio;
 	@Index Long idSucursal;
 	@Index String tipo;
+	private String duracion;
 	@Index String user;
 	public Long getId() {
 		return id;
@@ -86,6 +89,43 @@ public class Venta {
 	}
 	
 	
+	public String getDuracion() {
+		return duracion;
+	}
+	public void setDuracion(String duracion) {
+		this.duracion = duracion;
+	}
+	public void llenarRenglon(HSSFRow r){
+		for(int i=0;i<9;i++){
+			r.createCell(i);
+		}
+		
+		r.getCell(0).setCellValue(this.getIdMembresia());
+		r.getCell(1).setCellValue(this.getTipo());
+		r.getCell(2).setCellValue(this.getDuracion());
+		//r.getCell(2).setCellValue(this.isTieneGabinete());
+		//if(this.isTieneGabinete()){
+		//	r.getCell(2).setCellValue(this.getCaducidad());
+//		}else{
+//			r.getCell(2).setCellValue("no");
+//		}
+		
+		
+		r.getCell(3).setCellValue(this.getNombre());
+		r.getCell(4).setCellValue(this.getEdad());
+		r.getCell(5).setCellValue(this.getSexo());
+		r.getCell(6).setCellValue(this.getTelefono());
+		r.getCell(7).setCellValue(this.getMail());
+		if(this.getPrecio()==0){
+					r.getCell(8).setCellValue("0.0");
+		}else{
+					r.getCell(8).setCellValue(this.getPrecio());
+		}
+	
+		
+	
+		
+	}
 	
 	
 }
