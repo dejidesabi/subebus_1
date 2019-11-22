@@ -55,11 +55,12 @@ app.service("loteServices",['$http', '$q','$window', function($http, $q,$window)
 	
 }]);
 
-app.controller("loteController",['$scope','$rootScope','$window', '$location', '$cookieStore','loteServices','sessionService','printService','sucursalService',function($scope,$rootScope, $window, $location, $cookieStore, loteServices,sessionService,printService,sucursalService){
+app.controller("loteController",['$scope','$rootScope','$window', '$location', '$cookieStore','loteServices','sessionService','printService','sucursalService','membresiaServices',function($scope,$rootScope, $window, $location, $cookieStore, loteServices,sessionService,printService,sucursalService,membresiaServices){
 	//sessionService.isAuthenticated();
 	 $scope.idSuc = $cookieStore.get('idSucursal');
 	 $rootScope.titulo = "Pagina de Lotes";
 	 $rootScope.Menu = "Lote"
+     $scope.formhide = true;
 	
 	 loteServices.getSucursal().then(function(data) {
 		$scope.sucursalData=data;
@@ -127,5 +128,11 @@ app.controller("loteController",['$scope','$rootScope','$window', '$location', '
 		})
 		
 	}
+	 $scope.eliminarMembresia = function(idMem){
+		 membresiaServices.desactivarMembresia(idMem).then(function(data) {
+			 alert("Membresia "+idMem+" ha sido desactivada");
+				
+			})
+	 }
 } ]);	
 

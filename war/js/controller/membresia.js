@@ -8,6 +8,15 @@ app.service("membresiaServices",['$http', '$q','$window', function($http, $q,$wi
 			});
 		return d.promise;
 	}
+	
+	this.desactivarMembresia = function(id) {
+		var d = $q.defer();
+		$http.get("membresia/desactivar/"+ id).then(
+			function(response) {
+				d.resolve(response.data);
+			});
+		return d.promise;
+	}
 
 	
 }]);
@@ -26,6 +35,8 @@ app.controller("membresiaController",['$scope','$rootScope','$window', '$locatio
 		 alert("Seleccion " + $scope.membresiaData[ind].duracion);
 		 $scope.membresiaData[ind].duracion = "Anual";
 	 }
+	 
+	
 	
 } ]);	
 
