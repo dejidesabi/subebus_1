@@ -33,6 +33,7 @@
   <script type="text/javascript" src="js/controller/sucursalController.js"></script>
   <script type="text/javascript" src="js/controller/usuario.js"></script>
   <script type="text/javascript" src="js/controller/venta.js"></script>
+  <script type="text/javascript" src="js/controller/reporteController.js"></script>
   
 <!--   GENERADOR QR -->
 
@@ -99,6 +100,12 @@
             <a href="#/Usuario">
               <i class="fas fa-user"></i>
               <p>Usuario</p>
+            </a>
+          </li>
+           <li ng-class="{'active' : Menu=='Reporte'}">
+            <a href="#/Reporte">
+              <i class="fas fa-file-alt"></i>
+              <p>Reportes</p>
             </a>
           </li>
         </ul>
