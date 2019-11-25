@@ -73,7 +73,7 @@ public class VentaController {
 			Venta v = (Venta) JsonConvertidor.fromJson(json, Venta.class);
 			System.out.println("yisus trae:"+json);
 			Calendar cal=Calendar.getInstance(TimeZone.getTimeZone("America/Mexico_City"));
-			cal.add(Calendar.HOUR_OF_DAY, -6);
+			//	cal.add(Calendar.HOUR_OF_DAY, -6);
 			System.out.println("fechaActivacion:"+cal.getTime());
 			if (v.getTipo().equals("Electronico")){
 				v.setTipo("Electronico");

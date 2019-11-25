@@ -31,10 +31,10 @@ public class checkCaducidadServlet extends HttpServlet {
 	 @Autowired
 	 MembresiaDao memDao;
 	 
-    public checkCaducidadServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+//    public checkCaducidadServlet() {
+//        super();
+//        // TODO Auto-generated constructor stub
+//    }
     
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
@@ -51,7 +51,7 @@ public class checkCaducidadServlet extends HttpServlet {
 		System.out.println("hora:"+cal);
 		List<Membresia> lista= memDao.consultarTodos();
 		for(Membresia m:lista){
-			System.out.println("hora membresia:"+m.getFechaCaducidad());
+			System.out.println("hora cad membresia:"+m.getFechaCaducidad());
 			if (m.getFechaCaducidad()!=null){
 				if (cal.getTime().after(m.getFechaCaducidad())){
 					System.out.println("entra a desactivar");
@@ -63,8 +63,8 @@ public class checkCaducidadServlet extends HttpServlet {
 				if (cal.getTime().after(m.getFinUso())){
 					System.out.println("entra a cambiar estatus de uso");
 					if (cal.getTime().after(m.getFechaCaducidad())){
-						m.setEstatus("ACTIVA");}
-					else m.setEstatus("CADUCADA");
+						m.setEstatus("CADUCADA");}
+					else m.setEstatus("ACTIVA");
 					m.setIniUso(null);
 					m.setFinUso(null);
 					memDao.actualizar(m);
@@ -79,9 +79,9 @@ public class checkCaducidadServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+//	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//		// TODO Auto-generated method stub
+//		doGet(request, response);
+//	}
 
 }
