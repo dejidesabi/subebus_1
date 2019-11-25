@@ -124,9 +124,11 @@ app.controller("ventaController",['$scope','$rootScope','$window', '$location', 
 		case "Mensual":
 			$scope.altaVenta.precio = 300;
 			break;
-		case "Conveniente":
-			$scope.altaVenta.precio = 20;
-			$scope.altaVenta.tipo = "Fisico";
+		case "Semestral":
+			$scope.altaVenta.precio = 0;
+			break;
+		case "Dia":
+			$scope.altaVenta.precio = 15;
 			break;
 		
 		}
