@@ -46,6 +46,19 @@ app.controller("dashboardController",['$scope','$rootScope','$window', '$locatio
 			 
 //			 $scope.generarQR();
 	    });
+	 sessionService.isAuthenticated().then(function(sesion) {
+		 $scope.idSucursal = sesion.idSucursal;
+		  console.log(sesion)
+		  sessionService.consultarPerfilesTodos().then(function(data) {
+			  
+			  for(i in data){
+				  if(sesion.perfil == data[i].tipo){
+					 $rootScope.autorizacion = data[i].permisos;
+					 console.log($rootScope.autorizacion);
+				  }
+			  }
+		  });
+	 });
 	 dashboardService.getSucursal( $scope.idSuc).then(function(data) {
 		$scope.sucursalData=data;
 		$scope.SucursalName=data.nombre;

@@ -47,6 +47,10 @@ app.config([ '$routeProvider','$httpProvider', function($routeProvider,$httpProv
 		templateUrl : "pages/reporte.html",
 		controller : "reporteController"
 	});
+	$routeProvider.when('/Perfil', {
+		templateUrl : "pages/perfil.html",
+		controller : "controladorListaPerfiles"
+	});
 		$routeProvider.otherwise({
 		redirectTo : '/Principal'
 	});
@@ -110,6 +114,19 @@ app.service('sessionService', [
 				$location.path("/login");
 			});
 		}
+		this.consultarPerfilesTodos = function() {
+			var d = $q.defer();
+			$http.get("/perfil/getAll").then(function(response) {
+				d.resolve(response.data);
+			}, function(response) {
+				if(response.status==403){
+					//alert("No tiene autorización de realizar esta acción");
+					$location.path("/login");
+					d.reject(response);
+				}
+			});
+			return d.promise;
+		};
 		this.reset=function(data){
 			var d = $q.defer();
 			$http.post("/usuario/reset/",data).then(

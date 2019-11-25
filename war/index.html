@@ -34,6 +34,7 @@
   <script type="text/javascript" src="js/controller/usuario.js"></script>
   <script type="text/javascript" src="js/controller/venta.js"></script>
   <script type="text/javascript" src="js/controller/reporteController.js"></script>
+  <script type="text/javascript" src="js/controller/perfilController.js"></script>
   
 <!--   GENERADOR QR -->
 
@@ -66,13 +67,13 @@
               <p>Inicio</p>
             </a>
           </li>
-          <li ng-class="{'active' : Menu=='Venta'}">
+          <li ng-class="{'active' : Menu=='Venta'}" ng-if(autorizacion[8])>
             <a href="#/Venta" >
               <i class="fas fa-shopping-cart"></i>
               <p>Venta</p>
             </a>
           </li>
-          <li ng-class="{'active' : Menu=='Lote'}">
+          <li ng-class="{'active' : Menu=='Lote'}" ng-if(autorizacion[6])>
             <a href="#/Lotes">
               <i class="fas fa-layer-group"></i>
               <p>Lotes</p>
@@ -84,25 +85,31 @@
 <!--               <p>Membresia</p> -->
 <!--             </a> -->
 <!--           </li> -->
-          <li ng-class="{'active' : Menu=='Ruta'}">
+          <li ng-class="{'active' : Menu=='Ruta'}" ng-if(autorizacion[5])>
             <a href="#/Ruta">
               <i class="fas fa-bus-alt"></i>
               <p>Rutas</p>
             </a>
           </li>
-           <li ng-class="{'active' : Menu=='Sucursal'}">
+           <li ng-class="{'active' : Menu=='Sucursal'}" ng-if(autorizacion[4])>
             <a href="#/Sucursal">
               <i class="fas fa-store-alt"></i>
               <p>Sucursal</p>
             </a>
           </li>
-           <li ng-class="{'active' : Menu=='Usuario'}">
+           <li ng-class="{'active' : Menu=='Usuario'}" ng-if(autorizacion[0])>
             <a href="#/Usuario">
               <i class="fas fa-user"></i>
               <p>Usuario</p>
             </a>
           </li>
-           <li ng-class="{'active' : Menu=='Reporte'}">
+          <li ng-class="{'active' : Menu=='Perfil'}" ng-if(autorizacion[1])>
+            <a href="#/Perfil">
+              <i class="fas fa-user-tag"></i>
+              <p>Perfil</p>
+            </a>
+          </li>
+           <li ng-class="{'active' : Menu=='Reporte'}" ng-if(autorizacion[9])>
             <a href="#/Reporte">
               <i class="fas fa-file-alt"></i>
               <p>Reportes</p>

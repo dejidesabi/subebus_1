@@ -50,7 +50,7 @@
                         <option selected="selected" disabled>Seleccione</option>
 						<option>Semanal</option>
 						<option>Mensual</option>
-						<option>Conveniente</option>
+						<option>Semestral</option>
 					</select>
                         
                       </div>
@@ -62,6 +62,21 @@
                         <option selected="selected" disabled>Seleccione</option>
 						<option>Fisico</option>
 						<option ng-disabled="altaVenta.duracion == 'Conveniente'">Electronico</option>
+					</select>
+                        
+                      </div>
+                    </div>
+                        <div class="col-md-4 pl-1">
+                      <div class="form-group">
+                        <label >Publico</label>
+                         <select ng-model="altaVenta.sector" class="form-control" required="required">
+                        <option selected="selected" disabled>Seleccione</option>
+						<option>General</option>
+						<option>Conveniente</option>
+						<option>Tercera Edad</option>
+						<option>Grupo Mexia</option>
+						<option>Estudiante</option>
+						
 					</select>
                         
                       </div>
@@ -171,6 +186,21 @@
               
               </div>
               </div>
+              <div class="row">
+              <div class="col-md-1"></div>
+              <div class="col-md-3">
+              
+              <div class="input-group">
+  <input type="text" ng-model="bMember" class="form-control" placeholder="Buscar Membresia">
+  <div class="input-group-append">
+  &nbsp;
+    <button class="btn btn-success" ng-click="buscaMembresia(bMember)"><i class="fas fa-search"></i></button>
+  </div>
+</div>
+</div>
+              	
+              </div>
+              
               <div class="card-body">
                 <div class="table-responsive">
                   <table class="table">
@@ -225,4 +255,69 @@
 		</div>
               </div>
             </div>
- </div>
+ <div class="modal fade" id="mdlResultMem" tabindex="-1" role="dialog" aria-labelledby="Reactivacion" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Detalles</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+        <div class="table-responsive">
+                  <table class="table">
+                    <thead class=" text-primary">
+                      <th>
+                        Membresia
+                      </th>
+                      <th>
+                        Tipo
+                      </th>
+                      <th>
+                        Duracion
+                      </th>
+                      <th>
+                        Estatus
+                      </th>
+                      <th>
+                        Acciones
+                      </th>
+                    </thead>
+                    <tbody>
+                      <tr >
+                        <td>
+                          {{membresia.id}}
+                        </td>
+                        <td>
+                          {{membresia.tipo}}
+                        </td>
+                        <td>
+                          {{membresia.duracion}}
+                        </td>
+                   		<td>
+                   		  {{membresia.estatus}}
+                   		</td>
+                   		<td >
+                   		<button ng-if="(membresia.estatus == 'ACTIVA')" class="btn btn-danger" title="Desactivar Membresia"  ng-click="eliminarMembresia(membresia.id)">
+							<i class="fas fa-ban"></i>
+						</button>
+						<button ng-if="(membresia.estatus == 'INACTIVA')" class="btn btn-success" title="Reactivar Membresia"  ng-click="reactivarMembresia(membresia.id)">
+							<i class="fas fa-cart-plus"></i>
+						</button>
+                   		  
+                   		</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

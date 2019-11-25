@@ -129,8 +129,12 @@ app.controller("loteController",['$scope','$rootScope','$window', '$location', '
 		
 	}
 	 $scope.eliminarMembresia = function(idMem){
+		 var r = confirm("Desea Realmente desactivar la membresia\n"+idMem);
+		 if(!r)
+			 return;
 		 membresiaServices.desactivarMembresia(idMem).then(function(data) {
 			 alert("Membresia "+idMem+" ha sido desactivada");
+			 $window.location.reload();
 				
 			})
 	 }

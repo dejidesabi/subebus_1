@@ -30,7 +30,7 @@ app.service("ventaService",['$http', '$q','$window', function($http, $q,$window)
 	
 }]);
 
-app.controller("ventaController",['$scope','$rootScope','$window', '$location', '$cookieStore','ventaService','sessionService',"sucursalService",function($scope,$rootScope, $window, $location, $cookieStore, ventaService,sessionService,sucursalService){
+app.controller("ventaController",['$scope','$rootScope','$window', '$location', '$cookieStore','ventaService','sessionService',"sucursalService",'membresiaServices',function($scope,$rootScope, $window, $location, $cookieStore, ventaService,sessionService,sucursalService,membresiaServices){
 	//sessionService.isAuthenticated();
 	 $rootScope.titulo = "Pagina de Venta";
 	 $rootScope.Menu = "Venta";
@@ -38,7 +38,15 @@ app.controller("ventaController",['$scope','$rootScope','$window', '$location', 
 	 $scope._control = false;
 	 
 	 sessionService.isAuthenticated().then(function(sesion) {
-		 
+		 $scope.idSucursal = sesion.idSucursal;
+		  sessionService.consultarPerfilesTodos().then(function(data) {
+			  
+			  for(i in data){
+				  if(sesion.perfil == data[i].tipo){
+					 $rootScope.autorizacion = data[i].permisos;
+					 console.log($rootScope.autorizacion);
+				  }
+			  } 
 		 
 		 ventaService.getVentas(sesion).then(function(data) {
 				$scope.ventaList = data;
@@ -66,6 +74,13 @@ app.controller("ventaController",['$scope','$rootScope','$window', '$location', 
 	 $scope.getMembresiaVenta= function(){
 		 
  	}
+	 $scope.buscaMembresia = function(id){
+		 $scope.membresia = null;
+		 membresiaServices.find(id).then(function(data) {
+			 $scope.membresia = data;
+			 $('#mdlResultMem').modal('show');
+		 });
+	 }
 	 $scope.obtenerSucursal();
 	 $scope.getMembresia = function(duracion,tipo,sucursal){
 		 $scope.isMember = true;
@@ -76,6 +91,26 @@ app.controller("ventaController",['$scope','$rootScope','$window', '$location', 
 				console.log("Membresia ",data);
 			})
 		 
+	 }
+	 $scope.eliminarMembresia = function(idMem){
+		 var r = confirm("Desea Realmente desactivar la membresia\n"+idMem);
+		 if(!r)
+			 return;
+		 membresiaServices.desactivarMembresia(idMem).then(function(data) {
+			 alert("Membresia "+idMem+" ha sido desactivada");
+			 $window.location.reload();
+				
+			})
+	 }
+	 $scope.reactivarMembresia = function(idMem){
+		 var r = confirm("Desea reactivar la membresia\n"+idMem);
+		 if(!r)
+			 return;
+		 membresiaServices.reactivar(idMem).then(function(data) {
+			 alert("Membresia "+idMem+" ha sido desactivada");
+			 $window.location.reload();
+				
+			})
 	 }
 	 $scope.cancelOp = function(){
 		 $scope.altaVenta.idMembresia = null;
@@ -110,7 +145,8 @@ app.controller("ventaController",['$scope','$rootScope','$window', '$location', 
 	 
 	 
 	 //Fin
+		  });
 	 
-	 })
+	 });
 } ]);	
 
