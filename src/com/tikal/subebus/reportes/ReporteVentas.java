@@ -79,17 +79,17 @@ import com.tikal.subebus.modelo.entity.Venta;
 //	        			//totalCaja+=v.getImporte());
 //	        		}
 //	        	}
-	        //	totalCaja=totalCaja+v.getImporte();
+	        	totalCaja=totalCaja+v.getPrecio();
 	        	
 	        }
-//	        HSSFRow dataRow = sheet.createRow(lumis.size()+3);
-//	        HSSFCell cellT = dataRow.createCell(6);
-//	        cellT.setCellValue("Total en Caja");
-//	        cellT.setCellStyle(headerStyle);
-//	       // dataRow.createCell(1).setCellValue(totalCaja);
-//	        HSSFCell cell = dataRow.createCell(7);
-//	        cell.setCellValue(totalCaja);
-//	        cell.setCellStyle(headerStyle);
+	        HSSFRow dataRow = sheet.createRow(ventas.size()+3);
+	        HSSFCell cellT = dataRow.createCell(7);
+	        cellT.setCellValue("Total en Caja");
+	        cellT.setCellStyle(headerStyle);
+	       // dataRow.createCell(1).setCellValue(totalCaja);
+	        HSSFCell cell = dataRow.createCell(8);
+	        cell.setCellValue(totalCaja);
+	        cell.setCellStyle(headerStyle);
 			return workbook;
 		}
 		

@@ -162,7 +162,7 @@ public class MembresiaController {
 			/////// pasar a estatus= "EN USO"
 			m.setEstatus("EN USO");
 			Calendar cal=Calendar.getInstance(TimeZone.getTimeZone("America/Mexico_City"));
-			cal.add(Calendar.HOUR_OF_DAY, -6);
+		//	cal.add(Calendar.HOUR_OF_DAY, -6);
 			System.out.println("fechaActivacion:"+cal.getTime());
 			m.setIniUso(cal.getTime());
 			m.setFinUso(sumarDias(m.getIniUso(),"Uso"));
@@ -177,9 +177,9 @@ public class MembresiaController {
 	  }
 	   
 	  @RequestMapping(value = "/desactivar/{folio}", method = RequestMethod.GET)
-		public void numpags(HttpServletRequest req, HttpServletResponse res, @PathVariable Long folio) throws IOException {
+		public void desactivar(HttpServletRequest req, HttpServletResponse res, @PathVariable Long folio) throws IOException {
 			Membresia m=memDao.consultar(folio);
-			m.setEstatus("INACTIVA");
+			m.setEstatus("CADUCADA");
 			memDao.actualizar(m);
 			res.getWriter().print("membresia desactivada....");
 		}

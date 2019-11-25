@@ -204,7 +204,9 @@ public class VentaController {
 		Calendar cal=Calendar.getInstance(TimeZone.getTimeZone("America/Mexico_City"));
 		cal.add(Calendar.HOUR_OF_DAY, -6);
 		System.out.println("hora:"+cal.getTime());
-		List<Membresia> lista= memDao.consultarTodos();
+		//List<Membresia> lista= memDao.consultarTodos();
+		List<Membresia> lista= memDao.ActivasEnUso();
+		System.out.println("lista de mem:"+lista);
 		for(Membresia m:lista){
 			System.out.println("hora membresia:"+m.getFechaCaducidad());
 			if (m.getFechaCaducidad()!=null){
@@ -244,7 +246,9 @@ public class VentaController {
 								 calendar.setTime(fecha); // Configuramos la fecha que se recibe	
 							//	 System.out.println("fecha hoy:"+calendar.getTime());
 								// calendar.set(Calendar.DAY_OF_MONTH, fecha.getDay());
-								 calendar.set(Calendar.HOUR,11);  // numero de días a añadir, o restar en caso de días<0
+							//	 int dia=23;
+								// dia=dia-calendar.get(Calendar.HOUR_OF_DAY);
+								 calendar.set(Calendar.HOUR_OF_DAY,23);  // numero de días a añadir, o restar en caso de días<0
 								
 								 calendar.set(Calendar.MINUTE,59);
 								 calendar.set(Calendar.SECOND,59);

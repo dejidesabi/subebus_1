@@ -46,7 +46,17 @@ public class MembresiaDaoImpl implements MembresiaDao {
 	public List<Membresia> consultarTodos() {
 		return ofy().load().type(Membresia.class).list();
 	}
+	
+	@Override     /// activas y en uso para el check
+	public List<Membresia> ActivasEnUso() {
+		List<Membresia> act = ofy().load().type(Membresia.class).filter("estatus","ACTIVA").list();
+		List<Membresia> uso = ofy().load().type(Membresia.class).filter("estatus","EN USO").list();
+		List<Membresia> lista= act;
+		lista.addAll(uso);
+		return lista;
+	}
 
+	
 	@Override
 	public int pags() {
 		return ((ofy().load().type(Membresia.class).count()-1)/15)+1;

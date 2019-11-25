@@ -47,9 +47,10 @@ public class checkCaducidadServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		Calendar cal=Calendar.getInstance(TimeZone.getTimeZone("America/Mexico_City"));
-		cal.add(Calendar.HOUR_OF_DAY, -6);
+		//cal.add(Calendar.HOUR_OF_DAY, -6);
 		System.out.println("hora:"+cal);
-		List<Membresia> lista= memDao.consultarTodos();
+		//List<Membresia> lista= memDao.consultarTodos();
+		List<Membresia> lista= memDao.ActivasEnUso();
 		for(Membresia m:lista){
 			System.out.println("hora cad membresia:"+m.getFechaCaducidad());
 			if (m.getFechaCaducidad()!=null){
