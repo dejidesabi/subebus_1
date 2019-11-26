@@ -44,14 +44,14 @@ import java.text.SimpleDateFormat;
 	    	 
 	    	  
 	    	try {
-	    		//Rectangle envelope = new Rectangle(500, 500);
-	    	// Document document = new Document(envelope, 230f, 10f, 100f, 0f);
-	    		//Document document = new Document(envelope,10,10,0,0);  
+	    		Rectangle envelope = new Rectangle(300, 1500);
+	    	  //  Document document = new Document(envelope, 230f, 10f, 100f, 0f);
+	    		Document document = new Document(envelope,0,0,0,0);  
 	    	
-	    	 
-	    	 this.document = new Document();
-	 		this.document.setPageSize(PageSize.LETTER);
-	 		this.document.setMargins(30, 30, 25, 30);
+//	    	 
+//	    	 this.document = new Document();
+//	 		this.document.setPageSize(PageSize.LETTER);
+//	 		this.document.setMargins(30, 30, 25, 30);
 	    	 
 		        PdfWriter.getInstance(document,ops);
 		        document.open();
@@ -64,7 +64,7 @@ import java.text.SimpleDateFormat;
 	    	    
 	    	    
 	    	    Font f1 = new Font();
-	    	  //  f1.setStyle(1);
+	    	    f1.setStyle(1);
 	    	    f1.setSize(18);
 	    	    f1.setColor(BaseColor.BLACK);
 	    	    
@@ -131,36 +131,80 @@ import java.text.SimpleDateFormat;
 		    		//celdaQRCode.
 		    		celdaQRCode.setVerticalAlignment(100);
 		    		celdaQRCode.setColspan(3);
-		    		celdaQRCode.setRowspan(5);
-		            table.addCell(celdaQRCode);
-	    	  
-	    	  
-	    	  
-	    	  
-	    	  
+		    		celdaQRCode.setRowspan(6);	 
+		    		
+		    		
 	        	   Image imagen = Image.getInstance("img/subebus.png");
-		            imagen.scaleAbsolute(150, 70);
-		           
-		      
+		            imagen.scaleAbsolute(150, 35);      
 		            PdfPCell c1 = new PdfPCell(imagen);
 		            c1.setHorizontalAlignment(Element.ALIGN_CENTER);
 		            c1.setVerticalAlignment(Element.ALIGN_CENTER);
-		            c1.setColspan(3);
-		            c1.setRowspan(2);
-		           // c1.setBorder(Rectangle.NO_BORDER);
+		            c1.setColspan(6);
+		            c1.setRowspan(1);
+		            c1.setBorder(Rectangle.NO_BORDER);
 		            table.addCell(c1);
+		            
+		            
+		            String leyenda="--";
+		            switch(l.getDuracion()){
+		            case "Dia":leyenda="PASE CONVENIENTE";
+		            	break;
+		            case "Semanal":leyenda="MEMBRESIA SEMANAL";
+		            	break;
+		            case "Mensual":leyenda="MEMBRESIA MENSUAL";
+		            	break;
+		            case "Semestral":leyenda="PASE DE CORTESIA";
+		            	break;
+		            
+		            }
+		            
+		            Paragraph pa = new Paragraph(leyenda,f1);
+		            PdfPCell ca = new PdfPCell(pa);
+		            ca.setHorizontalAlignment(Element.ALIGN_CENTER);
+		            ca.setColspan(6);
+		            ca.setRowspan(1);
+		            ca.setBorder(Rectangle.NO_BORDER);
+		            table.addCell(ca);	
+		          //  table.addCell(celdaQRCode);
+		            
+		            
+		            
+		            table.addCell(celdaQRCode);
 	        	
-	            Paragraph p8 = new Paragraph("Membresia "+m.getDuracion()+"     folio:"+m.getId(),f1);
+	            Paragraph p8 = new Paragraph("Folio",f1);
 	            PdfPCell c8 = new PdfPCell(p8);
 	            c8.setHorizontalAlignment(Element.ALIGN_CENTER);
 	            c8.setColspan(3);
-	            c8.setRowspan(2);
-	            //c8.setBorder(Rectangle.NO_BORDER);
+	            c8.setRowspan(1);
+	            c8.setBorder(Rectangle.NO_BORDER);
 	            table.addCell(c8);	
+	            
+	            
+	            Paragraph pf = new Paragraph(m.getId().toString(),f1);
+	            PdfPCell cf = new PdfPCell(pf);
+	            cf.setHorizontalAlignment(Element.ALIGN_CENTER);
+	            cf.setColspan(3);
+	            cf.setRowspan(1);
+	            cf.setBorder(Rectangle.NO_BORDER);
+	            table.addCell(cf);
 	           // table.addCell(c6);
 	            
+	            Paragraph pb = new Paragraph("+52 456 101 8313",f3);
+	            PdfPCell cb = new PdfPCell(pb);
+	            cb.setHorizontalAlignment(Element.ALIGN_CENTER);
+	            cb.setColspan(3);
+	            cb.setRowspan(1);
+	            cb.setBorder(Rectangle.NO_BORDER);
+	            table.addCell(cb);	
+	           // table.addCell(c6);
 	            
-	       
+	            Paragraph pc = new Paragraph("VALLE DE SANTIAGO, GTO.",f3);
+	            PdfPCell cc = new PdfPCell(pc);
+	            cc.setHorizontalAlignment(Element.ALIGN_CENTER);
+	            cc.setColspan(3);
+	            cc.setRowspan(1);
+	            cc.setBorder(Rectangle.NO_BORDER);
+	            table.addCell(cc);	
 	//
 	            document.add(table);
 	           // document.add(new Paragraph("\n"));

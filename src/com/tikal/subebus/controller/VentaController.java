@@ -103,28 +103,7 @@ public class VentaController {
 	 } 
 	  
 	 
-	 @RequestMapping(value = {"/renovar/{folio}" }, method = RequestMethod.POST, produces = "application/json", consumes = "application/json")
-	 public void renovar(HttpServletRequest re, HttpServletResponse rs, @RequestBody Long folio) throws IOException, SQLException {
-		//if(Util.verificarPermiso(re, usuariodao, perfildao, 2)){
-			Venta v = ventaDao.byMembresia(folio);
-//			System.out.println("yisus trae:"+json);
-		Calendar cal=Calendar.getInstance(TimeZone.getTimeZone("America/Mexico_City"));
-	//	cal.add(Calendar.HOUR_OF_DAY, -6);
-			System.out.println("fechaActivacion:"+cal.getTime());
-		
-			Membresia m= memDao.consultar(v.getIdMembresia());
-			m.setFechaActivacion(cal.getTime());
-			m.setFechaCaducidad(sumarDias(m.getFechaActivacion(),m.getDuracion()));
-			System.out.println("fechaCaducidad:"+m.getFechaCaducidad());
-			m.setEstatus("ACTIVA");
-			ventaDao.guardar(v);
-			 m.setIdVenta(v.getId());
-			 memDao.actualizar(m);
-//		}else{
-//			rs.sendError(403);
-//		}
 	 
-	 } 
 	 
 	
 	 
@@ -166,7 +145,7 @@ public class VentaController {
 		    	GeneraTicket gt = new GeneraTicket( v , m,  response.getOutputStream());
 		 
 		    	  response.getOutputStream().flush();
-			        response.getOutputStream().close();
+			      response.getOutputStream().close();
 		    	
 //		   }else{
 //				response.sendError(403);

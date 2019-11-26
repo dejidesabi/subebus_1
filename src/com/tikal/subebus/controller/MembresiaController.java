@@ -184,6 +184,31 @@ public class MembresiaController {
 			res.getWriter().print("membresia desactivada....");
 		}
 	  
+	  @RequestMapping(value = {"/renovar/{folio}" }, method = RequestMethod.GET, produces = "application/json")
+		 public void renovar(HttpServletRequest re, HttpServletResponse rs, @PathVariable Long folio) throws IOException, SQLException {
+			//if(Util.verificarPermiso(re, usuariodao, perfildao, 2)){
+				Venta v = ventaDao.byMembresia(folio);
+				Venta nueva=crearVenta(v);
+//				System.out.println("yisus trae:"+json);
+			Calendar cal=Calendar.getInstance(TimeZone.getTimeZone("America/Mexico_City"));
+		//	cal.add(Calendar.HOUR_OF_DAY, -6);
+				System.out.println("fechaActivacion:"+cal.getTime());
+			
+				Membresia m= memDao.consultar(v.getIdMembresia());
+				m.setFechaActivacion(cal.getTime());
+				m.setFechaCaducidad(sumarDias(m.getFechaActivacion(),m.getDuracion()));
+				System.out.println("fechaCaducidad:"+m.getFechaCaducidad());
+				m.setEstatus("ACTIVA");
+				//ventaDao.guardar(v);
+				 m.setIdVenta(nueva.getId());
+				 memDao.actualizar(m);
+//			}else{
+//				rs.sendError(403);
+//			}
+		 
+		 } 
+	  
+	  
 	  public void crearRutaMem(Membresia m , RutaBus rb){
 		  
 		  Calendar cal=Calendar.getInstance(TimeZone.getTimeZone("America/Mexico_City"));
@@ -255,4 +280,22 @@ public class MembresiaController {
 			 calendar.add(Calendar.DAY_OF_YEAR, dias);  // numero de días a añadir, o restar en caso de días<0		 	
 			 return calendar.getTime(); // Devuelve el objeto Date con los nuevos días añadidos
 		}
+	  
+	  public Venta crearVenta(Venta v){
+		  Venta vn= new Venta();
+		  vn.setDuracion(v.getDuracion());
+		  vn.setEdad(v.getEdad());
+		  vn.setIdMembresia(v.getIdMembresia());
+		  vn.setIdSucursal(v.getIdSucursal());
+		  vn.setMail(v.getMail());
+		  vn.setNombre(v.getNombre());
+		  vn.setPrecio(v.getPrecio());
+		  vn.setSector(v.getSector());
+		  vn.setSexo(v.getSexo());
+		  vn.setTelefono(v.getTelefono());
+		  vn.setTipo(v.getTipo());
+		  vn.setUser(v.getUser());
+		  ventaDao.guardar(vn);
+		  return vn;
+	  }
 }
