@@ -134,6 +134,14 @@ app.controller("ventaController",['$scope','$rootScope','$window', '$location', 
 		}
 		 
 	 }
+	 $scope.printMembresia = function(id){
+		 var url = "venta/generaTicket/"+id
+		 var link = document.createElement("a");
+		    link.download = "Venta"+id;
+		    link.href = url;
+		    link.click();
+
+	 }
 	 
 	 $scope.nuevaVenta = function(ctl){
 		 $scope._control = ctl;

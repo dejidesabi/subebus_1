@@ -195,7 +195,7 @@
   <input type="text" ng-model="bMember" ng-focus="bMember=''" class="form-control" placeholder="Buscar Membresia">
   <div class="input-group-append">
   &nbsp;
-    <button class="btn btn-success" ng-click="buscaMembresia(bMember)"><i class="fas fa-search"></i></button>
+    <button class="btn btn-success" ng-click="buscaMembresia(bMember)"><i class="fas fa-search fa-2x"></i></button>
   </div>
 </div>
 </div>
@@ -218,9 +218,9 @@
                       <th>
                         Precio
                       </th>
-                     <!--  <th>
-                        Acciones
-                      </th> -->
+                      <th>
+                        
+                      </th>
                     </thead>
                     <tbody>
                       <tr ng-repeat="l in ventaList">
@@ -236,12 +236,12 @@
                    		<td>
                    		  {{l.precio | currency}}
                    		</td>
-                   		<!-- <td >
-                   		<button class="btn btn-primary" title="Ver" ng-show="l.tipo == 'Fisico'" ng-click="verMembresia(l.id)">
-							<i class="fas fa-eye"></i>
+                   		<td >
+                   		<button class="btn btn-danger" title="Descargar Venta{{l.id}}.pdf" ng-click="printMembresia(l.id)" >
+							<i class="fas fa-file-pdf fa-2x"></i>
 							</button>
                    		  
-                   		</td> -->
+                   		</td>
                       </tr>
                     </tbody>
                   </table>

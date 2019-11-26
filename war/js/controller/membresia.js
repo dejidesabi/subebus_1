@@ -34,6 +34,14 @@ app.service("membresiaServices",['$http', '$q','$window', function($http, $q,$wi
 			});
 		return d.promise;
 	}
+	this.print = function(id) {
+		var d = $q.defer();
+		$http.get("venta/generaTicket/"+ id).then(
+			function(response) {
+				d.resolve(response.data);
+			});
+		return d.promise;
+	}
 }]);
 
 app.controller("membresiaController",['$scope','$rootScope','$window', '$location', '$cookieStore','membresiaServices','sessionService',function($scope,$rootScope, $window, $location, $cookieStore, membresiaServices,sessionService){
