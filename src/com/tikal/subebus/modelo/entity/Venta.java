@@ -20,6 +20,7 @@ public class Venta {
 	@Index Long idSucursal;
 	@Index String tipo;
 	private String duracion;
+	private String sector;
 	@Index String user;
 	public Long getId() {
 		return id;
@@ -94,6 +95,14 @@ public class Venta {
 	}
 	public void setDuracion(String duracion) {
 		this.duracion = duracion;
+	}
+	
+	
+	public String getSector() {
+		return sector;
+	}
+	public void setSector(String sector) {
+		this.sector = sector;
 	}
 	public void llenarRenglon(HSSFRow r){
 		for(int i=0;i<9;i++){

@@ -82,9 +82,9 @@ public class VentaController {
 			if(v.getTipo().equals("Fisico")){
 				v.setTipo("Fisico");
 			}
-			if(v.getTipo().equals("Conveniente")){
-				v.setTipo("Conveniente");
-			}
+//			if(v.getTipo().equals("Conveniente")){
+//				v.setTipo("Conveniente");
+//			}
 			
 			Membresia m= memDao.consultar(v.getIdMembresia());
 			
@@ -109,7 +109,7 @@ public class VentaController {
 			Venta v = ventaDao.byMembresia(folio);
 //			System.out.println("yisus trae:"+json);
 		Calendar cal=Calendar.getInstance(TimeZone.getTimeZone("America/Mexico_City"));
-		cal.add(Calendar.HOUR_OF_DAY, -6);
+	//	cal.add(Calendar.HOUR_OF_DAY, -6);
 			System.out.println("fechaActivacion:"+cal.getTime());
 		
 			Membresia m= memDao.consultar(v.getIdMembresia());
@@ -197,59 +197,59 @@ public class VentaController {
 				rs.getOutputStream().close();
 			//}
 		}
-	  @RequestMapping(value = "/check", method = RequestMethod.GET)
-		public void check(HttpServletRequest req, HttpServletResponse res) throws IOException {
-	//	 Membresia m = memDao.byQr(qr);
-	  
-		Calendar cal=Calendar.getInstance(TimeZone.getTimeZone("America/Mexico_City"));
-		cal.add(Calendar.HOUR_OF_DAY, -6);
-		System.out.println("hora:"+cal.getTime());
-		//List<Membresia> lista= memDao.consultarTodos();
-		List<Membresia> lista= memDao.ActivasEnUso();
-		System.out.println("lista de mem:"+lista);
-		for(Membresia m:lista){
-			System.out.println("hora membresia:"+m.getFechaCaducidad());
-			if (m.getFechaCaducidad()!=null){
-				if (cal.getTime().after(m.getFechaCaducidad())){
-					System.out.println("entra a desactivar");
-					m.setEstatus("CADUCADA");
-					memDao.actualizar(m);
-				}
-			}
-			if (m.getIniUso()!=null && m.getFinUso()!=null){
-				System.out.println("hora uso ini:"+m.getIniUso());
-				System.out.println("hora uso fin:"+cal.getTime());
-				if (cal.getTime().after(m.getFinUso())){
-					System.out.println("entra a cambiar estatus de uso");
-					if (cal.getTime().after(m.getFechaCaducidad())){
-						m.setEstatus("ACTIVA");}
-					else m.setEstatus("CADUCADA");
-					m.setIniUso(null);
-					m.setFinUso(null);
-					memDao.actualizar(m);
-				}
-				
-			}
-		}
-		System.out.println("Servlettttttttt");
-		//response.getWriter().print("OK");
-	  
-	  
-	  } 
-	 
+//	  @RequestMapping(value = "/check", method = RequestMethod.GET)
+//		public void check(HttpServletRequest req, HttpServletResponse res) throws IOException {
+//	//	 Membresia m = memDao.byQr(qr);
+//	  
+//		Calendar cal=Calendar.getInstance(TimeZone.getTimeZone("America/Mexico_City"));
+//		cal.add(Calendar.HOUR_OF_DAY, -6);
+//		System.out.println("hora:"+cal.getTime());
+//		//List<Membresia> lista= memDao.consultarTodos();
+//		List<Membresia> lista= memDao.ActivasEnUso();
+//		System.out.println("lista de mem:"+lista);
+//		for(Membresia m:lista){
+//			System.out.println("hora membresia:"+m.getFechaCaducidad());
+//			if (m.getFechaCaducidad()!=null){
+//				if (cal.getTime().after(m.getFechaCaducidad())){
+//					System.out.println("entra a desactivar");
+//					m.setEstatus("CADUCADA");
+//					memDao.actualizar(m);
+//				}
+//			}
+//			if (m.getIniUso()!=null && m.getFinUso()!=null){
+//				System.out.println("hora uso ini:"+m.getIniUso());
+//				System.out.println("hora uso fin:"+cal.getTime());
+//				if (cal.getTime().after(m.getFinUso())){
+//					System.out.println("entra a cambiar estatus de uso");
+//					if (cal.getTime().after(m.getFechaCaducidad())){
+//						m.setEstatus("ACTIVA");}
+//					else m.setEstatus("CADUCADA");
+//					m.setIniUso(null);
+//					m.setFinUso(null);
+//					memDao.actualizar(m);
+//				}
+//				
+//			}
+//		}
+//		System.out.println("Servlettttttttt");
+//		//response.getWriter().print("OK");
+//	  
+//	  
+//	  } 
+//	 
 	 
 	 public Date sumarDias(Date fecha, String duracion){
 		 int dias=0;
 		 switch(duracion){
-		 	case "Conveniente": //dias=1;
+		 	case "Dia": //dias=1;
 							 	 Calendar calendar = Calendar.getInstance();		 	
 								 calendar.setTime(fecha); // Configuramos la fecha que se recibe	
 							//	 System.out.println("fecha hoy:"+calendar.getTime());
 								// calendar.set(Calendar.DAY_OF_MONTH, fecha.getDay());
-							//	 int dia=23;
-								// dia=dia-calendar.get(Calendar.HOUR_OF_DAY);
-								 calendar.set(Calendar.HOUR_OF_DAY,23);  // numero de días a añadir, o restar en caso de días<0
-								
+								 int dia=23;
+								 dia=dia-calendar.get(Calendar.HOUR_OF_DAY);
+							//	 calendar.set(Calendar.HOUR_OF_DAY,23);  // numero de días a añadir, o restar en caso de días<0
+								 calendar.add(Calendar.HOUR_OF_DAY,dia);
 								 calendar.set(Calendar.MINUTE,59);
 								 calendar.set(Calendar.SECOND,59);
 								 //calendar.add(Calendar.DAY_OF_MONTH, -1);

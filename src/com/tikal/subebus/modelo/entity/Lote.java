@@ -11,6 +11,7 @@ public class Lote {
 	@Id Long id;
 	@Index String duracion;
 	@Index String tipo;
+	@Index String sector;
 	@Index long idSucursal;
 	private int cantidad;
 	
@@ -43,6 +44,12 @@ public class Lote {
 	}
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
+	}
+	public String getSector() {
+		return sector;
+	}
+	public void setSector(String sector) {
+		this.sector = sector;
 	}
 	
 	

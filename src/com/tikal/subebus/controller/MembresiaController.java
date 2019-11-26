@@ -187,7 +187,7 @@ public class MembresiaController {
 	  public void crearRutaMem(Membresia m , RutaBus rb){
 		  
 		  Calendar cal=Calendar.getInstance(TimeZone.getTimeZone("America/Mexico_City"));
-			cal.add(Calendar.HOUR_OF_DAY, -6);
+			//cal.add(Calendar.HOUR_OF_DAY, -6);
 			System.out.println(" creando ruta mem ...hora:"+cal.getTime());
 		  
 		Venta v= ventaDao.byMembresia(m.getId());
@@ -214,7 +214,7 @@ public class MembresiaController {
 			 Calendar calendar = Calendar.getInstance();		 	
 			 calendar.setTime(fecha); // Configuramos la fecha que se recibe		 
 			 switch(duracion){
-			 	case "Conveniente": //dias=1;
+			 	case "Dia": //dias=1;
 								 	// Calendar calendar = Calendar.getInstance();		 	
 									// calendar.setTime(fecha); // Configuramos la fecha que se recibe	
 								//	 System.out.println("fecha hoy:"+calendar.getTime());

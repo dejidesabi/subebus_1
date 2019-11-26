@@ -120,37 +120,37 @@ public class LoteController {
 	  }
 
 	 
-	 @RequestMapping(value = {"/add_" }, method = RequestMethod.GET, produces = "application/json")
-	 public void add_(HttpServletRequest re, HttpServletResponse rs) throws IOException, SQLException {
-		 AsignadorDeCharset.asignar(re, rs);
-		//if(Util.verificarPermiso(re, usuariodao, perfildao, 2)){
-			Lote l =new Lote();
-			l.setDuracion("mensual");
-			l.setIdSucursal(Long.parseLong("6333186975989760"));
-			l.setTipo("Electrónico");
-			l.setCantidad(3);			
-			loteDao.guardar(l);
-			Calendar cal=Calendar.getInstance(TimeZone.getTimeZone("America/Mexico_City"));
-			System.out.println("cantidad memb:"+l.getCantidad());
-			for (int i=1; i<=l.getCantidad(); i++){
-				Membresia m = new Membresia();
-				m.setDuracion(l.getDuracion());
-				m.setEstatus("INACTIVA");
-				m.setIdLote(l.getId());
-				Folio c = new Folio();
-				//m.setId(c.getFolio());
-				//c.incremeta();
-				//contadorDao.guardar(c);
-				System.out.println("serial:"+c.getFolio());
-				memDao.crear(m);
-				System.out.println("num mem:"+i);
-			}
-			System.out.println("se crearon "+l.getCantidad()+" membresias...");
-//		}else{
-//			rs.sendError(403);
-//		}
-//	 
-	 }
+//	 @RequestMapping(value = {"/add_" }, method = RequestMethod.GET, produces = "application/json")
+//	 public void add_(HttpServletRequest re, HttpServletResponse rs) throws IOException, SQLException {
+//		 AsignadorDeCharset.asignar(re, rs);
+//		//if(Util.verificarPermiso(re, usuariodao, perfildao, 2)){
+//			Lote l =new Lote();
+//			l.setDuracion("mensual");
+//			l.setIdSucursal(Long.parseLong("6333186975989760"));
+//			l.setTipo("Electrónico");
+//			l.setCantidad(3);			
+//			loteDao.guardar(l);
+//			Calendar cal=Calendar.getInstance(TimeZone.getTimeZone("America/Mexico_City"));
+//			System.out.println("cantidad memb:"+l.getCantidad());
+//			for (int i=1; i<=l.getCantidad(); i++){
+//				Membresia m = new Membresia();
+//				m.setDuracion(l.getDuracion());
+//				m.setEstatus("INACTIVA");
+//				m.setIdLote(l.getId());
+//				Folio c = new Folio();
+//				//m.setId(c.getFolio());
+//				//c.incremeta();
+//				//contadorDao.guardar(c);
+//				System.out.println("serial:"+c.getFolio());
+//				memDao.crear(m);
+//				System.out.println("num mem:"+i);
+//			}
+//			System.out.println("se crearon "+l.getCantidad()+" membresias...");
+////		}else{
+////			rs.sendError(403);
+////		}
+////	 
+//	 }
 	 
 	 
 	 

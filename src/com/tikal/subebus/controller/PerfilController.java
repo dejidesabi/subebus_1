@@ -90,6 +90,23 @@ public class PerfilController {
 //		}
 
 	}
+	
+	@RequestMapping(value = { "/actualiza" }, method = RequestMethod.POST, consumes = "Application/Json")
+	public void actualiza(HttpServletRequest request, HttpServletResponse response, @RequestBody String json)
+			throws IOException {
+	//	if (ServicioSesion.verificarPermiso(request, usuarioimp, perfilimp, 6)) {
+			AsignadorDeCharset.asignar(request, response);
+			System.out.println("json:"+json);
+			Perfil perfil = (Perfil) JsonConvertidor.fromJson(json, Perfil.class);
+			Perfil aux = perfilDAO.consultarPerfilPorId(perfil.getId());
+			String nombrePerfilViejo = aux.getTipo();
+			perfilDAO.actulizaPerfil(perfil);
+			usuarioDao.actualizarUsuarios(nombrePerfilViejo, perfil.getTipo());
+//		} else {
+//			response.sendError(403);
+//		}
+
+	}
 
 	@RequestMapping(value = { "/delete/{idPerfil}/{userName}" }, method = RequestMethod.POST, consumes = "Application/Json")
 	public void eliminarUsuario(HttpServletRequest request, HttpServletResponse response,

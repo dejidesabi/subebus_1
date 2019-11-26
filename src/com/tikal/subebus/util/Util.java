@@ -128,7 +128,7 @@ public class Util {
 	 public Date sumarDias(Date fecha, String duracion){
 		 int dias=0;
 		 switch(duracion){
-		 	case "Conveniente": dias=1;
+		 	case "Dia": dias=1;
 			    break;
 		 	case "Semanal":dias=7;
 		 		break;
