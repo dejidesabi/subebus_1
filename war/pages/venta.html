@@ -8,6 +8,7 @@
 <!--                  Inicio el Formulario -->
                  <form name="myForm">
                  <div class="row">
+                   
                     <div class="col-md-8 px-1">
                       <div class="form-group">
                         <label>Nombre</label>
@@ -56,17 +57,7 @@
                         
                       </div>
                     </div>
-                       <div class="col-md-4 pl-1">
-                      <div class="form-group">
-                        <label >Tipo</label>
-                         <select ng-model="altaVenta.tipo" class="form-control" required="required">
-                        <option selected="selected" disabled>Seleccione</option>
-						<option>Fisico</option>
-						<option ng-disabled="altaVenta.duracion == 'Conveniente'">Electronico</option>
-					</select>
-                        
-                      </div>
-                    </div>
+                     
                         <div class="col-md-4 pl-1">
                       <div class="form-group">
                         <label >Publico</label>
@@ -78,6 +69,18 @@
 						<option>Grupo Mexia</option>
 						<option>Estudiante</option>
 						
+					</select>
+                        
+                      </div>
+                      
+                    </div>
+                    <div class="col-md-4 pl-1">
+                      <div class="form-group">
+                        <label >Tipo</label>
+                         <select ng-model="altaVenta.tipo" class="form-control" required="required" ng-change="altaVenta.idMembresia=''">
+                        <option selected="selected" disabled>Seleccione</option>
+						<option>Fisico</option>
+						<option>Electronico</option>
 					</select>
                         
                       </div>
@@ -97,10 +100,19 @@
 						<option ng-repeat="i in listSucursal" ng-value="i.id">{{i.nombre}}</option>
 					</select>
                       </div>
+                      
+                    </div>
+                    <div class="col-md-4 pl-1" ng-if="altaVenta.tipo=='Fisico'">
+                      <div class="form-group">
+                        <label >Numero de Membresia</label>
+                        <input type="number" ng-model="altaVenta.idMembresia" class="form-control">
+                       
+                      </div>
+                      
                     </div>
                     </form>
 <!--                     Fin Formulario -->
-                          <div class="col-md-4 pl-1">
+                          <div class="col-md-4 pl-1" ng-if="altaVenta.tipo=='Electronico'">
                       <div class="" style="vertical-align: middle;">
                         <button ng-show="!altaVenta.idMembresia" ng-disabled="myForm.$invalid" class="btn" ng-click="getMembresia(altaVenta.duracion,altaVenta.tipo,altaVenta.idSucursal)"><i class="fa fa-ticket-alt fa-3x"></i></button>
                         <i ng-show="altaVenta.idMembresia" class="fas fa-check-circle fa-3x text-success"></i>
@@ -190,15 +202,20 @@
               <div class="row">
               <div class="col-md-1"></div>
               <div class="col-md-3">
-              
-              <div class="input-group">
-  <input type="text" ng-model="bMember" ng-focus="bMember=''" class="form-control" placeholder="Buscar Membresia">
-  <div class="input-group-append">
-  &nbsp;
-    <button class="btn btn-success" ng-click="buscaMembresia(bMember)"><i class="fas fa-search fa-2x"></i></button>
-  </div>
-</div>
-</div>
+
+				<!-- BUSQUEDA -->
+			<div class="input-group">
+				<input type="text" ng-model="bMember" ng-focus="bMember=''"
+					class="form-control" placeholder="Buscar Membresia">
+				<div class="input-group-append">
+					&nbsp;
+					<button class="btn btn-success" ng-click="buscaMembresia(bMember)">
+						<i class="fas fa-search fa-2x"></i>
+					</button>
+				</div>
+			</div>
+			<!-- FIN BUSQUEDA -->
+		</div>
               	
               </div>
               
