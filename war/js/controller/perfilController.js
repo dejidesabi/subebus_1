@@ -92,9 +92,9 @@ app.controller('controladorListaPerfiles', [ '$scope', 'perfilService',
 				
 			
 			
-			$scope.actualizarPerfil = function($scope){
-				console.log($scope);
-				perfilService.actualizarPerfil($scope).then(
+			$scope.actualizarPerfil = function(perfil){
+				console.log(perfil);
+				perfilService.actualizarPerfil(perfil).then(
 						function(data) {
 							alert("Perfil modificado correctamente");
 							$window.location.reload();

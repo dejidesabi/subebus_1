@@ -192,7 +192,7 @@
               <div class="col-md-3">
               
               <div class="input-group">
-  <input type="text" ng-model="bMember" class="form-control" placeholder="Buscar Membresia">
+  <input type="text" ng-model="bMember" ng-focus="bMember=''" class="form-control" placeholder="Buscar Membresia">
   <div class="input-group-append">
   &nbsp;
     <button class="btn btn-success" ng-click="buscaMembresia(bMember)"><i class="fas fa-search"></i></button>
@@ -304,7 +304,7 @@
                    		<button ng-if="(membresia.estatus == 'ACTIVA')" class="btn btn-danger" title="Desactivar Membresia"  ng-click="eliminarMembresia(membresia.id)">
 							<i class="fas fa-ban"></i>
 						</button>
-						<button ng-if="(membresia.estatus == 'INACTIVA')" class="btn btn-success" title="Reactivar Membresia"  ng-click="reactivarMembresia(membresia.id)">
+						<button ng-if="(membresia.estatus == 'CADUCADA')" class="btn btn-success" title="Reactivar Membresia"  ng-click="reactivarMembresia(membresia.id)">
 							<i class="fas fa-cart-plus"></i>
 						</button>
                    		  
@@ -317,7 +317,6 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
