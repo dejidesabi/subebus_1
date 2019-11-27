@@ -36,6 +36,7 @@ app.controller("ventaController",['$scope','$rootScope','$window', '$location', 
 	 $rootScope.Menu = "Venta";
 	 $scope.isMember = false;
 	 $scope._control = false;
+	 $scope.altaVenta = {idSucursal:null};
 	 
 	 sessionService.isAuthenticated().then(function(sesion) {
 		 $scope.idSucursal = sesion.idSucursal;
@@ -54,7 +55,7 @@ app.controller("ventaController",['$scope','$rootScope','$window', '$location', 
 				
 	
 	 $scope.addVenta = function(data) {	
-		 
+			 data.idSucursal=$scope.idSucursal
 		 console.log(data)
 		 $('#mdlLoad').modal('show');
 		 ventaService.addVenta(data).then(function(data) {
@@ -82,9 +83,9 @@ app.controller("ventaController",['$scope','$rootScope','$window', '$location', 
 		 });
 	 }
 	 $scope.obtenerSucursal();
-	 $scope.getMembresia = function(duracion,tipo,sucursal){
+	 $scope.getMembresia = function(duracion,tipo){
 		 $scope.isMember = true;
-		 ventaService.getVM(duracion,tipo,sucursal).then(function(data) {
+		 ventaService.getVM(duracion,tipo,$scope.idSucursal).then(function(data) {
 				$scope.newMem = data;
 				document.getElementById('qr').innerHTML = create_qrcode(data.qr);
 				$scope.altaVenta.idMembresia = data.id;
@@ -107,7 +108,7 @@ app.controller("ventaController",['$scope','$rootScope','$window', '$location', 
 		 if(!r)
 			 return;
 		 membresiaServices.reactivar(idMem).then(function(data) {
-			 alert("Membresia "+idMem+" ha sido desactivada");
+			 alert("Membresia "+idMem+" ha sido Reactivada");
 			 $window.location.reload();
 				
 			})
@@ -144,6 +145,7 @@ app.controller("ventaController",['$scope','$rootScope','$window', '$location', 
 	 }
 	 
 	 $scope.nuevaVenta = function(ctl){
+		 
 		 $scope._control = ctl;
 		 if(ctl){
 			 $scope.altaVenta = null;
