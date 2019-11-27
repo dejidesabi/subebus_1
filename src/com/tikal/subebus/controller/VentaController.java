@@ -93,6 +93,7 @@ public class VentaController {
 			System.out.println("fechaCaducidad:"+m.getFechaCaducidad());
 			m.setEstatus("ACTIVA");
 			v.setDuracion(m.getDuracion());
+			v.setCaducidadVenta(cal.getTime());
 			ventaDao.guardar(v);
 			 m.setIdVenta(v.getId());
 			 memDao.actualizar(m);

@@ -118,7 +118,7 @@ import java.text.SimpleDateFormat;
 				//	}
 						
 		      //  	imgQRCode.scalePercent(150f);
-		        	imgQRCode.scaleAbsolute(100, 100);
+		        	imgQRCode.scaleAbsolute(100,100);
 		        //	imgQRCode.setAbsolutePosition(0f, 100f);
 		        //	Chunk chunkQRCode = null;
 		        	
@@ -129,19 +129,24 @@ import java.text.SimpleDateFormat;
 		        
 		    		celdaQRCode.setHorizontalAlignment(Element.ALIGN_CENTER);
 		    		//celdaQRCode.
-		    		celdaQRCode.setVerticalAlignment(100);
+		    		celdaQRCode.setVerticalAlignment(80);
 		    		celdaQRCode.setColspan(3);
-		    		celdaQRCode.setRowspan(6);	 
+		    		celdaQRCode.setRowspan(6);	
+		    		celdaQRCode.setBorder(Rectangle.LEFT | Rectangle.BOTTOM);
+		          
 		    		
 		    		
 	        	   Image imagen = Image.getInstance("img/subebus.png");
-		            imagen.scaleAbsolute(150, 35);      
+		            imagen.scaleAbsolute(200, 35);      
 		            PdfPCell c1 = new PdfPCell(imagen);
 		            c1.setHorizontalAlignment(Element.ALIGN_CENTER);
 		            c1.setVerticalAlignment(Element.ALIGN_CENTER);
 		            c1.setColspan(6);
-		            c1.setRowspan(1);
-		            c1.setBorder(Rectangle.NO_BORDER);
+//		            c1.setRowspan(1);
+		            c1.setBorder(Rectangle.TOP | Rectangle.RIGHT | Rectangle.LEFT);
+		          //  c1.setBorder(Rectangle.TOP);
+		            //c1.setBorder(Rectangle.LEFT);
+		         //   c1.setBorder(Rectangle.RIGHT);
 		            table.addCell(c1);
 		            
 		            
@@ -163,20 +168,28 @@ import java.text.SimpleDateFormat;
 		            ca.setHorizontalAlignment(Element.ALIGN_CENTER);
 		            ca.setColspan(6);
 		            ca.setRowspan(1);
-		            ca.setBorder(Rectangle.NO_BORDER);
+		           
+		            ca.setBorder(Rectangle.LEFT | Rectangle.RIGHT);
 		            table.addCell(ca);	
 		          //  table.addCell(celdaQRCode);
 		            
-		            
+		            Paragraph va = new Paragraph("\n",f1);
+		            PdfPCell v = new PdfPCell(va);
+		            v.setHorizontalAlignment(Element.ALIGN_CENTER);
+		            v.setColspan(6);
+		            v.setRowspan(1);
+		            v.setBorder(Rectangle.LEFT);
+		            v.setBorder(Rectangle.RIGHT);
+		          //  table.addCell(v);	
 		            
 		            table.addCell(celdaQRCode);
 	        	
-	            Paragraph p8 = new Paragraph("Folio",f1);
+	            Paragraph p8 = new Paragraph("Folio:",f3);
 	            PdfPCell c8 = new PdfPCell(p8);
 	            c8.setHorizontalAlignment(Element.ALIGN_CENTER);
 	            c8.setColspan(3);
 	            c8.setRowspan(1);
-	            c8.setBorder(Rectangle.NO_BORDER);
+	            c8.setBorder(Rectangle.RIGHT);
 	            table.addCell(c8);	
 	            
 	            
@@ -185,16 +198,17 @@ import java.text.SimpleDateFormat;
 	            cf.setHorizontalAlignment(Element.ALIGN_CENTER);
 	            cf.setColspan(3);
 	            cf.setRowspan(1);
-	            cf.setBorder(Rectangle.NO_BORDER);
+	            cf.setBorder(Rectangle.RIGHT);
 	            table.addCell(cf);
 	           // table.addCell(c6);
+	            table.addCell(v);
 	            
 	            Paragraph pb = new Paragraph("+52 456 101 8313",f3);
 	            PdfPCell cb = new PdfPCell(pb);
 	            cb.setHorizontalAlignment(Element.ALIGN_CENTER);
 	            cb.setColspan(3);
 	            cb.setRowspan(1);
-	            cb.setBorder(Rectangle.NO_BORDER);
+	            cb.setBorder(Rectangle.RIGHT);
 	            table.addCell(cb);	
 	           // table.addCell(c6);
 	            
@@ -203,9 +217,19 @@ import java.text.SimpleDateFormat;
 	            cc.setHorizontalAlignment(Element.ALIGN_CENTER);
 	            cc.setColspan(3);
 	            cc.setRowspan(1);
-	            cc.setBorder(Rectangle.NO_BORDER);
+	            cc.setBorder(Rectangle.RIGHT);
 	            table.addCell(cc);	
+	           
+	            
+	            Paragraph v1 = new Paragraph("\n",f1);
+	            PdfPCell v11 = new PdfPCell(v1);
+	            v11.setHorizontalAlignment(Element.ALIGN_CENTER);
+	            v11.setColspan(6);
+	            v11.setRowspan(1);
+	            v11.setBorder( Rectangle.RIGHT | Rectangle.BOTTOM);
+	            table.addCell(v11);	
 	//
+	          
 	            document.add(table);
 	           // document.add(new Paragraph("\n"));
 	            //document.add(new Paragraph("\n"));
@@ -219,6 +243,7 @@ import java.text.SimpleDateFormat;
 	                
 	 
 	                  
+	     
 
 
 	          	            

@@ -1,5 +1,7 @@
 package com.tikal.subebus.modelo.entity;
 
+import java.util.Date;
+
 import org.apache.poi.hssf.usermodel.HSSFRow;
 
 import com.googlecode.objectify.annotation.Entity;
@@ -16,6 +18,7 @@ public class Venta {
 	@Index String telefono;
 	@Index String mail;
 	@Index Long idMembresia;
+	private Date caducidadVenta;
 	private double precio;
 	@Index Long idSucursal;
 	@Index String tipo;
@@ -103,6 +106,14 @@ public class Venta {
 	}
 	public void setSector(String sector) {
 		this.sector = sector;
+	}
+	
+	
+	public Date getCaducidadVenta() {
+		return caducidadVenta;
+	}
+	public void setCaducidadVenta(Date caducidadVenta) {
+		this.caducidadVenta = caducidadVenta;
 	}
 	public void llenarRenglon(HSSFRow r){
 		for(int i=0;i<9;i++){
