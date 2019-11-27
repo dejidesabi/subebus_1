@@ -101,7 +101,7 @@ app.controller("loteController",['$scope','$rootScope','$window', '$location', '
 			 $('#mdlLoad').modal('hide');
 						alert("Lote Agregado");
 						$scope.altaLote = null;
-						 $scope.obtenerLotes();
+						 $window.location.reload();
 					})
 		}
 	$scope.imprimirFisico = function(id){
