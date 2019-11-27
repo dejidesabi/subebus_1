@@ -188,7 +188,7 @@ public class MembresiaController {
 		 public void renovar(HttpServletRequest re, HttpServletResponse rs, @PathVariable Long folio) throws IOException, SQLException {
 			//if(Util.verificarPermiso(re, usuariodao, perfildao, 2)){
 				Venta v = ventaDao.byMembresia(folio);
-				Venta nueva=crearVenta(v);
+				
 //				System.out.println("yisus trae:"+json);
 			Calendar cal=Calendar.getInstance(TimeZone.getTimeZone("America/Mexico_City"));
 		//	cal.add(Calendar.HOUR_OF_DAY, -6);
@@ -200,8 +200,11 @@ public class MembresiaController {
 				System.out.println("fechaCaducidad:"+m.getFechaCaducidad());
 				m.setEstatus("ACTIVA");
 				//ventaDao.guardar(v);
+				Venta nueva=crearVenta(v,m.getFechaCaducidad());
 				 m.setIdVenta(nueva.getId());
 				 memDao.actualizar(m);
+				 
+				 
 //			}else{
 //				rs.sendError(403);
 //			}
@@ -281,7 +284,8 @@ public class MembresiaController {
 			 return calendar.getTime(); // Devuelve el objeto Date con los nuevos días añadidos
 		}
 	  
-	  public Venta crearVenta(Venta v){
+	  public Venta crearVenta(Venta v, Date cad){
+			Calendar cal=Calendar.getInstance(TimeZone.getTimeZone("America/Mexico_City"));
 		  Venta vn= new Venta();
 		  vn.setDuracion(v.getDuracion());
 		  vn.setEdad(v.getEdad());
@@ -295,6 +299,7 @@ public class MembresiaController {
 		  vn.setTelefono(v.getTelefono());
 		  vn.setTipo(v.getTipo());
 		  vn.setUser(v.getUser());
+		  vn.setCaducidadVenta(cad);
 		  ventaDao.guardar(vn);
 		  return vn;
 	  }

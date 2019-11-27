@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Base64Utils;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -52,6 +53,22 @@ public class SesionController  {
 		}
 	}
 
+	@RequestMapping(value = { "/userAndroid/{user}/{pass}" }, method = RequestMethod.GET, produces = "application/json")
+	public void user(HttpServletResponse res, HttpServletRequest req, @PathVariable String user, @PathVariable String pass) throws IOException {
+		AsignadorDeCharset.asignar(req, res);
+		System.out.println("Sesssssion:"+req.getHeader("authorization"));
+		Usuario usuario = usuariodao.consultarUsuario(user);
+		// Verificar que el usuario y contraseña coincidan
+		if (usuario == null || (usuario.getPassword().equals(pass) == false)) {
+			res.sendError(403);
+		} else {
+			usuario.resetPassword();
+			req.getSession().setAttribute("userName", usuario.getUsername());
+			req.getSession().setAttribute("user", usuario);
+			res.getWriter().println(JsonConvertidor.toJson(usuario));
+		}
+	}
+	
 	// currentSession
 
 	@RequestMapping(value = { "/currentSession" }, method = RequestMethod.GET, produces = "application/json")
