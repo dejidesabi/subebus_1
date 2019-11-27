@@ -58,8 +58,9 @@ public class SesionController  {
 		AsignadorDeCharset.asignar(req, res);
 		System.out.println("Sesssssion:"+req.getHeader("authorization"));
 		Usuario usuario = usuariodao.consultarUsuario(user);
+		String p = UsuarioController.otroMetodo(pass);
 		// Verificar que el usuario y contraseña coincidan
-		if (usuario == null || (usuario.getPassword().equals(pass) == false)) {
+		if (usuario == null || (usuario.getPassword().equals(p) == false)) {
 			res.sendError(403);
 		} else {
 			usuario.resetPassword();
