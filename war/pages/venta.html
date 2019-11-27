@@ -254,6 +254,9 @@
                         Precio
                       </th>
                       <th>
+                      Caducidad
+                      </th>
+                      <th>
                         
                       </th>
                     </thead>
@@ -270,6 +273,9 @@
                         </td>
                    		<td>
                    		  {{l.precio | currency}}
+                   		</td>
+                   		<td>
+                   		{{l.caducidadVenta | date}}
                    		</td>
                    		<td >
                    		<button class="btn btn-danger" title="Descargar Venta{{l.id}}.pdf" ng-click="printMembresia(l.id)" >

@@ -51,6 +51,7 @@ app.controller("ventaController",['$scope','$rootScope','$window', '$location', 
 		 
 		 ventaService.getVentas(sesion).then(function(data) {
 				$scope.ventaList = data;
+				console.log("Venta list ",data)
 			})
 				
 	
