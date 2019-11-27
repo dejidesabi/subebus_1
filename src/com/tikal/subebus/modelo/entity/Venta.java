@@ -18,6 +18,7 @@ public class Venta {
 	@Index String telefono;
 	@Index String mail;
 	@Index Long idMembresia;
+	@Index Date fecha;
 	private Date caducidadVenta;
 	private double precio;
 	@Index Long idSucursal;
@@ -25,6 +26,7 @@ public class Venta {
 	private String duracion;
 	private String sector;
 	@Index String user;
+	
 	public Long getId() {
 		return id;
 	}
@@ -93,6 +95,12 @@ public class Venta {
 	}
 	
 	
+	public Date getFecha() {
+		return fecha;
+	}
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
 	public String getDuracion() {
 		return duracion;
 	}
@@ -116,13 +124,14 @@ public class Venta {
 		this.caducidadVenta = caducidadVenta;
 	}
 	public void llenarRenglon(HSSFRow r){
-		for(int i=0;i<9;i++){
+		for(int i=0;i<11;i++){
 			r.createCell(i);
 		}
-		
-		r.getCell(0).setCellValue(this.getIdMembresia());
-		r.getCell(1).setCellValue(this.getTipo());
-		r.getCell(2).setCellValue(this.getDuracion());
+		r.getCell(0).setCellValue(this.getFecha().toLocaleString());
+		r.getCell(1).setCellValue(this.getIdMembresia());
+		r.getCell(2).setCellValue(this.getTipo());
+		r.getCell(3).setCellValue(this.getDuracion());
+		r.getCell(4).setCellValue(this.getCaducidadVenta().toLocaleString());
 		//r.getCell(2).setCellValue(this.isTieneGabinete());
 		//if(this.isTieneGabinete()){
 		//	r.getCell(2).setCellValue(this.getCaducidad());
@@ -131,15 +140,15 @@ public class Venta {
 //		}
 		
 		
-		r.getCell(3).setCellValue(this.getNombre());
-		r.getCell(4).setCellValue(this.getEdad());
-		r.getCell(5).setCellValue(this.getSexo());
-		r.getCell(6).setCellValue(this.getTelefono());
-		r.getCell(7).setCellValue(this.getMail());
+		r.getCell(5).setCellValue(this.getNombre());
+		r.getCell(6).setCellValue(this.getEdad());
+		r.getCell(7).setCellValue(this.getSexo());
+		r.getCell(8).setCellValue(this.getTelefono());
+		r.getCell(9).setCellValue(this.getMail());
 		if(this.getPrecio()==0){
-					r.getCell(8).setCellValue("0.0");
+					r.getCell(10).setCellValue("0");
 		}else{
-					r.getCell(8).setCellValue(this.getPrecio());
+					r.getCell(10).setCellValue(this.getPrecio());
 		}
 	
 		

@@ -98,6 +98,13 @@ public class MembresiaDaoImpl implements MembresiaDao {
 		
 	}
 
+	@Override
+	public List<Membresia> consultarElec() {
+		return ofy().load().type(Membresia.class).filter("tipo", "Electronico").list();
+		
+		
+	}
+
 	
 	
 	

@@ -16,6 +16,8 @@ public interface MembresiaDao {
 	
 	public List<Membresia> consultarTodos();
 	
+	public List<Membresia> consultarElec();
+	
 	public List<Membresia> ActivasEnUso();
 	
 	public int pags();

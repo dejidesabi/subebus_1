@@ -148,6 +148,11 @@ public class MembresiaController {
 			public void checkqr(HttpServletRequest req, HttpServletResponse res, @PathVariable String qr, @PathVariable Long idRutaBus) throws IOException {
 		  System.out.println("checarndo al abordar....");
 			 Membresia m = memDao.byQr(qr);
+			 if (m.getEstatus().equals("INACTIVA") && m.getDuracion().equals("Dia")){
+				 System.out.println("Se activará la membresia conveniente por este dia...");
+				 m.setEstatus("ACTIVA");
+				 memDao.actualizar(m);
+			 }
 			 RutaBus rb= rbDao.cargar(idRutaBus);
 			// if(m.getEstatus().equals("ACTIVA") || m.getEstatus().equals("EN USO")){
 				 crearRutaMem(m,rb);
@@ -158,7 +163,7 @@ public class MembresiaController {
 		   if(m.getEstatus().equals("EN USO")){
 			   System.out.println("Intento de fraude.... Esta membresia ya esta en uso...");
 		   }
-			res.getWriter().println(JsonConvertidor.toJson(m.getEstatus()));
+		   res.getWriter().println(JsonConvertidor.toJson(m.getEstatus()));
 			/////// pasar a estatus= "EN USO"
 			m.setEstatus("EN USO");
 			Calendar cal=Calendar.getInstance(TimeZone.getTimeZone("America/Mexico_City"));
@@ -168,6 +173,7 @@ public class MembresiaController {
 			m.setFinUso(sumarDias(m.getIniUso(),"Uso"));
 			memDao.actualizar(m);
 				
+			
 	  }
 	  
 	  @RequestMapping(value = "/byLote/{idLote}", method = RequestMethod.GET)
@@ -300,6 +306,7 @@ public class MembresiaController {
 		  vn.setTipo(v.getTipo());
 		  vn.setUser(v.getUser());
 		  vn.setCaducidadVenta(cad);
+		  vn.setFecha(cal.getTime());
 		  ventaDao.guardar(vn);
 		  return vn;
 	  }

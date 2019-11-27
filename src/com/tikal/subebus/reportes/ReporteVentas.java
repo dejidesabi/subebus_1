@@ -40,8 +40,8 @@ import com.tikal.subebus.modelo.entity.Venta;
 
 			
 			System.out.println("listaaaaa:"+ventas);
-			String[] headers = new String[] { "Membresia","Tipo","Duracion", "Nombre","Edad", "Sexo","Telefono","Mail","Precio"};
-			Integer[] wd =                   {256*15,      256*15,256*15,      256*20 , 256*5, 256*10, 256*20, 256*30, 256*10};   
+			String[] headers = new String[] { "Fecha Venta","Membresia","Tipo","Duracion", "Caducidad","Nombre","Edad", "Sexo","Telefono","Mail","Precio"};
+			Integer[] wd =                   {256*25,       256*15,      256*15,256*15,     256*25,    256*20 , 256*5, 256*10, 256*20, 256*30, 256*10};   
 			CellStyle headerStyle = workbook.createCellStyle();
 			Font font = workbook.createFont();
 			font.setBoldweight(Font.BOLDWEIGHT_BOLD);
@@ -54,17 +54,24 @@ import com.tikal.subebus.modelo.entity.Venta;
 			// headerStyle.setAlignment();
 
 	        HSSFRow headerRow = sheet.createRow(0);
-	        for (int i = 0; i <9; ++i) {
+	        HSSFCell cell = headerRow.createCell(0);
+            cell.setCellStyle(headerStyle);
+            cell.setCellValue("REPORTE DE VENTAS POR PERIODO");
+            HSSFCell cellz = headerRow.createCell(1);
+            cellz.setCellStyle(headerStyle);
+            		
+            HSSFRow headerRow1 = sheet.createRow(3);
+	        for (int i = 0; i <11; ++i) {
 	            String header = headers[i];
-	            HSSFCell cell = headerRow.createCell(i);
-	            cell.setCellStyle(headerStyle);
-	            cell.setCellValue(header);
+	            HSSFCell cell1 = headerRow1.createCell(i);
+	            cell1.setCellStyle(headerStyle);
+	            cell1.setCellValue(header);
 	            
 	            sheet.setColumnWidth(i,wd[i]);
 	        }
 	        double totalCaja=0;
 	        for(int i=0; i<ventas.size();i++){
-	        	HSSFRow dataRow = sheet.createRow(i + 1);
+	        	HSSFRow dataRow = sheet.createRow(i + 4);
 	        	Venta v= ventas.get(i);
 //	        	List<Detalle> ds= v.getDetalles();
 //	        	if(i==3){
@@ -82,14 +89,14 @@ import com.tikal.subebus.modelo.entity.Venta;
 	        	totalCaja=totalCaja+v.getPrecio();
 	        	
 	        }
-	        HSSFRow dataRow = sheet.createRow(ventas.size()+3);
-	        HSSFCell cellT = dataRow.createCell(7);
+	        HSSFRow dataRow = sheet.createRow(ventas.size()+6);
+	        HSSFCell cellT = dataRow.createCell(9);
 	        cellT.setCellValue("Total en Caja");
 	        cellT.setCellStyle(headerStyle);
 	       // dataRow.createCell(1).setCellValue(totalCaja);
-	        HSSFCell cell = dataRow.createCell(8);
-	        cell.setCellValue(totalCaja);
-	        cell.setCellStyle(headerStyle);
+	        HSSFCell cellt= dataRow.createCell(10);
+	        cellt.setCellValue(totalCaja);
+	        cellt.setCellStyle(headerStyle);
 			return workbook;
 		}
 		

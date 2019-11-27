@@ -2,6 +2,8 @@ package com.tikal.subebus.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -93,7 +95,8 @@ public class VentaController {
 			System.out.println("fechaCaducidad:"+m.getFechaCaducidad());
 			m.setEstatus("ACTIVA");
 			v.setDuracion(m.getDuracion());
-			v.setCaducidadVenta(cal.getTime());
+			v.setFecha(cal.getTime());
+			v.setCaducidadVenta(sumarDias(m.getFechaActivacion(),m.getDuracion()));
 			ventaDao.guardar(v);
 			 m.setIdVenta(v.getId());
 			 memDao.actualizar(m);
@@ -157,7 +160,7 @@ public class VentaController {
 	  @RequestMapping(value = { "/xlsVentas/{idSucursal}" }, method = RequestMethod.GET, produces = "application/vnd.ms-excel")
 		public void xlsVentas(HttpServletRequest re, HttpServletResponse rs, @PathVariable Long idSucursal) throws IOException{
 			AsignadorDeCharset.asignar(re, rs);
-						
+			
 		//	if(Util.verificarPermiso(re, usuariodao, perfildao, 2,5,6)){
 			List<Venta> ventas= new ArrayList<Venta>();
 			if (idSucursal==9999){
@@ -177,6 +180,49 @@ public class VentaController {
 				rs.getOutputStream().close();
 			//}
 		}
+	  
+	  @RequestMapping(value = { "/xlsVentasP/{idSucursal}/{inicio}/{fin}" }, method = RequestMethod.GET, produces = "aplication/vnd.ms-excel")
+			public void xlsVentas(HttpServletRequest re, HttpServletResponse rs, @PathVariable Long idSucursal,
+					@PathVariable String inicio, @PathVariable String  fin) throws IOException, ParseException{
+				AsignadorDeCharset.asignar(re, rs);
+				
+			//	if(Util.verificarPermiso(re, usuariodao, perfildao, 2,5,6)){
+			//	 String perfil=usuarioDao.consultarUsuario(userName).getPerfil();
+			 //     System.out.println("perfil"+perfil);
+			      SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy"); //HH:mm:ss");
+					//	try {
+			      Date datei = formatter.parse(inicio);
+					System.out.println("formatter inicio"+datei);
+					Date datef = formatter.parse(fin);
+					System.out.println("formatter fin"+datef);
+					Calendar c = Calendar.getInstance();
+					c.setTime(datef);
+					c.add(Calendar.DATE, 1);
+					datef = c.getTime();	
+					List<Venta> lista= new ArrayList<Venta>();
+					
+				  if (idSucursal==9999){
+					  System.out.println("ififififififif");
+					  lista= ventaDao.periodoTodas(datei, datef);
+					  System.out.println("ventas array:"+lista.size());
+					  
+				  }else{
+					  System.out.println("eeeeeeee");
+					  lista= ventaDao.periodoSuc(datei, datef, idSucursal);
+					  System.out.println("ventas array:"+lista.size());
+				  }
+				
+			//	List<Venta> ventas= ventaDao.bySucursal(idSucursal);
+				System.out.println("lista de rms:"+lista);
+				//int hojas=lumiDao.hojasRep();
+				//for (int i=1; i<=hojas; i++){
+					ReporteVentas reporte= new ReporteVentas();
+					HSSFWorkbook rep=reporte.getReporte(lista);
+					rep.write(rs.getOutputStream());
+					rs.getOutputStream().flush();
+					rs.getOutputStream().close();
+				//}
+			}
 //	  @RequestMapping(value = "/check", method = RequestMethod.GET)
 //		public void check(HttpServletRequest req, HttpServletResponse res) throws IOException {
 //	//	 Membresia m = memDao.byQr(qr);
@@ -227,7 +273,9 @@ public class VentaController {
 							//	 System.out.println("fecha hoy:"+calendar.getTime());
 								// calendar.set(Calendar.DAY_OF_MONTH, fecha.getDay());
 								 int dia=23;
+								 System.out.println("dia :"+calendar.get(Calendar.HOUR_OF_DAY));
 								 dia=dia-calendar.get(Calendar.HOUR_OF_DAY);
+								 System.out.println("resta dia:"+dia);
 							//	 calendar.set(Calendar.HOUR_OF_DAY,23);  // numero de días a añadir, o restar en caso de días<0
 								 calendar.add(Calendar.HOUR_OF_DAY,dia);
 								 calendar.set(Calendar.MINUTE,59);

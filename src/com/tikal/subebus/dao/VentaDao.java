@@ -1,5 +1,6 @@
 package com.tikal.subebus.dao;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -22,6 +23,10 @@ public interface VentaDao {
 	public List<Venta> findAllPage(int page);
 	
 	public Venta byMembresia(Long idMembresia);
+	
+	public List<Venta> periodoTodas(Date inicio, Date fin); 
+	
+	public List<Venta> periodoSuc(Date inicio, Date fin, Long idSucursal); 
 
 
 }

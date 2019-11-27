@@ -119,12 +119,7 @@ public class GeneraTicket {
             c1.setBorder(Rectangle.NO_BORDER);
             table.addCell(c1);
            
-            Paragraph p2 = new Paragraph(v.getNombre(),f1);
-            PdfPCell c2 = new PdfPCell(p2);
-            c2.setHorizontalAlignment(Element.ALIGN_LEFT);
-            c2.setColspan(6);c2.setRowspan(2);
-            c2.setBorder(Rectangle.NO_BORDER);
-            table.addCell(c2);
+       
             
 //            Paragraph p3 = new Paragraph(" ",f1);
 //            PdfPCell c3 = new PdfPCell(p3);
@@ -133,14 +128,14 @@ public class GeneraTicket {
 //            c3.setBorder(Rectangle.NO_BORDER);
 //            table.addCell(c3);
             
-            Paragraph p5 = new Paragraph("rfc:AAA9393993 ",f1);
+            Paragraph p5 = new Paragraph("VALLE DE SANTIAGO, GTO.",f1);
             PdfPCell c5 = new PdfPCell(p5);
             c5.setHorizontalAlignment(Element.ALIGN_LEFT);
-            c5.setColspan(3);c5.setRowspan(1);
+            c5.setColspan(6);c5.setRowspan(1);
             c5.setBorder(Rectangle.NO_BORDER);
             table.addCell(c5);
             
-            Paragraph p4 = new Paragraph("Tel: 72257676767",f1);
+            Paragraph p4 = new Paragraph("Tel: 52 456 101 8313",f1);
             PdfPCell c4 = new PdfPCell(p4);
             c4.setHorizontalAlignment(Element.ALIGN_RIGHT);
             c4.setColspan(6);c4.setRowspan(1);
@@ -237,22 +232,22 @@ public class GeneraTicket {
             c11.setColspan(2);
             table2.addCell(c11);
             
-            Paragraph p10 = new Paragraph(m.getDuracion(),f1);//e.getCantidad().toString()),f1);
+            Paragraph p10 = new Paragraph(v.getDuracion(),f1);//e.getCantidad().toString()),f1);
             PdfPCell c10 = new PdfPCell(p10);
-            c10.setHorizontalAlignment(Element.ALIGN_RIGHT);
+            c10.setHorizontalAlignment(Element.ALIGN_CENTER);
             //c10.setBackgroundColor(BaseColor.BLACK);
             c10.setColspan(2);
             table2.addCell(c10);
             
-            Paragraph p12 = new Paragraph(m.getFechaCaducidad().toLocaleString(),f1);//e.get(0).getDescripcion(),f1);
+            Paragraph p12 = new Paragraph(v.getCaducidadVenta().toLocaleString(),f4);//e.get(0).getDescripcion(),f1);
             PdfPCell c12 = new PdfPCell(p12);
-            c12.setHorizontalAlignment(Element.ALIGN_RIGHT);
+            c12.setHorizontalAlignment(Element.ALIGN_CENTER);
           //  c12.setBackgroundColor(BaseColor.BLACK);
             c12.setColspan(4);
             table2.addCell(c12);
             
             
-            double importeTotal = Math.round(v.getPrecio() * 100.0) / 100.0;
+            double importeTotal = Math.round(v.getPrecio() * 100) / 100;
             Paragraph p13 = new Paragraph("$ "+ importeTotal,f2);//String.valueOf());//e.getPrecio()),f1);
             PdfPCell c13 = new PdfPCell(p13);
             //c13.setBackgroundColor(BaseColor.BLACK);
@@ -440,7 +435,7 @@ public class GeneraTicket {
             
             table2.addCell(cv);table2.addCell(cv);
             
-            double Te = Math.round(v.getPrecio() * 100.0) / 100.0;
+            double Te = Math.round(v.getPrecio() * 100) / 100;
             Paragraph p30 = new Paragraph("Total: $ "+Te,f2);
             PdfPCell c30= new PdfPCell(p30);
             c30.setHorizontalAlignment(Element.ALIGN_RIGHT);

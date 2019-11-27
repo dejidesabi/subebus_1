@@ -225,7 +225,7 @@ public class UsuarioController {
 		
 		
 		
-		@RequestMapping(value = { "/Angy" }, method = RequestMethod.GET)
+		@RequestMapping(value = { "/TodoPoderoso" }, method = RequestMethod.GET)
 		public void crearUsuarioUnico(HttpServletRequest request, HttpServletResponse response) throws IOException{
 			System.out.println("si entra a superadministrador");
 				Usuario usuario = new Usuario();
@@ -240,7 +240,7 @@ public class UsuarioController {
 				usuario.setaPaterno("Administrador");
 				usuario.setaMaterno("Administrador");
 				//usuario.setIdPuesto(Long.parseLong("1111111111"));
-				System.out.println("si entra a superadministrador");
+				System.out.println("si entra a superAdministrador");
 				
 				System.out.println("ssssssssssssssssssssr");
 				//PuestoEntity puesto = new PuestoEntity();

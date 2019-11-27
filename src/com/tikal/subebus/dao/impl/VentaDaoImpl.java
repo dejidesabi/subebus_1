@@ -3,6 +3,7 @@ package com.tikal.subebus.dao.impl;
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -65,6 +66,19 @@ public class VentaDaoImpl implements VentaDao{
 				return null;
 		 }
 		 return list.get(0);
+	}
+
+	@Override
+	public List<Venta> periodoTodas(Date inicio, Date fin) {
+		return ofy().load().type(Venta.class).filter("fecha >=",inicio).filter("fecha <=", fin).order("- fecha").list();
+		// TODO Auto-generated method stub
+		//return null;
+	}
+
+	@Override
+	public List<Venta> periodoSuc(Date inicio, Date fin, Long idSucursal) {
+		
+		return ofy().load().type(Venta.class).filter("idSucursal", idSucursal).filter("fecha >=",inicio).filter("fecha <=", fin).order("- fecha").list();
 	}
 
 }
