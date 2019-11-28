@@ -38,10 +38,33 @@ app.controller("reporteController",['$scope','$rootScope','$window', '$location'
 	 sessionService.isAuthenticated().then(function(sesion) {
 		 $scope.CurrentDate = new Date()
 		 $scope.idSucursal = sesion.idSucursal;
-		  console.log(sesion)
+		  
+		  $scope.printVenta = function(fInicio,fFin){
+				 
+				 var inicio = moment(fInicio).format('MM-DD-YYYY');
+				 var fin = moment(fFin).format('MM-DD-YYYY');
+				 var url = "venta/xlsVentasP/"+$scope.idSucursal+"/"+inicio+"/"+fin;  
+				 var link = document.createElement("a");
+				    link.download = "ReporteVenta_"+inicio+"_a_"+fin+".xls";
+				    link.href = url;
+				    link.click();
+
+			 }
+		  $scope.printRuta= function(fInicio,fFin){
+				 
+				 var inicio = moment(fInicio).format('MM-DD-YYYY');
+				 var fin = moment(fFin).format('MM-DD-YYYY');
+				 var url = "rutaMem/xlsRutaP/"+$scope.idSucursal+"/"+inicio+"/"+fin;  
+				 var link = document.createElement("a");
+				    link.download = "ReporteRuta_"+inicio+"_a_"+fin+".xls";
+				    link.href = url;
+				    link.click();
+
+			 }
 	 
 	 //Fin
 	 
 	 })
+	
 } ]);	
 
