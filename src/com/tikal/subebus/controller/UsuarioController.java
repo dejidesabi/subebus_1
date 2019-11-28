@@ -277,9 +277,17 @@ public class UsuarioController {
 				for(int i=0; i < arreglo1.length; i++){
 					arreglo1[i] = true;
 				}
-				
 				perfil1.setPermisos(arreglo1);
 				perfilDAO.crearPerfil(perfil1);
+				
+				Perfil perfil2 = new Perfil();
+				perfil2.setTipo("Chofer");
+				boolean[] arreglo2 = new boolean[10];
+				for(int i=0; i < arreglo2.length; i++){
+					arreglo2[i] = true;
+				}				
+				perfil2.setPermisos(arreglo2);
+				perfilDAO.crearPerfil(perfil2);
 				////////administrador
 				Perfil perfilA = new Perfil();
 				perfilA.setTipo("Administrador");

@@ -182,7 +182,7 @@ public class VentaController {
 		}
 	  
 	  @RequestMapping(value = { "/xlsVentasP/{idSucursal}/{inicio}/{fin}" }, method = RequestMethod.GET, produces = "aplication/vnd.ms-excel")
-			public void xlsVentas(HttpServletRequest re, HttpServletResponse rs, @PathVariable Long idSucursal,
+			public void xlsVentasP(HttpServletRequest re, HttpServletResponse rs, @PathVariable Long idSucursal,
 					@PathVariable String inicio, @PathVariable String  fin) throws IOException, ParseException{
 				AsignadorDeCharset.asignar(re, rs);
 				
