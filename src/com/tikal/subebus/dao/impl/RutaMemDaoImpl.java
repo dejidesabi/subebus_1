@@ -2,6 +2,7 @@ package com.tikal.subebus.dao.impl;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.tikal.subebus.dao.RutaMemDao;
 import com.tikal.subebus.modelo.entity.Lote;
 import com.tikal.subebus.modelo.entity.RutaMem;
+import com.tikal.subebus.modelo.entity.Venta;
 
 @Service("rmDao")
 public class RutaMemDaoImpl implements RutaMemDao {
@@ -53,6 +55,16 @@ public class RutaMemDaoImpl implements RutaMemDao {
 	public RutaMem cargar(Long idRutaMem) {
 		return ofy().load().type(RutaMem.class).id(idRutaMem).now();
 		
+	}
+
+	@Override
+	public List<RutaMem> periodoTodas(Date inicio, Date fin) {
+		return ofy().load().type(RutaMem.class).filter("fecha >=",inicio).filter("fecha <=", fin).order("- fecha").list();
+	}
+
+	@Override
+	public List<RutaMem> periodoSuc(Date inicio, Date fin, Long idSucursal) {
+		return ofy().load().type(RutaMem.class).filter("sucursal", idSucursal).filter("fecha >=",inicio).filter("fecha <=", fin).order("- fecha").list();
 	}
 
 

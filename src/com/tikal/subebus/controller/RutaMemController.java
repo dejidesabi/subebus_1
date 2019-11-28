@@ -2,7 +2,11 @@ package com.tikal.subebus.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +29,9 @@ import com.tikal.subebus.dao.UsuarioDao;
 import com.tikal.subebus.modelo.entity.Lote;
 import com.tikal.subebus.modelo.entity.RutaBus;
 import com.tikal.subebus.modelo.entity.RutaMem;
+import com.tikal.subebus.modelo.entity.Venta;
 import com.tikal.subebus.reportes.ReporteRutaMem;
+import com.tikal.subebus.reportes.ReporteVentas;
 import com.tikal.subebus.util.JsonConvertidor;
 import com.tikal.subebus.util.AsignadorDeCharset;
 
@@ -124,6 +130,49 @@ public class RutaMemController {
 				rs.getOutputStream().close();
 			//}
 		}
+		
+		  @RequestMapping(value = { "/xlsRutaP/{idSucursal}/{inicio}/{fin}" }, method = RequestMethod.GET, produces = "aplication/vnd.ms-excel")
+			public void xlsRutasP(HttpServletRequest re, HttpServletResponse rs, @PathVariable Long idSucursal,
+					@PathVariable String inicio, @PathVariable String  fin) throws IOException, ParseException{
+				AsignadorDeCharset.asignar(re, rs);
+				
+			//	if(Util.verificarPermiso(re, usuariodao, perfildao, 2,5,6)){
+			//	 String perfil=usuarioDao.consultarUsuario(userName).getPerfil();
+			 //     System.out.println("perfil"+perfil);
+			      SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy"); //HH:mm:ss");
+					//	try {
+			      Date datei = formatter.parse(inicio);
+					System.out.println("formatter inicio"+datei);
+					Date datef = formatter.parse(fin);
+					System.out.println("formatter fin"+datef);
+					Calendar c = Calendar.getInstance();
+					c.setTime(datef);
+					c.add(Calendar.DATE, 1);
+					datef = c.getTime();	
+					List<RutaMem> lista= new ArrayList<RutaMem>();
+					
+				  if (idSucursal==9999){
+					  System.out.println("ififififififif");
+					  lista= rmDao.periodoTodas(datei, datef);
+					  System.out.println("ventas array:"+lista.size());
+					  
+				  }else{
+					  System.out.println("eeeeeeee");
+					  lista= rmDao.periodoSuc(datei, datef, idSucursal);
+					  System.out.println("ventas array:"+lista.size());
+				  }
+				
+			//	List<Venta> ventas= ventaDao.bySucursal(idSucursal);
+				System.out.println("lista de rms:"+lista);
+				//int hojas=lumiDao.hojasRep();
+				//for (int i=1; i<=hojas; i++){
+					ReporteRutaMem reporte= new ReporteRutaMem();
+					HSSFWorkbook rep=reporte.getReporte(lista);
+					rep.write(rs.getOutputStream());
+					rs.getOutputStream().flush();
+					rs.getOutputStream().close();
+				//}
+			}
 		
 	  
 }

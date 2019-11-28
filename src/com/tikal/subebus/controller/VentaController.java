@@ -223,6 +223,8 @@ public class VentaController {
 					rs.getOutputStream().close();
 				//}
 			}
+	  
+	  
 //	  @RequestMapping(value = "/check", method = RequestMethod.GET)
 //		public void check(HttpServletRequest req, HttpServletResponse res) throws IOException {
 //	//	 Membresia m = memDao.byQr(qr);
