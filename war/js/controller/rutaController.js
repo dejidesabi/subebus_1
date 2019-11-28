@@ -44,6 +44,8 @@ app.controller("rutaController",['$scope','$rootScope','$window', '$location', '
 	 $scope.idSuc = $cookieStore.get('idSucursal');
 	 $rootScope.titulo = "Pagina de Rutas";
 	 $rootScope.Menu = "Ruta"
+		 $scope.listaChofer = catChofer();
+	
 	 rutaService.getSucursal().then(function(data) {
 		$scope.sucursalData=data;
 		

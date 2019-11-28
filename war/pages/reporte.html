@@ -20,9 +20,9 @@
 			<div class="col-md-4">
 				<div class="input-group input-daterange">
 					<input type="date" class="form-control" ng-model="fInicio">
-					<div class="input-group-addon"> - </div>
+					&nbsp;<div class="input-group-addon"> - </div>&nbsp;
 					<input type="date" class="form-control" ng-model="fFin">
-					<a class="btn btn-info" data-toggle="tooltip" title="Imprimir Reporte de Rutas" ng-click="printRuta(fInicio,fFin)"><i class="fas fa-file-excel"></i>Reporte Rutas</a>
+					<button class="btn btn-info" data-toggle="tooltip" title="Imprimir Reporte de Rutas" ng-click="printRuta(fInicio,fFin)"><i class="fas fa-file-excel"></i>Reporte Rutas</button>
 				
 				</div>
 			</div>
@@ -56,7 +56,7 @@
 					<input type="date" class="form-control" ng-model="fechaInicio">
 					<div class="input-group-addon"> - </div>
 					<input type="date" class="form-control" ng-model="fechaFin">
-					<a class="btn btn-info" data-toggle="tooltip" title="Imprimir Reporte Ventas" ng-click="printVenta(fechaInicio,fechaFin)"><i class="fas fa-file-excel"></i>Reporte Ventas</a>
+					<button class="btn btn-info" data-toggle="tooltip" title="Imprimir Reporte Ventas" ng-click="printVenta(fechaInicio,fechaFin)"><i class="fas fa-file-excel"></i>Reporte Ventas</button>
 				
 				</div>
 			</div>

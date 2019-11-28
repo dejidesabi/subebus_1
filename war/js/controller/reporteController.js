@@ -40,7 +40,10 @@ app.controller("reporteController",['$scope','$rootScope','$window', '$location'
 		 $scope.idSucursal = sesion.idSucursal;
 		  
 		  $scope.printVenta = function(fInicio,fFin){
-				 
+				 if(!fInicio || !fFin){
+					 alert("Es necesario ingresar la Fecha para el reporte de Ventas");
+					 return
+				 }
 				 var inicio = moment(fInicio).format('MM-DD-YYYY');
 				 var fin = moment(fFin).format('MM-DD-YYYY');
 				 var url = "venta/xlsVentasP/"+$scope.idSucursal+"/"+inicio+"/"+fin;  
@@ -51,7 +54,10 @@ app.controller("reporteController",['$scope','$rootScope','$window', '$location'
 
 			 }
 		  $scope.printRuta= function(fInicio,fFin){
-				 
+			  if(!fInicio || !fFin){
+					 alert("Es necesario ingresar ambas Fecha para el reporte de Rutas");
+					 return
+				 }
 				 var inicio = moment(fInicio).format('MM-DD-YYYY');
 				 var fin = moment(fFin).format('MM-DD-YYYY');
 				 var url = "rutaMem/xlsRutaP/"+$scope.idSucursal+"/"+inicio+"/"+fin;  

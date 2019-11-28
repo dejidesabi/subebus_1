@@ -9,10 +9,12 @@
                       <div class="form-group">
                         <label>Ruta</label>
                         <select ng-model="altaRuta.ruta" class="form-control">
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
+						<option>LINDAVISTA</option>
+						<option>MIRAVALLE</option>
+						<option>CHORRITO</option>
+						<option>SEGURO</option>
+						<option>RANCHOS UNIDOS</option>
+						<option>HOYA</option>
 					</select>
                       </div>
                     </div>
@@ -20,11 +22,36 @@
                       <div class="form-group">
                         <label for="exampleInputEmail1">Autobus</label>
                         <select ng-model="altaRuta.bus" class="form-control">
-						<option>BUS101</option>
-						<option>BUS102</option>
-						<option>BUS103</option>
-						<option>BUS103</option>
-						<option>BUS104</option>
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+						<option>6</option>
+						<option>7</option>
+						<option>8</option>
+						<option>9</option>
+						<option>10</option>
+						<option>11</option>
+						<option>12</option>
+						<option>13</option>
+						<option>14</option>
+						<option>15</option>
+						<option>16</option>
+						<option>17</option>
+						<option>18</option>
+						<option>20</option>
+						<option>21</option>
+						<option>24</option>
+						<option>26</option>
+						<option>27</option>
+						<option>28</option>
+						<option>98</option>
+						<option>99</option>
+						<option>100</option>
+						<option>164</option>
+						<option>165</option>
+						
 					</select>
                       </div>
                     </div>
@@ -32,11 +59,7 @@
                       <div class="form-group">
                         <label for="exampleInputEmail1">CHOFER</label>
                         <select ng-model="altaRuta.chofer" class="form-control">
-						<option>JUAN</option>
-						<option>PEDRO</option>
-						<option>PABLO</option>
-						<option>KEVIN</option>
-						<option>MANUEL</option>
+						<option ng-repeat="i in listaChofer">{{i.nombre}}</option>
 					</select>
                       </div>
                     </div>
