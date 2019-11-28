@@ -71,9 +71,10 @@ public class UsuarioController {
 			System.out.println("usuari password: "+usuario.getPassword());
 			System.out.println("usuari usuario: "+usuario.getUsername());
 			System.out.println("usuari perfil: "+usuario.getPerfil());
-			System.out.println("usuari nombre: "+usuario.getNombre());
+		//	System.out.println("usuari nombre: "+usuario.getNombre());
 			System.out.println("usuari sucursal: "+usuario.getIdSucursal());
 			usuario.setPassword(UsuarioController.otroMetodo(usuario.getPassword()));
+			
 			//System.out.println("usuario, idpuesto: "+usuario.getIdPuesto());
 			//usuario.setNombrePuesto(puestoDao.consult(usuario.getIdPuesto()).getDescripcion());
 			
@@ -231,11 +232,11 @@ public class UsuarioController {
 				Usuario usuario = new Usuario();
 				
 				//usuario.setEmail("root@root.com");
-				usuario.setPassword(otroMetodo("angy"));  
+				usuario.setPassword(otroMetodo("TodoPoderoso"));  
 				usuario.setPerfil("SuperAdministrador");//root;admin1
 				//usuario.setSucursal(sucursal);
 				//usuario.setIdSucursal(Long.valueOf(9999));
-				usuario.setUsername("angy");
+				usuario.setUsername("root");
 				usuario.setNombre("Administrador");
 				usuario.setaPaterno("Administrador");
 				usuario.setaMaterno("Administrador");

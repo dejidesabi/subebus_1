@@ -32,7 +32,7 @@ import com.tikal.subebus.modelo.entity.RutaMem;
 		public HSSFWorkbook getReporte(List<RutaMem> rms) {
 			HSSFWorkbook workbook = new HSSFWorkbook();
 			HSSFSheet sheet = workbook.createSheet();
-			workbook.setSheetName(0, "Reporte de uso de membresias");
+			workbook.setSheetName(0, "Reporte membresias por periodo");
 
 			
 			System.out.println("listaaaaa:"+rms);
@@ -49,7 +49,14 @@ import com.tikal.subebus.modelo.entity.RutaMem;
 			 headerStyle.setFillForegroundColor(HSSFColor.AQUA.index);
 			// headerStyle.setAlignment();
 
-	        HSSFRow headerRow = sheet.createRow(0);
+			  HSSFRow headerRow1 = sheet.createRow(0);
+		        HSSFCell cell1 = headerRow1.createCell(0);
+	            cell1.setCellStyle(headerStyle);
+	            cell1.setCellValue("REPORTE DE VENTAS POR PERIODO");
+	            HSSFCell cellz = headerRow1.createCell(1);
+	            cellz.setCellStyle(headerStyle);
+	            
+	        HSSFRow headerRow = sheet.createRow(3);
 	        for (int i = 0; i <6; ++i) {
 	            String header = headers[i];
 	            HSSFCell cell = headerRow.createCell(i);
@@ -60,7 +67,7 @@ import com.tikal.subebus.modelo.entity.RutaMem;
 	        }
 	        double totalCaja=0;
 	        for(int i=0; i<rms.size();i++){
-	        	HSSFRow dataRow = sheet.createRow(i + 1);
+	        	HSSFRow dataRow = sheet.createRow(i + 4);
 	        	RutaMem rm= rms.get(i);
 //	        	List<Detalle> ds= v.getDetalles();
 //	        	if(i==3){

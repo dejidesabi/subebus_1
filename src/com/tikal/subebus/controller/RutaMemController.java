@@ -138,7 +138,7 @@ public class RutaMemController {
 				
 			//	if(Util.verificarPermiso(re, usuariodao, perfildao, 2,5,6)){
 			//	 String perfil=usuarioDao.consultarUsuario(userName).getPerfil();
-			 //     System.out.println("perfil"+perfil);
+			    System.out.println("inicio"+inicio); System.out.println("fin"+fin); System.out.println("suc:"+idSucursal);
 			      SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy"); //HH:mm:ss");
 					//	try {
 			      Date datei = formatter.parse(inicio);
@@ -153,13 +153,14 @@ public class RutaMemController {
 					
 				  if (idSucursal==9999){
 					  System.out.println("ififififififif");
+					  System.out.println("datei:"+datei);System.out.println("datef:"+datef);
 					  lista= rmDao.periodoTodas(datei, datef);
-					  System.out.println("ventas array:"+lista.size());
+					  System.out.println("rutas array:"+lista.size());
 					  
 				  }else{
 					  System.out.println("eeeeeeee");
 					  lista= rmDao.periodoSuc(datei, datef, idSucursal);
-					  System.out.println("ventas array:"+lista.size());
+					  System.out.println("rutas array:"+lista.size());
 				  }
 				
 			//	List<Venta> ventas= ventaDao.bySucursal(idSucursal);

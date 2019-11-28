@@ -17,7 +17,7 @@ public class RutaMem {
 	@Index Long membresia;
 	private String duracion;
 	private String nombre;
-	private Date fecha;
+	@Index private Date fecha;
 	@Index private Long sucursal;
 	private Long venta;
 //	public Long getId() {
