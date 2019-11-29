@@ -8,7 +8,7 @@
                    
                     <div class="col-md-2 px-1">
                       <div class="form-group">
-                        <label>Nombre de Usuario</label>
+                        <label>Usuario <span style="font-size: 8">(Con este iniciara sesion)</span></label>
                          <input 
                           ng-model="altaUsuario.usuario" 
                          type="text" 
@@ -16,6 +16,19 @@
                          placeholder="Ingrese su usuario" 
                          required 
                          autocomplete="new_user" 
+                         name="use">
+                      </div>
+                    </div>
+                     <div class="col-md-2 px-1">
+                      <div class="form-group">
+                        <label>Nombre de Usuario</label>
+                         <input 
+                          ng-model="altaUsuario.nombre" 
+                         type="text" 
+                         class="form-control" 
+                         placeholder="Ingrese nombre completo" 
+                         required 
+                         autocomplete="new_name" 
                          name="use">
                       </div>
                     </div>
@@ -57,6 +70,7 @@
                         required>
                       </div>
                     </div>
+                    
                      <div class="col-md-4 pl-1">
                       <div class="form-group">
                         <label for="exampleInputEmail1">Sucursal</label>
