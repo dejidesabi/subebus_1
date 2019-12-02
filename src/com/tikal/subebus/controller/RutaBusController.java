@@ -28,6 +28,7 @@ import com.tikal.subebus.dao.UsuarioDao;
 
 import com.tikal.subebus.modelo.entity.Lote;
 import com.tikal.subebus.modelo.entity.RutaBus;
+import com.tikal.subebus.modelo.login.Usuario;
 import com.tikal.subebus.util.JsonConvertidor;
 import com.tikal.subebus.util.AsignadorDeCharset;
 
@@ -75,10 +76,22 @@ public class RutaBusController {
 
 		}
 	 
-	 @RequestMapping(value = { "/byChofer/{chofer}" }, method = RequestMethod.GET, produces = "application/json")
-		public void byChofer(HttpServletResponse response, HttpServletRequest request, @PathVariable String chofer) throws IOException {
+//	 @RequestMapping(value = { "/byChofer/{chofer}" }, method = RequestMethod.GET, produces = "application/json")
+//		public void byChofer(HttpServletResponse response, HttpServletRequest request, @PathVariable String chofer) throws IOException {
+//			AsignadorDeCharset.asignar(request, response);
+//			RutaBus rb= rbDao.byChofer(chofer);
+//		
+//			response.getWriter().println(JsonConvertidor.toJson(rb));
+//
+//		}
+//	 
+	 
+	 
+	 @RequestMapping(value = { "/byChofer/{uChofer}" }, method = RequestMethod.GET, produces = "application/json")
+		public void byChofer(HttpServletResponse response, HttpServletRequest request, @PathVariable String uChofer) throws IOException {
 			AsignadorDeCharset.asignar(request, response);
-			RutaBus rb= rbDao.byChofer(chofer);
+			Usuario u=usuarioDao.consultarUsuario(uChofer);
+			RutaBus rb= rbDao.byChofer(u.getNombreCompleto());
 		
 			response.getWriter().println(JsonConvertidor.toJson(rb));
 

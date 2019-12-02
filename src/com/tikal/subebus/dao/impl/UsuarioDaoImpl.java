@@ -95,6 +95,13 @@ public class UsuarioDaoImpl implements UsuarioDao{
 	}
 
 	@Override
+	public List<Usuario> byPerfil(String perfil) {
+
+		return ofy().load().type(Usuario.class).filter("perfil",  perfil).list();
+	}
+	
+	
+	@Override
 	public boolean actualizarUsuario(Usuario u) {
 		
 		 System.out.print("usu:"+u.getId());
