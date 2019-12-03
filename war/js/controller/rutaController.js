@@ -36,6 +36,14 @@ app.service("rutaService",['$http', '$q','$window', function($http, $q,$window){
 			});
 		return d.promise;
 	}
+	this.getUserChofer = function(){
+		var d = $q.defer();
+		$http.get("usuario/listaChofer").then(
+			function(response) {
+				d.resolve(response.data);
+			});
+		return d.promise;
+	}
 
 }]);
 
@@ -44,14 +52,14 @@ app.controller("rutaController",['$scope','$rootScope','$window', '$location', '
 	 $scope.idSuc = $cookieStore.get('idSucursal');
 	 $rootScope.titulo = "Pagina de Rutas";
 	 $rootScope.Menu = "Ruta"
-		 $scope.listaChofer = catChofer();
+		
 	
 	 rutaService.getSucursal().then(function(data) {
 		$scope.sucursalData=data;
 		
 		//console.log("La Sucursal",$scope.sucursalData);
 	})
-
+	
 	 function showSeconds(){
 		 alert("Ejecutado");
 		}
@@ -80,6 +88,11 @@ app.controller("rutaController",['$scope','$rootScope','$window', '$location', '
 						$scope.obtenerRuta();
 					})
 		}
-
+		$scope.getListaChofer = function(){
+			rutaService.getUserChofer().then(function(data) {
+				 $scope.listaChofer = data;
+			});
+		}
+		$scope.getListaChofer();
 } ]);	
 
