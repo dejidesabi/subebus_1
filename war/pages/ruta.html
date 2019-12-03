@@ -59,7 +59,7 @@
                       <div class="form-group">
                         <label for="exampleInputEmail1">CHOFER</label>
                         <select ng-model="altaRuta.chofer" class="form-control">
-						<option ng-repeat="i in listaChofer">{{i.nombreCompleto}}</option>
+						<option ng-repeat="i in listaChofer" ng-value="i.usuario">{{i.nombreCompleto}}</option>
 					</select>
                       </div>
                     </div>

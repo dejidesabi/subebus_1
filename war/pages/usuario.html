@@ -117,16 +117,16 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr ng-repeat="usuario in listUser" ng-if="usuario.usuario!='root'">
+							<tr ng-repeat="usuario in listUser" ng-if="usuario.perfil!='SuperAdministrador'">
 								<td>{{usuario.usuario}}</td>
 								<td><select ng-model="usuario.perfil">
 										<option ng-repeat="p in perfilData" ng-if="p.tipo!='SuperAdministrador'" ng-value="{{p.id}}">{{p.tipo}}</option>
 									</select></td>
+<!-- 									<td><select ng-model="usuario.idSucursal"> -->
+<!-- 										<option ng-repeat="s in sucursalData" ng-value="{{s.id}}">{{s.nombre}}</option> -->
+<!-- 									</select></td> -->
 									
-								<td>{{usuario.idSucursal}}
-							
-										
-									</td>
+								<td>{{usuario.sucursal}}</td>
 									
 								<td><button type="button" class="btn btn-success"
 										ng-click="actualiza(usuario)">Actualizar</button>

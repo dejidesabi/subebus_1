@@ -53,13 +53,13 @@ app.controller("rutaController",['$scope','$rootScope','$window', '$location', '
 	 $rootScope.titulo = "Pagina de Rutas";
 	 $rootScope.Menu = "Ruta"
 		
-	
+	$scope.getSucursal = function(){
 	 rutaService.getSucursal().then(function(data) {
 		$scope.sucursalData=data;
 		
 		//console.log("La Sucursal",$scope.sucursalData);
 	})
-	
+	 }
 	 function showSeconds(){
 		 alert("Ejecutado");
 		}
@@ -68,7 +68,8 @@ app.controller("rutaController",['$scope','$rootScope','$window', '$location', '
 		//setInterval(showSeconds,10000);
 	 
 	 	$scope.obtenerRuta = function(){
-	 		 rutaService.getRutas().then(function(data) {
+	 		$scope.getSucursal();
+	 		 rutaService.getRutas().then(function(data) {	
 					$scope.listRuta = data;
 					for(i in $scope.listRuta){
 						for(o in $scope.sucursalData){

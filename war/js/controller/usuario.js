@@ -57,7 +57,7 @@ app.service("usuarioService",['$http', '$q','$window', function($http, $q,$windo
 	
 }]);
 
-app.controller("usuarioController",['$scope','$rootScope','$window', '$location', '$cookieStore','usuarioService','sessionService','sucursalService',function($scope,$rootScope, $window, $location, $cookieStore, usuarioService,sessionService,sucursalService){
+app.controller("usuarioController",['$scope','$rootScope','$window', '$location', '$cookieStore','usuarioService','sessionService','sucursalService','rutaService',function($scope,$rootScope, $window, $location, $cookieStore, usuarioService,sessionService,sucursalService,rutaService){
 	//sessionService.isAuthenticated();
 	 $scope.idSuc = $cookieStore.get('idSucursal');
 	 $rootScope.Menu = "Usuario";
@@ -65,6 +65,11 @@ app.controller("usuarioController",['$scope','$rootScope','$window', '$location'
 	 $scope.formhide = true;
 	 $scope.msgError = "";
 	 $scope.boxError = false;
+		 rutaService.getSucursal().then(function(data) {
+			$scope.sucursalData=data;
+			
+			//console.log("La Sucursal",$scope.sucursalData);
+		})
 
 	 sucursalService.getSucursal().then(function(data) {
 			$scope.sucursalData=data;
@@ -77,6 +82,14 @@ app.controller("usuarioController",['$scope','$rootScope','$window', '$location'
 	$scope.getListUsers = function(){
 	usuarioService.getUsers().then(function(data){
 		$scope.listUser=data;
+		for(i in $scope.listUser){
+			for(o in $scope.sucursalData){
+				if($scope.listUser[i].idSucursal == $scope.sucursalData[o].id ){
+					$scope.listUser[i].sucursal = $scope.sucursalData[o].nombre;
+				}
+			}
+			
+		}
 	})
 	 }	
 	 $scope.validPassword = function(){
@@ -124,6 +137,7 @@ if(typeof($scope.altaUsuario.password)!== 'undefined'){
 			 location.reload();
 		 })
 	}
+	
 	$scope.newPsw=function(user){
 		
 		$("#modalnewPsw").modal();
