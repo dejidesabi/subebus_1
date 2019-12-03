@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-
+import com.tikal.subebus.dao.AlertaDAO;
 import com.tikal.subebus.dao.FolioDao;
 import com.tikal.subebus.dao.LoteDao;
 import com.tikal.subebus.dao.MembresiaDao;
@@ -29,6 +29,7 @@ import com.tikal.subebus.dao.RutaMemDao;
 import com.tikal.subebus.dao.SessionDao;
 import com.tikal.subebus.dao.UsuarioDao;
 import com.tikal.subebus.dao.VentaDao;
+import com.tikal.subebus.modelo.entity.Alerta;
 import com.tikal.subebus.modelo.entity.Lote;
 import com.tikal.subebus.modelo.entity.Membresia;
 import com.tikal.subebus.modelo.entity.RutaBus;
@@ -70,6 +71,9 @@ public class MembresiaController {
 	 @Autowired
 	 @Qualifier("sessionDao")
 	 SessionDao sessionDao; 
+	 
+	 @Autowired
+	 AlertaDAO alertaDao;
 	 
 	 @RequestMapping(value = {"/add" }, method = RequestMethod.POST, produces = "application/json", consumes = "application/json")
 	 public void add(HttpServletRequest re, HttpServletResponse rs, @RequestBody String json) throws IOException, SQLException {
@@ -146,7 +150,7 @@ public class MembresiaController {
 	 /////////  checa si esta activa o no la membresia  ANDROID
 	  @RequestMapping(value = "/byQR/{qr}/{idRutaBus}", method = RequestMethod.GET)
 			public void checkqr(HttpServletRequest req, HttpServletResponse res, @PathVariable String qr, @PathVariable Long idRutaBus) throws IOException {
-		  System.out.println("checarndo al abordar....");
+		  System.out.println("checando al abordar....");
 			 Membresia m = memDao.byQr(qr);
 			 if (m.getEstatus().equals("INACTIVA") && m.getDuracion().equals("Dia")){
 				 System.out.println("Se activará la membresia conveniente por este dia...");
@@ -154,13 +158,14 @@ public class MembresiaController {
 				 memDao.actualizar(m);
 			 }
 			 RutaBus rb= rbDao.cargar(idRutaBus);
-			// if(m.getEstatus().equals("ACTIVA") || m.getEstatus().equals("EN USO")){
-				 crearRutaMem(m,rb);
-				
-		//	 }else{
-			//	 System.out.println("Membresia INACTIVA...");
-			// }
+			 crearRutaMem(m,rb);
+	
 		   if(m.getEstatus().equals("EN USO")){
+			   Alerta a= new Alerta();
+			   a.idproducto=m.getId();
+			   a.nombre="--";
+			   a.alerta="LA MEMBRESIA "+m.getId()+" ESTA INTENTANDO ACCESAR EN VARIAS RUTAS...";
+			   alertaDao.add(a);
 			   System.out.println("Intento de fraude.... Esta membresia ya esta en uso...");
 		   }
 		   res.getWriter().println(JsonConvertidor.toJson(m.getEstatus()));
@@ -233,13 +238,12 @@ public class MembresiaController {
 		  rm.setChofer(rb.getChofer());
 		  rm.setMembresia(m.getId());
 		  rm.setDuracion(m.getDuracion());
-		  rm.setFecha(cal.getTime());
-
-//		 
+		  rm.setFecha(cal.getTime());//		 
 		  rm.setSucursal(m.getIdSucursal());
 		  rm.setVenta(v.getId());
 		  rm.setNombre(v.getNombre());
 		  rmDao.guardar(rm);
+		  System.out.println("guardada rm");
 
 	  }		
 	  

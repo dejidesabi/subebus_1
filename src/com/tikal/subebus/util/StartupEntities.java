@@ -6,7 +6,7 @@ import javax.servlet.ServletContextListener;
 import org.springframework.stereotype.Component;
 
 import com.googlecode.objectify.ObjectifyService;
-
+import com.tikal.subebus.modelo.entity.Alerta;
 import com.tikal.subebus.modelo.entity.Folio;
 import com.tikal.subebus.modelo.entity.Lote;
 import com.tikal.subebus.modelo.entity.Membresia;
@@ -42,7 +42,7 @@ public class StartupEntities implements ServletContextListener {
 			ObjectifyService.register(RutaBus.class);
 			ObjectifyService.register(RutaMem.class);
 			ObjectifyService.register(Venta.class);
-			
+			ObjectifyService.register(Alerta.class);
 		}
 
 	@Override

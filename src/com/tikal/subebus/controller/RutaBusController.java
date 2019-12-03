@@ -91,9 +91,10 @@ public class RutaBusController {
 		public void byChofer(HttpServletResponse response, HttpServletRequest request, @PathVariable String uChofer) throws IOException {
 			AsignadorDeCharset.asignar(request, response);
 			Usuario u=usuarioDao.consultarUsuario(uChofer);
+			System.out.println("usuarioooo:"+u.getNombreCompleto());
 			RutaBus rb= rbDao.byChofer(u.getNombreCompleto());
 		
-			response.getWriter().println(JsonConvertidor.toJson(rb));
+			response.getWriter().println(JsonConvertidor.toJson(rb)); 
 
 		}
 	 

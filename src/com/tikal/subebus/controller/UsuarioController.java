@@ -311,7 +311,7 @@ public class UsuarioController {
 				
 				List<Usuario> lista=usuarioDao.byPerfil("Chofer");
 				response.getWriter().println(JsonConvertidor.toJson(lista));
-
+				
 			}
 
 }
