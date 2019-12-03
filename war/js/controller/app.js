@@ -195,6 +195,19 @@ app.run(['$rootScope','$http','sessionService','userFactory',function ($rootScop
 		userFactory.setUsuarioFirmado(us);
 		$rootScope.perfilUsuario=userFactory.getUsuarioPerfil();
 		$rootScope.titulo = "Sistema Run";
+		
+		 sessionService.isAuthenticated().then(function(sesion) {
+			  
+			  sessionService.consultarPerfilesTodos().then(function(data) {
+				  
+				  for(i in data){
+					  if(sesion.perfil == data[i].tipo){
+						 $rootScope.autorizacion = data[i].permisos;
+						 console.log($rootScope.autorizacion);
+					  }
+				  }
+			  });
+		 });
 //		$http.get("/notificacion/numAlertas/"+ us.id).then(function(response){
 //			$rootScope.numNotificaciones=response.data;
 //		})
