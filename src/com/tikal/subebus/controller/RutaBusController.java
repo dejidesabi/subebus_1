@@ -76,27 +76,27 @@ public class RutaBusController {
 
 		}
 	 
-//	 @RequestMapping(value = { "/byChofer/{chofer}" }, method = RequestMethod.GET, produces = "application/json")
-//		public void byChofer(HttpServletResponse response, HttpServletRequest request, @PathVariable String chofer) throws IOException {
-//			AsignadorDeCharset.asignar(request, response);
-//			RutaBus rb= rbDao.byChofer(chofer);
-//		
-//			response.getWriter().println(JsonConvertidor.toJson(rb));
-//
-//		}
-//	 
-	 
-	 
-	 @RequestMapping(value = { "/byChofer/{uChofer}" }, method = RequestMethod.GET, produces = "application/json")
-		public void byChofer(HttpServletResponse response, HttpServletRequest request, @PathVariable String uChofer) throws IOException {
+	 @RequestMapping(value = { "/byChofer/{chofer}" }, method = RequestMethod.GET, produces = "application/json")
+		public void byChofer(HttpServletResponse response, HttpServletRequest request, @PathVariable String chofer) throws IOException {
 			AsignadorDeCharset.asignar(request, response);
-			Usuario u=usuarioDao.consultarUsuario(uChofer);
-			System.out.println("usuarioooo:"+u.getNombreCompleto());
-			RutaBus rb= rbDao.byChofer(u.getNombreCompleto());
+			RutaBus rb= rbDao.byChofer(chofer);
 		
-			response.getWriter().println(JsonConvertidor.toJson(rb)); 
+			response.getWriter().println(JsonConvertidor.toJson(rb));
 
 		}
+	 
+	 
+	 
+//	 @RequestMapping(value = { "/byChofer/{uChofer}" }, method = RequestMethod.GET, produces = "application/json")
+//		public void byChofer(HttpServletResponse response, HttpServletRequest request, @PathVariable String uChofer) throws IOException {
+//			AsignadorDeCharset.asignar(request, response);
+//			Usuario u=usuarioDao.consultarUsuario(uChofer);
+//			System.out.println("usuarioooo:"+u.getNombreCompleto());
+//			RutaBus rb= rbDao.byChofer(u.getNombreCompleto());
+//		
+//			response.getWriter().println(JsonConvertidor.toJson(rb)); 
+//
+//		}
 	 
 	 
 }

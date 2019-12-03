@@ -44,7 +44,8 @@ import java.text.SimpleDateFormat;
 	    	 
 	    	  
 	    	try {
-	    		Rectangle envelope = new Rectangle(300, 1500);
+	    		int largo= 200;
+	    		Rectangle envelope = new Rectangle(300, largo*mems.size());
 	    	  //  Document document = new Document(envelope, 230f, 10f, 100f, 0f);
 	    		Document document = new Document(envelope,0,0,0,0);  
 	    	

@@ -40,8 +40,7 @@
 		<property name="file.encoding" value="UTF-8" />
 		<property name="DEFAULT_ENCODING" value="UTF-8" />
 
-		<property name="ae-cloudsql.cloudsql-database-url"
-			value="jdbc:google:mysql://stdsistema2:us-central1:std2sql/catalogos?user=ismael&amp;password=nMVKLZ7yuj" />
+		
 	</system-properties>
 
 	

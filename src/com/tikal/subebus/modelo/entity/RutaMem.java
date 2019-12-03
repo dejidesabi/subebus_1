@@ -10,8 +10,8 @@ import com.googlecode.objectify.annotation.Index;
 
 @Entity
 public class RutaMem {
-	//@Id Long id;
-	@Id Long idRutaBus;  //mismo id de ruta
+	@Id Long id;
+	//@Id Long idRutaBus;  //mismo id de ruta
 	private String ruta;
 	private String chofer;
 	@Index Long membresia;
@@ -20,18 +20,18 @@ public class RutaMem {
 	@Index private Date fecha;
 	@Index private Long sucursal;
 	private Long venta;
-//	public Long getId() {
-//		return id;
-//	}
-//	public void setId(Long id) {
-//		this.id = id;
-//	}
-	public Long getIdRutaBus() {
-		return idRutaBus;
+	public Long getId() {
+		return id;
 	}
-	public void setIdRutaBus(Long idRutaBus) {
-		this.idRutaBus = idRutaBus;
+	public void setId(Long id) {
+		this.id = id;
 	}
+//	public Long getIdRutaBus() {
+//		return idRutaBus;
+//	}
+//	public void setIdRutaBus(Long idRutaBus) {
+//		this.idRutaBus = idRutaBus;
+//	}
 
 	public Long getMembresia() {
 		return membresia;

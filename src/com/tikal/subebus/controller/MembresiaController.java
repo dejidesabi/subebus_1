@@ -130,7 +130,7 @@ public class MembresiaController {
 		}
 	  
 	  @RequestMapping(value = "/asignar/{duracion}/{tipo}/{idSucursal}", method = RequestMethod.GET)
-			public void bydts(HttpServletRequest req, HttpServletResponse res, @PathVariable String duracion, @PathVariable String tipo, @PathVariable Long idSucursal) throws IOException {
+			public void asignar(HttpServletRequest req, HttpServletResponse res, @PathVariable String duracion, @PathVariable String tipo, @PathVariable Long idSucursal) throws IOException {
 			
 			  Membresia m = memDao.byDTS(duracion,tipo, idSucursal).get(0); // no activas solamente (para venta)
 			 // System.out.println("lista:"+lista);
@@ -164,7 +164,7 @@ public class MembresiaController {
 			   Alerta a= new Alerta();
 			   a.idproducto=m.getId();
 			   a.nombre="--";
-			   a.alerta="LA MEMBRESIA "+m.getId()+" ESTA INTENTANDO ACCESAR EN VARIAS RUTAS...";
+			   a.alerta="LA MEMBRESIA "+m.getId()+" ESTA INTENTANDO ACCESOS SIMULTANEOS...";
 			   alertaDao.add(a);
 			   System.out.println("Intento de fraude.... Esta membresia ya esta en uso...");
 		   }
@@ -233,7 +233,7 @@ public class MembresiaController {
 		
 			
 		  RutaMem rm= new RutaMem();
-		  rm.setIdRutaBus(rb.getId());
+		//  rm.setIdRutaBus(rb.getId());
 		  rm.setRuta(rb.getRuta());
 		  rm.setChofer(rb.getChofer());
 		  rm.setMembresia(m.getId());

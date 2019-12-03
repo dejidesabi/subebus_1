@@ -52,7 +52,7 @@ import com.tikal.subebus.modelo.entity.RutaMem;
 			  HSSFRow headerRow1 = sheet.createRow(0);
 		        HSSFCell cell1 = headerRow1.createCell(0);
 	            cell1.setCellStyle(headerStyle);
-	            cell1.setCellValue("REPORTE DE VENTAS POR PERIODO");
+	            cell1.setCellValue("REPORTE DE MEMBRESIAS Y RUTAS POR PERIODO");
 	            HSSFCell cellz = headerRow1.createCell(1);
 	            cellz.setCellStyle(headerStyle);
 	            
