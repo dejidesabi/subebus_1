@@ -51,6 +51,10 @@ app.config([ '$routeProvider','$httpProvider', function($routeProvider,$httpProv
 		templateUrl : "pages/perfil.html",
 		controller : "controladorListaPerfiles"
 	});
+	$routeProvider.when('/Alerta', {
+		templateUrl : "pages/alerta.html",
+		controller : "alertaController"
+	});
 		$routeProvider.otherwise({
 		redirectTo : '/Principal'
 	});
@@ -127,6 +131,7 @@ app.service('sessionService', [
 			});
 			return d.promise;
 		};
+	
 		this.reset=function(data){
 			var d = $q.defer();
 			$http.post("/usuario/reset/",data).then(
@@ -187,14 +192,13 @@ app.controller('navigation', [ 'sessionService','$window', '$rootScope', '$scope
 		});}
 } ]);
 
-app.run(['$rootScope','$http','sessionService','userFactory',function ($rootScope,$http,sessionService,userFactory) {
+app.run(['$rootScope','$http','sessionService','userFactory','alertaService',function ($rootScope,$http,sessionService,userFactory,alertaService) {
 	sessionService.isAuthenticated().then(function(data){
 		var us= data;
 		$rootScope.UserData=data;
 	
 		userFactory.setUsuarioFirmado(us);
 		$rootScope.perfilUsuario=userFactory.getUsuarioPerfil();
-		$rootScope.titulo = "Sistema Run";
 		
 		 sessionService.isAuthenticated().then(function(sesion) {
 			  
@@ -207,6 +211,10 @@ app.run(['$rootScope','$http','sessionService','userFactory',function ($rootScop
 					  }
 				  }
 			  });
+			  
+				alertaService.getNumAlertas().then(function(data) {
+					$rootScope.numAlerta = data;
+			});	
 		 });
 //		$http.get("/notificacion/numAlertas/"+ us.id).then(function(response){
 //			$rootScope.numNotificaciones=response.data;
