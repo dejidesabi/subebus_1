@@ -241,18 +241,22 @@ public class MembresiaController {
 		  rm.setDuracion(m.getDuracion());
 		  rm.setFecha(cal.getTime());//		 
 		  rm.setSucursal(m.getIdSucursal());
-		  if (m.getDuracion().equals("Dia")){
-			
-			  rm.setVenta(Long.valueOf("99999999"));
-			  rm.setNombre("usuario conveniente");
-		  }else{
-			  Venta v= ventaDao.byMembresia(m.getId());
-			  if(v.equals(null) || v==null){
+//		  if (m.getDuracion().equals("Dia")){
+//			
+//			  rm.setVenta(Long.valueOf("99999999"));
+//			  rm.setNombre("usuario conveniente");
+//		  }else{
+			  
+			  if(m.getIdVenta()!=null){
+				  Venta v= ventaDao.byMembresia(m.getId());
 				  rm.setVenta(v.getId());
 				  rm.setNombre(v.getNombre());
+			  }else{
+				  rm.setVenta(Long.valueOf("99999999"));
+				  rm.setNombre("usuario conveniente");
 			  }
 			
-		  }
+		//  }
 		 
 		  
 		  rmDao.guardar(rm);
