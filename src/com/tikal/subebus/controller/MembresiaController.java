@@ -168,6 +168,7 @@ public class MembresiaController {
 			   alertaDao.add(a);
 			   System.out.println("Intento de fraude.... Esta membresia ya esta en uso...");
 		   }
+		   
 		   res.getWriter().println(JsonConvertidor.toJson(m.getEstatus()));
 			/////// pasar a estatus= "EN USO"
 			m.setEstatus("EN USO");
@@ -229,7 +230,7 @@ public class MembresiaController {
 			//cal.add(Calendar.HOUR_OF_DAY, -6);
 			System.out.println(" creando ruta mem ...hora:"+cal.getTime());
 		  
-		Venta v= ventaDao.byMembresia(m.getId());
+		
 		
 			
 		  RutaMem rm= new RutaMem();
@@ -240,8 +241,20 @@ public class MembresiaController {
 		  rm.setDuracion(m.getDuracion());
 		  rm.setFecha(cal.getTime());//		 
 		  rm.setSucursal(m.getIdSucursal());
-		  rm.setVenta(v.getId());
-		  rm.setNombre(v.getNombre());
+		  if (m.getDuracion().equals("Dia")){
+			
+			  rm.setVenta(Long.valueOf("99999999"));
+			  rm.setNombre("usuario conveniente");
+		  }else{
+			  Venta v= ventaDao.byMembresia(m.getId());
+			  if(v.equals(null) || v==null){
+				  rm.setVenta(v.getId());
+				  rm.setNombre(v.getNombre());
+			  }
+			
+		  }
+		 
+		  
 		  rmDao.guardar(rm);
 		  System.out.println("guardada rm");
 
